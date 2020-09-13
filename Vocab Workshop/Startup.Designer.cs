@@ -48,6 +48,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelOrganization_MouseClick);
             // 
             // labelTitle
             // 
@@ -84,15 +85,16 @@
             // 
             // labelOrganization
             // 
-            this.labelOrganization.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelOrganization.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelOrganization.AutoSize = true;
             this.labelOrganization.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOrganization.Location = new System.Drawing.Point(560, 361);
+            this.labelOrganization.Location = new System.Drawing.Point(555, 361);
             this.labelOrganization.Name = "labelOrganization";
             this.labelOrganization.Size = new System.Drawing.Size(160, 20);
             this.labelOrganization.TabIndex = 4;
             this.labelOrganization.Text = "JapaneseGrammar.org";
             this.labelOrganization.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.labelOrganization.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelOrganization_MouseClick);
             // 
             // progressBar1
             // 

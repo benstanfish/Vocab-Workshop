@@ -16,7 +16,6 @@ namespace Vocab_Workshop
         public Startup()
         {
             InitializeComponent();
-   
         }
 
         private void StartupForm_Load(object sender, EventArgs e)
@@ -80,13 +79,23 @@ namespace Vocab_Workshop
                     timer1.Stop();
                     timer1.Enabled = false;
 
+                    CardViewer cv = new CardViewer();
+                    cv.Show();
                     this.Hide();
-                    // delete close then done!
-                    this.Close();
                     break;
                 default:
                     break;
             }
+        }
+        
+        private void OpenHomePage()
+        {
+            System.Diagnostics.Process.Start("http://japanesegrammar.org/");
+        }
+
+        private void labelOrganization_MouseClick(object sender, MouseEventArgs e)
+        {
+            OpenHomePage();
         }
     }
 }
