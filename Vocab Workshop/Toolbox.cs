@@ -11,9 +11,15 @@ using System.Windows.Forms;
 
 namespace Vocab_Workshop
 {
-    class Toolbox
-    {
 
+   
+
+
+
+
+    static class Toolbox
+    {
+        
     }
 
     public class AutoIncrement
