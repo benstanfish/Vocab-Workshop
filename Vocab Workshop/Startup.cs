@@ -32,6 +32,7 @@ namespace Vocab_Workshop
             progressBar1.Minimum = 0;
             progressBar1.Maximum = 1000;
             progressBar1.Value = 0;
+            
 
             timer1.Enabled = true;
             timer1.Interval = 300;
@@ -61,10 +62,12 @@ namespace Vocab_Workshop
             {
                 case 1:
                 case 3:
+                    progressBar1.Value = (iProgressBarValue * 89);
+                    break;
                 case 5:
                 case 7:
                 case 9:
-                    progressBar1.Value = (iProgressBarValue * 100);
+                    progressBar1.Value = (iProgressBarValue * 90);
                     break;
                 case 2:
                 case 4:
@@ -78,6 +81,8 @@ namespace Vocab_Workshop
                     timer1.Enabled = false;
 
                     this.Hide();
+                    // delete close then done!
+                    this.Close();
                     break;
                 default:
                     break;
