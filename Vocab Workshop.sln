@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vocab Workshop", "Vocab Workshop\Vocab Workshop.csproj", "{4158CAD8-A68E-48DB-94AD-FE6CAEB34C3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing Center", "Testing Center\Testing Center.csproj", "{E1551E8F-A88D-4A9D-965B-7F6F89E2EBD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4158CAD8-A68E-48DB-94AD-FE6CAEB34C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4158CAD8-A68E-48DB-94AD-FE6CAEB34C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4158CAD8-A68E-48DB-94AD-FE6CAEB34C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1551E8F-A88D-4A9D-965B-7F6F89E2EBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1551E8F-A88D-4A9D-965B-7F6F89E2EBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1551E8F-A88D-4A9D-965B-7F6F89E2EBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1551E8F-A88D-4A9D-965B-7F6F89E2EBD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
