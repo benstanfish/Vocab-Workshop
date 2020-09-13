@@ -84,6 +84,11 @@ namespace Vocab_Workshop
             //labelStage.Text = back;
             labelStage.Text = cardSet[currentCard, 2];
         }
+        private void Newbie()
+        {
+
+        }
+
         private void GotoMiddle()
         {
             //labelStage.Text = middle;
