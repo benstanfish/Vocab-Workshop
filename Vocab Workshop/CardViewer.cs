@@ -87,7 +87,9 @@ namespace Vocab_Workshop
         private void GotoMiddle()
         {
             //labelStage.Text = middle;
-            labelStage.Text = cardSet[currentCard, 1];
+            if (cardSet[currentCard, 1] == string.Empty) { labelStage.Text = cardSet[currentCard, 0]; }
+            else { labelStage.Text = cardSet[currentCard, 1]; }
+            
         }
 
         private void labelStage_MouseClick(object sender, MouseEventArgs e)
