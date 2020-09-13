@@ -52,6 +52,28 @@ namespace Vocab_Workshop
             if ((int)ch >= lb && (int)ch <= ub) { return true; }
             else { return false; }
         }
+        public static string Kanji(string myString)
+        {
+            char[] charArr = myString.ToCharArray();
+            StringBuilder sb = new StringBuilder();
+            foreach (char ch in charArr)
+            {
+                if (IsKanji(ch) == true) { sb.Append(ch); }
+            }
+            return sb.ToString();
+        }
+        public static string Okurigana(string myString)
+        {
+            char[] charArr = myString.ToCharArray();
+            StringBuilder sb = new StringBuilder();
+            foreach (char ch in charArr)
+            {
+                if (IsKanji(ch) == false) { sb.Append(ch); }
+            }
+            return sb.ToString();
+        }
+
+
         #endregion
 
         #region Test Functions
@@ -72,7 +94,8 @@ namespace Vocab_Workshop
         private void buttonRun_Click(object sender, EventArgs e)
         {
             string myText = textBoxInput.Text;
-            textBoxOutput.Text = CheckString(myText);
+            // textBoxOutput.Text = CheckString(myText);
+            textBoxOutput.Text = Kanji(myText);
         }
 
         #endregion
