@@ -17,10 +17,12 @@ namespace Vocab_Workshop
 {
     public partial class CardViewer : Form
     {
-        string front = "Front";
-        string middle = "middle";
-        string back = "back";
+        int currentCard = 0;
         int currentSide = 0;
+        string front = "Front";
+        string middle = "Middle";
+        string back = "Back";
+        
         public CardViewer()
         {
             InitializeComponent();
@@ -94,6 +96,15 @@ namespace Vocab_Workshop
                     break;
                 case Keys.Down:
                     CycleBack();
+                    break;
+                case Keys.Right:
+                    MessageBox.Show("Next Card");
+                    break;
+                case Keys.Left:
+                    MessageBox.Show("Previous Card");
+                    break;
+                case Keys.Escape:
+                    this.Close();
                     break;
             }
         }
