@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardViewer));
             this.labelStage = new System.Windows.Forms.Label();
-            this.progressBar1SetProgress = new System.Windows.Forms.ProgressBar();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.labelSetProgress = new System.Windows.Forms.Label();
             this.labelCurrentSet = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTotalCards = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelStage
@@ -50,17 +50,17 @@
             this.labelStage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelStage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelStage_MouseClick);
             // 
-            // progressBar1SetProgress
+            // progressBar1
             // 
-            this.progressBar1SetProgress.Location = new System.Drawing.Point(529, 10);
-            this.progressBar1SetProgress.Name = "progressBar1SetProgress";
-            this.progressBar1SetProgress.Size = new System.Drawing.Size(259, 23);
-            this.progressBar1SetProgress.TabIndex = 1;
+            this.progressBar1.Location = new System.Drawing.Point(529, 10);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(259, 23);
+            this.progressBar1.TabIndex = 1;
             // 
             // labelSetProgress
             // 
             this.labelSetProgress.AutoSize = true;
-            this.labelSetProgress.Location = new System.Drawing.Point(458, 16);
+            this.labelSetProgress.Location = new System.Drawing.Point(381, 16);
             this.labelSetProgress.Name = "labelSetProgress";
             this.labelSetProgress.Size = new System.Drawing.Size(65, 17);
             this.labelSetProgress.TabIndex = 2;
@@ -76,24 +76,24 @@
             this.labelCurrentSet.Text = "Current Set: \"Name\"";
             this.labelCurrentSet.Click += new System.EventHandler(this.labelCurrentSet_Click);
             // 
-            // label1
+            // labelTotalCards
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 310);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.labelTotalCards.AutoSize = true;
+            this.labelTotalCards.Location = new System.Drawing.Point(12, 303);
+            this.labelTotalCards.Name = "labelTotalCards";
+            this.labelTotalCards.Size = new System.Drawing.Size(85, 17);
+            this.labelTotalCards.TabIndex = 4;
+            this.labelTotalCards.Text = "Total Cards:";
             // 
             // CardViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 584);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelTotalCards);
             this.Controls.Add(this.labelCurrentSet);
             this.Controls.Add(this.labelSetProgress);
-            this.Controls.Add(this.progressBar1SetProgress);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelStage);
             this.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -109,10 +109,10 @@
         #endregion
 
         private System.Windows.Forms.Label labelStage;
-        private System.Windows.Forms.ProgressBar progressBar1SetProgress;
+        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label labelSetProgress;
         private System.Windows.Forms.Label labelCurrentSet;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTotalCards;
     }
 }
 

@@ -24,11 +24,22 @@ namespace Vocab_Workshop
         string front = "Front";
         string middle = "Middle";
         string back = "Back";
+        int wrongCnt = 0;
+        int rightCnt = 0;
+        int totalCards = 0;
+
+
+        
+
 
         public CardViewer()
         {
             InitializeComponent();
             labelStage.Text = front;
+            labelTotalCards.Text = totalCards.ToString();
+
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = totalCards;
         }
 
 
@@ -78,23 +89,21 @@ namespace Vocab_Workshop
         {
             //labelStage.Text = front;
             labelStage.Text = cardSet[currentCard, 0];
+            //progressBar1.Value++;
         }
         private void GotoBack()
         {
             //labelStage.Text = back;
             labelStage.Text = cardSet[currentCard, 2];
+            //progressBar1.Value--;
         }
-        private void Newbie()
-        {
 
-        }
 
         private void GotoMiddle()
         {
             //labelStage.Text = middle;
             if (cardSet[currentCard, 1] == string.Empty) { labelStage.Text = cardSet[currentCard, 0]; }
             else { labelStage.Text = cardSet[currentCard, 1]; }
-            
         }
 
         private void labelStage_MouseClick(object sender, MouseEventArgs e)
@@ -106,6 +115,10 @@ namespace Vocab_Workshop
         {
             switch (e.KeyCode)
             {
+                case Keys.Enter:
+                    break;
+                case Keys.Delete:
+                    break;
                 case Keys.Up:
                     CycleForward();
                     break;
@@ -113,26 +126,26 @@ namespace Vocab_Workshop
                     CycleBack();
                     break;
                 case Keys.Right:
-                    if(currentCard >= 0 && currentCard < cardSet.Length) { currentCard++; }
+                    if(currentCard < totalCards - 1) { currentCard++; }
                     else { currentCard = 0; }
                     labelStage.Text = cardSet[currentCard, 0];
                     break;
                 case Keys.Left:
-                    if (currentCard > 0 && currentCard <= cardSet.Length) { currentCard--; }
-                    else { currentCard = cardSet.Length; }
+                    if (currentCard > 0) { currentCard--; }
+                    else { currentCard = totalCards - 1; }
                     labelStage.Text = cardSet[currentCard, 0];
                     break;
                 case Keys.Escape:
                     this.Close();
                     break;
             }
+            UpdateProgress();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
         {
             KeyNavigation(e);
         }
-
 
         private string GetCardFilePath()
         {
@@ -146,7 +159,6 @@ namespace Vocab_Workshop
 
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-
                     myPath = ofd.FileName;
                 }
             }
@@ -173,10 +185,19 @@ namespace Vocab_Workshop
                     vals[i, j] = line_i[j];
                 }
             }
+            totalCards = vals.GetLength(0);
+            labelTotalCards.Text = "Total Cards: " + totalCards.ToString();
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = totalCards - 1;
             return vals;
         }
 
-
+        private void UpdateProgress()
+        {
+            progressBar1.Value = currentCard;
+            int temp = currentCard + 1;
+            labelSetProgress.Text = "Progress: " + temp + " of " + totalCards.ToString();
+        }
         private void labelCurrentSet_Click(object sender, EventArgs e)
         {
             cardSet = LoadCardSet(GetCardFilePath());
