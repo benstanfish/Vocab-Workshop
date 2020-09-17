@@ -1,41 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.IO;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Vocab_Workshop
 {
     public partial class CardViewer : Form
     {
+        CardRing cardRing = new CardRing();
 
-        string[,] cardSet;
         int currentCard = 0;
-        int currentSide = 0;
-        string front = "Front";
-        string middle = "Middle";
-        string back = "Back";
-        int wrongCnt = 0;
-        int rightCnt = 0;
         int totalCards = 0;
-
-
+        int startFace = 0;
+        int currentFace = 0;
         
-
-
         public CardViewer()
         {
             InitializeComponent();
-            labelStage.Text = front;
+
+            labelStage.Text = "Please load a card ring.";
             labelTotalCards.Text = totalCards.ToString();
 
             progressBar1.Minimum = 0;
@@ -43,72 +26,47 @@ namespace Vocab_Workshop
         }
 
 
-
-        private void CycleForward()
+        private void UpdateStage(string performer)
         {
-            switch (currentSide)
-            {
-                case 0:
-                    GotoMiddle();
-                    currentSide = 1;
-                    break;
-                case 1:
-                    GotoBack();
-                    currentSide = 2;
-                    break;
-                case 2:
-                    GotoFront();
-                    currentSide = 0;
-                    break;
-                default:
-                    break;
-            }
-        }
-        private void CycleBack()
-        {
-            switch (currentSide)
-            {
-                case 0:
-                    GotoBack();
-                    currentSide = 2;
-                    break;
-                case 1:
-                    GotoFront();
-                    currentSide = 0;
-                    break;
-                case 2:
-                    GotoMiddle();
-                    currentSide = 1;
-                    break;
-                default:
-                    break;
-            }
+            if(!String.IsNullOrEmpty(performer))
+                labelStage.Text = performer;
         }
 
-        private void GotoFront()
+        private void NextCard()
         {
-            //labelStage.Text = front;
-            labelStage.Text = cardSet[currentCard, 0];
-            //progressBar1.Value++;
-        }
-        private void GotoBack()
-        {
-            //labelStage.Text = back;
-            labelStage.Text = cardSet[currentCard, 2];
-            //progressBar1.Value--;
-        }
+            if (currentCard == totalCards - 1) { currentCard = 0; }
+            else { currentCard++; }
 
-
-        private void GotoMiddle()
+            UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
+        }
+        private void PreviousCard()
         {
-            //labelStage.Text = middle;
-            if (cardSet[currentCard, 1] == string.Empty) { labelStage.Text = cardSet[currentCard, 0]; }
-            else { labelStage.Text = cardSet[currentCard, 1]; }
+            if (currentCard == 0) { currentCard = totalCards - 1; }
+            else { currentCard--; }
+
+            UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
 
-        private void labelStage_MouseClick(object sender, MouseEventArgs e)
+        private void NextFace()
         {
-            CycleForward();
+            if (currentFace == cardRing.cards[currentCard].Faces.Count - 1) { currentFace = 0; }
+            else { currentFace++; }
+
+            UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+        }
+        private void PreviousFace()
+        {
+            if (currentFace == 0) { currentFace = cardRing.cards[currentCard].Faces.Count - 1; }
+            else { currentFace--; }
+
+            UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+        }
+
+        private void UpdateProgressBar()
+        {
+            //progressBar1.Value = currentCard;
+            //string temp = (currentCard + 1).ToString();
+            //labelSetProgress.Text = "Progress: " + temp + " of " + totalCards.ToString();
         }
 
         private void KeyNavigation(KeyEventArgs e)
@@ -120,26 +78,22 @@ namespace Vocab_Workshop
                 case Keys.Delete:
                     break;
                 case Keys.Up:
-                    CycleForward();
+                    NextFace();
                     break;
                 case Keys.Down:
-                    CycleBack();
+                    PreviousFace();
                     break;
                 case Keys.Right:
-                    if(currentCard < totalCards - 1) { currentCard++; }
-                    else { currentCard = 0; }
-                    labelStage.Text = cardSet[currentCard, 0];
+                    NextCard();
                     break;
                 case Keys.Left:
-                    if (currentCard > 0) { currentCard--; }
-                    else { currentCard = totalCards - 1; }
-                    labelStage.Text = cardSet[currentCard, 0];
+                    PreviousCard();
                     break;
                 case Keys.Escape:
                     this.Close();
                     break;
             }
-            UpdateProgress();
+            UpdateProgressBar();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
@@ -165,43 +119,36 @@ namespace Vocab_Workshop
             return myPath;
         }
 
-        private string[,] LoadCardSet(string myPath)
+
+        private CardRing LoadCardSet(string myPath)
         {
-            
             string myContents = File.ReadAllText(myPath);
             myContents = myContents.Replace('\n', '\r');
             string[] lines = myContents.Split(new char[] { '\r' },
                 StringSplitOptions.RemoveEmptyEntries);
 
-            int myRows = lines.Length;
-            int myCols = lines[0].Split('\t').Length;
-
-            string[,] vals = new String[myRows, myCols];
-            for (int i = 0; i < myRows; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
-                string[] line_i = lines[i].Split('\t');
-                for (int j = 0; j < myCols; j++)
+                string[] thisLine = lines[i].Split('\t');
+                Card card = new Card();
+                for (int j = 0; j < thisLine.Length; j++)
                 {
-                    vals[i, j] = line_i[j];
+                    if (!string.IsNullOrWhiteSpace(thisLine[j].ToString()))
+                        card.Faces.Add(thisLine[j].ToString());
                 }
+                cardRing.cards.Add(card);
             }
-            totalCards = vals.GetLength(0);
+
+            totalCards = cardRing.cards.Count();
             labelTotalCards.Text = "Total Cards: " + totalCards.ToString();
             progressBar1.Minimum = 0;
             progressBar1.Maximum = totalCards - 1;
-            return vals;
-        }
-
-        private void UpdateProgress()
-        {
-            progressBar1.Value = currentCard;
-            int temp = currentCard + 1;
-            labelSetProgress.Text = "Progress: " + temp + " of " + totalCards.ToString();
+            return cardRing;
         }
         private void labelCurrentSet_Click(object sender, EventArgs e)
         {
-            cardSet = LoadCardSet(GetCardFilePath());
-            labelStage.Text = cardSet[currentCard,0];
+            cardRing = LoadCardSet(GetCardFilePath());
+            labelStage.Text = cardRing.cards[0].Faces[0];
         }
     }
 }

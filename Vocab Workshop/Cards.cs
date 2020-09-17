@@ -8,25 +8,15 @@ namespace Vocab_Workshop
 {
     public class Card
     {
+        /// <summary>
+        /// The Card an individual multi-sided card object. Each face takes a string.
+        /// </summary>
+        
         public int Id;
-        public string Word;
-        public string Hint;
-        public string Meaning;
+        public readonly List<string> Faces = new List<string>();
+
     }
 
-    public class CardStack
-    {
-        public int Id;
-        public string Title;
-        public string ShortTitle;
-        public readonly List<Card> card = new List<Card>();
-        public readonly List<TopicRing> topic = new List<TopicRing>();
-    }
-
-    public class TopicRing
-    {
-        public string topic;
-    }
 
 
 }

@@ -48,7 +48,6 @@
             this.labelStage.TabIndex = 0;
             this.labelStage.Text = "label1";
             this.labelStage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelStage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelStage_MouseClick);
             // 
             // progressBar1
             // 
