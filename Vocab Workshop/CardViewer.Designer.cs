@@ -33,7 +33,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.labelSetProgress = new System.Windows.Forms.Label();
             this.labelCurrentSet = new System.Windows.Forms.Label();
-            this.labelTotalCards = new System.Windows.Forms.Label();
+            this.listBoxNeedsWork = new System.Windows.Forms.ListBox();
+            this.labelNeedsWork = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelStage
@@ -42,7 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelStage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelStage.Font = new System.Drawing.Font("Meiryo UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStage.Location = new System.Drawing.Point(12, 55);
+            this.labelStage.Location = new System.Drawing.Point(12, 36);
             this.labelStage.Name = "labelStage";
             this.labelStage.Size = new System.Drawing.Size(776, 234);
             this.labelStage.TabIndex = 0;
@@ -75,21 +76,34 @@
             this.labelCurrentSet.Text = "Current Set: \"Name\"";
             this.labelCurrentSet.Click += new System.EventHandler(this.labelCurrentSet_Click);
             // 
-            // labelTotalCards
+            // listBoxNeedsWork
             // 
-            this.labelTotalCards.AutoSize = true;
-            this.labelTotalCards.Location = new System.Drawing.Point(12, 303);
-            this.labelTotalCards.Name = "labelTotalCards";
-            this.labelTotalCards.Size = new System.Drawing.Size(85, 17);
-            this.labelTotalCards.TabIndex = 4;
-            this.labelTotalCards.Text = "Total Cards:";
+            this.listBoxNeedsWork.FormattingEnabled = true;
+            this.listBoxNeedsWork.ItemHeight = 16;
+            this.listBoxNeedsWork.Location = new System.Drawing.Point(12, 322);
+            this.listBoxNeedsWork.Name = "listBoxNeedsWork";
+            this.listBoxNeedsWork.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBoxNeedsWork.Size = new System.Drawing.Size(241, 212);
+            this.listBoxNeedsWork.TabIndex = 0;
+            this.listBoxNeedsWork.TabStop = false;
+            this.listBoxNeedsWork.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CardViewer_KeyUp);
+            // 
+            // labelNeedsWork
+            // 
+            this.labelNeedsWork.AutoSize = true;
+            this.labelNeedsWork.Location = new System.Drawing.Point(9, 302);
+            this.labelNeedsWork.Name = "labelNeedsWork";
+            this.labelNeedsWork.Size = new System.Drawing.Size(90, 17);
+            this.labelNeedsWork.TabIndex = 5;
+            this.labelNeedsWork.Text = "Needs Work:";
             // 
             // CardViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 584);
-            this.Controls.Add(this.labelTotalCards);
+            this.Controls.Add(this.labelNeedsWork);
+            this.Controls.Add(this.listBoxNeedsWork);
             this.Controls.Add(this.labelCurrentSet);
             this.Controls.Add(this.labelSetProgress);
             this.Controls.Add(this.progressBar1);
@@ -111,7 +125,8 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label labelSetProgress;
         private System.Windows.Forms.Label labelCurrentSet;
-        private System.Windows.Forms.Label labelTotalCards;
+        private System.Windows.Forms.ListBox listBoxNeedsWork;
+        private System.Windows.Forms.Label labelNeedsWork;
     }
 }
 

@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+
+
 
 namespace Vocab_Workshop
 {
     public partial class CardViewer : Form
     {
         CardRing cardRing = new CardRing();
+        List<string> needsWork = new List<string>();
 
         int currentCard = 0;
         int totalCards = 0;
@@ -17,9 +21,9 @@ namespace Vocab_Workshop
         public CardViewer()
         {
             InitializeComponent();
-
+            
             labelStage.Text = "Please load a card ring.";
-            labelTotalCards.Text = totalCards.ToString();
+            
 
             progressBar1.Minimum = 0;
             progressBar1.Maximum = totalCards;
@@ -69,11 +73,23 @@ namespace Vocab_Workshop
             //labelSetProgress.Text = "Progress: " + temp + " of " + totalCards.ToString();
         }
 
+        private void AddToNeedsWord(string needsWorkWord)
+        {
+            if (!needsWork.Contains(needsWorkWord))
+                needsWork.Add(needsWorkWord);
+            listBoxNeedsWork.DataSource = needsWork.ToList();
+            listBoxNeedsWork.ClearSelected();
+
+        }
+
+
+
         private void KeyNavigation(KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Enter:
+                case Keys.Space:
+                    AddToNeedsWord(cardRing.cards[currentCard].Faces[0]);
                     break;
                 case Keys.Delete:
                     break;
@@ -85,20 +101,24 @@ namespace Vocab_Workshop
                     break;
                 case Keys.Right:
                     NextCard();
+                    
                     break;
                 case Keys.Left:
                     PreviousCard();
+                    
                     break;
                 case Keys.Escape:
                     this.Close();
                     break;
             }
+            
             UpdateProgressBar();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
         {
             KeyNavigation(e);
+            listBoxNeedsWork.ClearSelected();
         }
 
         private string GetCardFilePath()
@@ -140,7 +160,7 @@ namespace Vocab_Workshop
             }
 
             totalCards = cardRing.cards.Count();
-            labelTotalCards.Text = "Total Cards: " + totalCards.ToString();
+            
             progressBar1.Minimum = 0;
             progressBar1.Maximum = totalCards - 1;
             return cardRing;
@@ -150,5 +170,6 @@ namespace Vocab_Workshop
             cardRing = LoadCardSet(GetCardFilePath());
             labelStage.Text = cardRing.cards[0].Faces[0];
         }
+
     }
 }
