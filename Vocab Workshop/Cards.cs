@@ -15,6 +15,13 @@ namespace Vocab_Workshop
         public int Id;
         public readonly List<string> Faces = new List<string>();
 
+        public override string ToString()
+        {
+            return Faces[0];
+        }
+
+
+
     }
 
 

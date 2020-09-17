@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace Vocab_Workshop
     public partial class CardViewer : Form
     {
         CardRing cardRing = new CardRing();
-        List<string> needsWork = new List<string>();
+        CardRing needsWork = new CardRing();
 
         int currentCard = 0;
         int totalCards = 0;
@@ -21,7 +22,7 @@ namespace Vocab_Workshop
         public CardViewer()
         {
             InitializeComponent();
-            
+
             labelStage.Text = "Please load a card ring.";
             
 
@@ -41,7 +42,9 @@ namespace Vocab_Workshop
             if (currentCard == totalCards - 1) { currentCard = 0; }
             else { currentCard++; }
 
-            UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
+            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+
+            //UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
         private void PreviousCard()
         {
@@ -56,7 +59,9 @@ namespace Vocab_Workshop
             if (currentFace == cardRing.cards[currentCard].Faces.Count - 1) { currentFace = 0; }
             else { currentFace++; }
 
-            UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+
+            //UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
         }
         private void PreviousFace()
         {
@@ -73,13 +78,16 @@ namespace Vocab_Workshop
             //labelSetProgress.Text = "Progress: " + temp + " of " + totalCards.ToString();
         }
 
-        private void AddToNeedsWord(string needsWorkWord)
+        private void AddToNeedsWord(Card needsWorkWord)
         {
-            if (!needsWork.Contains(needsWorkWord))
-                needsWork.Add(needsWorkWord);
-            listBoxNeedsWork.DataSource = needsWork.ToList();
-            listBoxNeedsWork.ClearSelected();
+            if (!needsWork.cards.Contains(needsWorkWord))
+                needsWork.cards.Add(needsWorkWord);
+            //listBoxNeedsWork.BeginUpdate();
 
+            listBoxNeedsWork.DataSource = needsWork.cards.ToList();
+            //listBoxNeedsWork.ClearSelected();
+
+            //listBoxNeedsWork.EndUpdate();
         }
 
 
@@ -89,7 +97,7 @@ namespace Vocab_Workshop
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    AddToNeedsWord(cardRing.cards[currentCard].Faces[0]);
+                    AddToNeedsWord(cardRing.cards[currentCard]);
                     break;
                 case Keys.Delete:
                     break;
@@ -119,6 +127,40 @@ namespace Vocab_Workshop
         {
             KeyNavigation(e);
             listBoxNeedsWork.ClearSelected();
+        }
+
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        {
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new Bitmap(newWidth, newHeight);
+
+            using (var graphics = Graphics.FromImage(newImage))
+                graphics.DrawImage(image, 0, 0, newWidth, newHeight);
+
+            return newImage;
+        }
+
+        private void TestImageAndUpdateStage(string possiblePath)
+        {
+            if (File.Exists(possiblePath))
+            {
+                var img = Image.FromFile(possiblePath);
+
+                var newImg = ScaleImage(img, labelStage.Width, labelStage.Height);
+                labelStage.Text = "";
+                labelStage.Image = newImg;
+            }
+            else
+            {
+                labelStage.Image = null;
+                UpdateStage(possiblePath);
+            }
         }
 
         private string GetCardFilePath()
@@ -171,5 +213,9 @@ namespace Vocab_Workshop
             labelStage.Text = cardRing.cards[0].Faces[0];
         }
 
+        private void listBoxNeedsWork_DoubleClick(object sender, EventArgs e)
+        {
+            MessageBox.Show(listBoxNeedsWork.SelectedIndex.ToString());
+        }
     }
 }
