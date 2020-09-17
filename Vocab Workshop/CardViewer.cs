@@ -51,7 +51,9 @@ namespace Vocab_Workshop
             if (currentCard == 0) { currentCard = totalCards - 1; }
             else { currentCard--; }
 
-            UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
+            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+
+            //UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
 
         private void NextFace()
@@ -68,7 +70,9 @@ namespace Vocab_Workshop
             if (currentFace == 0) { currentFace = cardRing.cards[currentCard].Faces.Count - 1; }
             else { currentFace--; }
 
-            UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+
+            //UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
         }
 
         private void UpdateProgressBar()
@@ -109,11 +113,9 @@ namespace Vocab_Workshop
                     break;
                 case Keys.Right:
                     NextCard();
-                    
                     break;
                 case Keys.Left:
                     PreviousCard();
-                    
                     break;
                 case Keys.Escape:
                     this.Close();
@@ -133,7 +135,8 @@ namespace Vocab_Workshop
         {
             var ratioX = (double)maxWidth / image.Width;
             var ratioY = (double)maxHeight / image.Height;
-            var ratio = Math.Min(ratioX, ratioY);
+            Double ratio = Math.Min(ratioX, ratioY);
+            ratio = ratio * 0.9;
 
             var newWidth = (int)(image.Width * ratio);
             var newHeight = (int)(image.Height * ratio);
@@ -150,9 +153,8 @@ namespace Vocab_Workshop
         {
             if (File.Exists(possiblePath))
             {
-                var img = Image.FromFile(possiblePath);
-
-                var newImg = ScaleImage(img, labelStage.Width, labelStage.Height);
+                Image img = Image.FromFile(possiblePath);   
+                Image newImg = ScaleImage(img, labelStage.Width, labelStage.Height);
                 labelStage.Text = "";
                 labelStage.Image = newImg;
             }
