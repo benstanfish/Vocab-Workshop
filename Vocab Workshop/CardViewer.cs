@@ -27,9 +27,7 @@ namespace Vocab_Workshop
             InitializeComponent();
 
             labelStage.Text = "Please load a card ring.";
-            
-            //progressBar1.Minimum = 0;
-            //progressBar1.Maximum = totalCards;
+ 
         }
 
 
@@ -104,7 +102,8 @@ namespace Vocab_Workshop
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    AddToNeedsWord(cardRing.cards[currentCard]);
+                    PreviousCard();
+                    //AddToNeedsWord(cardRing.cards[currentCard]);
                     break;
                 case Keys.Delete:
                     break;
@@ -115,10 +114,12 @@ namespace Vocab_Workshop
                     PreviousFace();
                     break;
                 case Keys.Right:
+                    FlashIncorrect();
                     NextCard();
                     break;
                 case Keys.Left:
-                    PreviousCard();
+                    FlashCorrect();
+                    NextCard();
                     break;
                 case Keys.Escape:
                     this.Close();
@@ -264,40 +265,40 @@ namespace Vocab_Workshop
             control.BackColor = color;
 
             var timer = new System.Timers.Timer();
-            timer.Interval = 350;
+            timer.Interval = 250;
             timer.Elapsed += ResetLabelColor;
             timer.AutoReset = false;
             timer.Enabled = true;
         }
 
-
         private void DrawAGreenRect()
         {
             //SolidBrush myBrush = new SolidBrush(Color.Red);
             Graphics formGraphics;
+            var myRect = new Rectangle(0, 0, 25, 600);
             LinearGradientBrush linGreenBrush = new LinearGradientBrush(
-               new Point(0, 10),
-               new Point(200, 10),
+               myRect,
                Color.FromArgb(255, 60, 179, 113),   // Medium Sea Green
-               Color.FromArgb(0, 255, 99, 71));  // Tomato
-
+               Color.FromArgb(0, 60, 179, 113),      
+               0f);  
             formGraphics = this.CreateGraphics();
-            formGraphics.FillRectangle(linGreenBrush, new Rectangle(0, 0, 200, 300));
+            formGraphics.FillRectangle(linGreenBrush, myRect);
             linGreenBrush.Dispose();
             formGraphics.Dispose();
+           
         }
         private void DrawARedRect()
         {
             //SolidBrush myBrush = new SolidBrush(Color.Red);
             Graphics formGraphics;
+            var myRect = new Rectangle(560, 0, 30, 600);
             LinearGradientBrush linGreenBrush = new LinearGradientBrush(
-               new Point(0, 10),
-               new Point(200, 10),
-               Color.FromArgb(0, 60, 179, 113),   // Medium Sea Green
-               Color.FromArgb(255, 255, 99, 71));  // Tomato
-
+               myRect,
+               Color.FromArgb(0, 255, 99, 71),   // Tomato
+               Color.FromArgb(255, 255, 99, 71),      
+               0f);  
             formGraphics = this.CreateGraphics();
-            formGraphics.FillRectangle(linGreenBrush, new Rectangle(0, 0, 200, 300));
+            formGraphics.FillRectangle(linGreenBrush, myRect);
             linGreenBrush.Dispose();
             formGraphics.Dispose();
         }
@@ -314,23 +315,7 @@ namespace Vocab_Workshop
         }
         private void FlashCorrect()
         {
-            ColorLabel(labelCorrect, Color.MediumSeaGreen);
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FlashCorrect();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FlashIncorrect();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            DrawARedRect();
+            ColorLabel(labelCorrect, Color.DodgerBlue);
         }
     }
 }
