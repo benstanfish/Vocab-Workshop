@@ -30,42 +30,24 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardViewer));
             this.labelStage = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.labelSetProgress = new System.Windows.Forms.Label();
             this.labelCurrentSet = new System.Windows.Forms.Label();
-            this.listBoxNeedsWork = new System.Windows.Forms.ListBox();
-            this.labelNeedsWork = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelIncorrect = new System.Windows.Forms.Label();
+            this.labelCorrect = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelStage
             // 
-            this.labelStage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.labelStage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelStage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelStage.Font = new System.Drawing.Font("Meiryo UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStage.Location = new System.Drawing.Point(12, 36);
+            this.labelStage.Location = new System.Drawing.Point(49, 97);
             this.labelStage.Name = "labelStage";
-            this.labelStage.Size = new System.Drawing.Size(776, 234);
+            this.labelStage.Size = new System.Drawing.Size(700, 300);
             this.labelStage.TabIndex = 0;
             this.labelStage.Text = "Stage";
             this.labelStage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(529, 10);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(259, 23);
-            this.progressBar1.TabIndex = 1;
-            // 
-            // labelSetProgress
-            // 
-            this.labelSetProgress.AutoSize = true;
-            this.labelSetProgress.Location = new System.Drawing.Point(381, 16);
-            this.labelSetProgress.Name = "labelSetProgress";
-            this.labelSetProgress.Size = new System.Drawing.Size(65, 17);
-            this.labelSetProgress.TabIndex = 2;
-            this.labelSetProgress.Text = "Progress";
             // 
             // labelCurrentSet
             // 
@@ -77,49 +59,40 @@
             this.labelCurrentSet.Text = "Current Set: \"Name\"";
             this.labelCurrentSet.Click += new System.EventHandler(this.labelCurrentSet_Click);
             // 
-            // listBoxNeedsWork
+            // labelIncorrect
             // 
-            this.listBoxNeedsWork.Enabled = false;
-            this.listBoxNeedsWork.FormattingEnabled = true;
-            this.listBoxNeedsWork.ItemHeight = 16;
-            this.listBoxNeedsWork.Location = new System.Drawing.Point(12, 322);
-            this.listBoxNeedsWork.Name = "listBoxNeedsWork";
-            this.listBoxNeedsWork.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBoxNeedsWork.Size = new System.Drawing.Size(241, 212);
-            this.listBoxNeedsWork.TabIndex = 0;
-            this.listBoxNeedsWork.TabStop = false;
-            this.listBoxNeedsWork.DoubleClick += new System.EventHandler(this.listBoxNeedsWork_DoubleClick);
-            this.listBoxNeedsWork.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CardViewer_KeyUp);
+            this.labelIncorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelIncorrect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelIncorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.labelIncorrect.Location = new System.Drawing.Point(755, 97);
+            this.labelIncorrect.Name = "labelIncorrect";
+            this.labelIncorrect.Size = new System.Drawing.Size(30, 300);
+            this.labelIncorrect.TabIndex = 5;
+            this.labelIncorrect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelNeedsWork
+            // labelCorrect
             // 
-            this.labelNeedsWork.AutoSize = true;
-            this.labelNeedsWork.Location = new System.Drawing.Point(9, 302);
-            this.labelNeedsWork.Name = "labelNeedsWork";
-            this.labelNeedsWork.Size = new System.Drawing.Size(90, 17);
-            this.labelNeedsWork.TabIndex = 5;
-            this.labelNeedsWork.Text = "Needs Work:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(287, 302);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
+            this.labelCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCorrect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.labelCorrect.Location = new System.Drawing.Point(15, 97);
+            this.labelCorrect.Name = "labelCorrect";
+            this.labelCorrect.Size = new System.Drawing.Size(30, 300);
+            this.labelCorrect.TabIndex = 6;
+            this.labelCorrect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CardViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 584);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelNeedsWork);
-            this.Controls.Add(this.listBoxNeedsWork);
             this.Controls.Add(this.labelCurrentSet);
-            this.Controls.Add(this.labelSetProgress);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.labelCorrect);
+            this.Controls.Add(this.labelIncorrect);
             this.Controls.Add(this.labelStage);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -135,12 +108,9 @@
         #endregion
 
         private System.Windows.Forms.Label labelStage;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label labelSetProgress;
         private System.Windows.Forms.Label labelCurrentSet;
-        private System.Windows.Forms.ListBox listBoxNeedsWork;
-        private System.Windows.Forms.Label labelNeedsWork;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelIncorrect;
+        private System.Windows.Forms.Label labelCorrect;
     }
 }
 

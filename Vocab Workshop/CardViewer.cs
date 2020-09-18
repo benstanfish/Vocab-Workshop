@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 
@@ -26,9 +28,12 @@ namespace Vocab_Workshop
             labelStage.Text = "Please load a card ring.";
             
 
-            progressBar1.Minimum = 0;
-            progressBar1.Maximum = totalCards;
+            //progressBar1.Minimum = 0;
+            //progressBar1.Maximum = totalCards;
         }
+
+
+
 
 
         private void UpdateStage(string performer)
@@ -88,13 +93,11 @@ namespace Vocab_Workshop
                 needsWork.cards.Add(needsWorkWord);
             //listBoxNeedsWork.BeginUpdate();
 
-            listBoxNeedsWork.DataSource = needsWork.cards.ToList();
+            //listBoxNeedsWork.DataSource = needsWork.cards.ToList();
             //listBoxNeedsWork.ClearSelected();
 
             //listBoxNeedsWork.EndUpdate();
         }
-
-
 
         private void KeyNavigation(KeyEventArgs e)
         {
@@ -128,7 +131,6 @@ namespace Vocab_Workshop
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
         {
             KeyNavigation(e);
-            listBoxNeedsWork.ClearSelected();
         }
 
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
@@ -164,6 +166,42 @@ namespace Vocab_Workshop
                 UpdateStage(possiblePath);
             }
         }
+
+        //private string TestWebImage(string possibleUrl)
+        //{
+        //    string tempPath = "";
+        //    if (possibleUrl.Contains("http"))
+        //    {
+                
+        //        string tempFolder = Path.GetTempPath();
+        //        tempPath = tempFolder + @"\tempImage.jpeg";
+                
+        //        using (WebClient webClient = new WebClient())
+        //        {
+        //            byte[] data = webClient.DownloadData(possibleUrl);
+
+        //            using (MemoryStream mem = new MemoryStream(data))
+        //            {
+        //                using (Image yourImage = Image.FromStream(mem))
+        //                {
+        //                    // If you want it as Png
+        //                    //yourImage.Save(tempPath, ImageFormat.Png);
+
+        //                    // If you want it as Jpeg
+        //                    yourImage.Save(tempPath, ImageFormat.Jpeg);
+        //                }
+        //            }
+
+        //        }
+        //        return tempPath;
+        //    }
+        //    else
+        //    {
+        //        return possibleUrl;
+        //    }
+            
+        //}
+
 
         private string GetCardFilePath()
         {
@@ -205,8 +243,8 @@ namespace Vocab_Workshop
 
             totalCards = cardRing.cards.Count();
             
-            progressBar1.Minimum = 0;
-            progressBar1.Maximum = totalCards - 1;
+            //progressBar1.Minimum = 0;
+            //progressBar1.Maximum = totalCards - 1;
             return cardRing;
         }
         private void labelCurrentSet_Click(object sender, EventArgs e)
@@ -217,7 +255,44 @@ namespace Vocab_Workshop
 
         private void listBoxNeedsWork_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show(listBoxNeedsWork.SelectedIndex.ToString());
+            //MessageBox.Show(listBoxNeedsWork.SelectedIndex.ToString());
+        }
+
+
+        private void ColorLabel(Control control, Color color)
+        {
+            control.BackColor = color;
+
+            var timer = new System.Timers.Timer();
+            timer.Interval = 350;
+            timer.Elapsed += ResetLabelColor;
+            timer.AutoReset = false;
+            timer.Enabled = true;
+        }
+        public void ResetLabelColor(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            labelIncorrect.BackColor = Control.DefaultBackColor;
+            labelCorrect.BackColor = Control.DefaultBackColor;
+        }
+
+        private void FlashIncorrect()
+        {
+            ColorLabel(labelIncorrect, Color.Tomato);
+        }
+        private void FlashCorrect()
+        {
+            ColorLabel(labelCorrect, Color.MediumSeaGreen);
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FlashCorrect();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FlashIncorrect();
         }
     }
 }
