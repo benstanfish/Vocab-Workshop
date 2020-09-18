@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,6 @@ namespace Vocab_Workshop
 
             labelStage.Text = "Please load a card ring.";
             
-
             //progressBar1.Minimum = 0;
             //progressBar1.Maximum = totalCards;
         }
@@ -269,6 +269,39 @@ namespace Vocab_Workshop
             timer.AutoReset = false;
             timer.Enabled = true;
         }
+
+
+        private void DrawAGreenRect()
+        {
+            //SolidBrush myBrush = new SolidBrush(Color.Red);
+            Graphics formGraphics;
+            LinearGradientBrush linGreenBrush = new LinearGradientBrush(
+               new Point(0, 10),
+               new Point(200, 10),
+               Color.FromArgb(255, 60, 179, 113),   // Medium Sea Green
+               Color.FromArgb(0, 255, 99, 71));  // Tomato
+
+            formGraphics = this.CreateGraphics();
+            formGraphics.FillRectangle(linGreenBrush, new Rectangle(0, 0, 200, 300));
+            linGreenBrush.Dispose();
+            formGraphics.Dispose();
+        }
+        private void DrawARedRect()
+        {
+            //SolidBrush myBrush = new SolidBrush(Color.Red);
+            Graphics formGraphics;
+            LinearGradientBrush linGreenBrush = new LinearGradientBrush(
+               new Point(0, 10),
+               new Point(200, 10),
+               Color.FromArgb(0, 60, 179, 113),   // Medium Sea Green
+               Color.FromArgb(255, 255, 99, 71));  // Tomato
+
+            formGraphics = this.CreateGraphics();
+            formGraphics.FillRectangle(linGreenBrush, new Rectangle(0, 0, 200, 300));
+            linGreenBrush.Dispose();
+            formGraphics.Dispose();
+        }
+
         public void ResetLabelColor(Object source, System.Timers.ElapsedEventArgs e)
         {
             labelIncorrect.BackColor = Control.DefaultBackColor;
@@ -293,6 +326,11 @@ namespace Vocab_Workshop
         private void button2_Click(object sender, EventArgs e)
         {
             FlashIncorrect();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DrawARedRect();
         }
     }
 }
