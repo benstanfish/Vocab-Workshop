@@ -4,6 +4,9 @@ using System.Collections.Generic;
 namespace Vocab_Workshop
 {
     
+
+
+
     public class CardSet
     {
         /// <summary>
@@ -23,6 +26,9 @@ namespace Vocab_Workshop
         {
             return _id;
         }
+
+
+
 
     }
 

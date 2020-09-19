@@ -63,9 +63,9 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bsftoon {
+        internal static System.Drawing.Bitmap buntorii {
             get {
-                object obj = ResourceManager.GetObject("bsftoon", resourceCulture);
+                object obj = ResourceManager.GetObject("buntorii", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buntorii {
+        internal static System.Drawing.Bitmap ic_casino_black_48dp {
             get {
-                object obj = ResourceManager.GetObject("buntorii", resourceCulture);
+                object obj = ResourceManager.GetObject("ic_casino_black_48dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

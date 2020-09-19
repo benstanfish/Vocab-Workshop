@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 
 
@@ -24,7 +25,29 @@ namespace Vocab_Workshop
             InitializeComponent();
             labelStage.Text = "Please load a card ring.";
  
+
+
+
         }
+
+
+        private void WriteXml()
+        {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\text.xml";
+            XmlSerializer xml = new XmlSerializer(typeof(CardSet));
+
+            using (var writer = new StreamWriter(filePath))
+            {
+                xml.Serialize(writer, cardSet);
+                MessageBox.Show(filePath);
+                MessageBox.Show("Done!");
+            }
+            
+
+        }
+
+
+
 
         private void UpdateStage(string performer)
         {
@@ -308,6 +331,11 @@ namespace Vocab_Workshop
         private void FlashCorrect()
         {
             ColorLabel(labelCorrect, Color.DodgerBlue);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            WriteXml();
         }
     }
 }
