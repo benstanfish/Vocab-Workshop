@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -34,15 +35,18 @@ namespace Vocab_Workshop
         private void WriteXml()
         {
             string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\text.xml";
-            XmlSerializer xml = new XmlSerializer(typeof(CardSet));
-
-            using (var writer = new StreamWriter(filePath))
+            //XmlSerializer xml = new XmlSerializer(typeof(CardSet));
+            var xml = new DataContractSerializer(typeof(CardSet));
+            using (var writer = new FileStream(filePath, FileMode.Create))
             {
-                xml.Serialize(writer, cardSet);
+                //xml.Serialize(writer, cardSet);
+                
+                xml.WriteObject(writer, cardSet);
+                
                 MessageBox.Show(filePath);
                 MessageBox.Show("Done!");
+
             }
-            
 
         }
 
