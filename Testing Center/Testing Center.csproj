@@ -6,4 +6,8 @@
     <RootNamespace>Testing_Center</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Vocab Workshop\Vocab Workshop.csproj" />
+  </ItemGroup>
+
 </Project>

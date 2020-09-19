@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata.Ecma335;
+using Vocab_Workshop;
 
 namespace Testing_Center
 {
@@ -7,17 +9,23 @@ namespace Testing_Center
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            //Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            //string a = "\u263A";
+            //Console.WriteLine(a);
+            //Console.WriteLine("預かる");
+            //ReturnKanji();
+
+            //Console.WriteLine("Input a word in Japanese: ");
+            //string myString = Console.ReadLine();
+            //CheckString(myString);
+
+            Card card = new Card();
+            Console.WriteLine(card.GetGuid());
+            card.SetGuid(Guid.NewGuid().ToString());
+            Console.WriteLine(card.GetGuid());
+
             
-            string a = "\u263A";
-            Console.WriteLine(a);
-            Console.WriteLine("預かる");
-            ReturnKanji();
-
-            Console.WriteLine("Input a word in Japanese: ");
-            string myString = Console.ReadLine();
-            CheckString(myString);
-
         }
 
         public static void ReturnKanji()

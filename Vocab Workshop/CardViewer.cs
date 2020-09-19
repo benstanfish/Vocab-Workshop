@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Windows.Forms;
 
 
@@ -14,8 +11,8 @@ namespace Vocab_Workshop
 {
     public partial class CardViewer : Form
     {
-        CardRing cardRing = new CardRing();
-        CardRing needsWork = new CardRing();
+        CardSet cardSet = new CardSet();
+        CardSet needsWork = new CardSet();
 
         int currentCard = 0;
         int totalCards = 0;
@@ -25,14 +22,9 @@ namespace Vocab_Workshop
         public CardViewer()
         {
             InitializeComponent();
-
             labelStage.Text = "Please load a card ring.";
  
         }
-
-
-
-
 
         private void UpdateStage(string performer)
         {
@@ -45,7 +37,7 @@ namespace Vocab_Workshop
             if (currentCard == totalCards - 1) { currentCard = 0; }
             else { currentCard++; }
 
-            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
@@ -54,26 +46,26 @@ namespace Vocab_Workshop
             if (currentCard == 0) { currentCard = totalCards - 1; }
             else { currentCard--; }
 
-            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
 
         private void NextFace()
         {
-            if (currentFace == cardRing.cards[currentCard].Faces.Count - 1) { currentFace = 0; }
+            if (currentFace == cardSet.Cards[currentCard].Faces.Count - 1) { currentFace = 0; }
             else { currentFace++; }
 
-            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
         }
         private void PreviousFace()
         {
-            if (currentFace == 0) { currentFace = cardRing.cards[currentCard].Faces.Count - 1; }
+            if (currentFace == 0) { currentFace = cardSet.Cards[currentCard].Faces.Count - 1; }
             else { currentFace--; }
 
-            TestImageAndUpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
         }
@@ -87,8 +79,8 @@ namespace Vocab_Workshop
 
         private void AddToNeedsWord(Card needsWorkWord)
         {
-            if (!needsWork.cards.Contains(needsWorkWord))
-                needsWork.cards.Add(needsWorkWord);
+            if (!needsWork.Cards.Contains(needsWorkWord))
+                needsWork.Cards.Add(needsWorkWord);
             //listBoxNeedsWork.BeginUpdate();
 
             //listBoxNeedsWork.DataSource = needsWork.cards.ToList();
@@ -223,7 +215,7 @@ namespace Vocab_Workshop
         }
 
 
-        private CardRing LoadCardSet(string myPath)
+        private CardSet LoadCardSet(string myPath)
         {
             string myContents = File.ReadAllText(myPath);
             myContents = myContents.Replace('\n', '\r');
@@ -239,19 +231,19 @@ namespace Vocab_Workshop
                     if (!string.IsNullOrWhiteSpace(thisLine[j].ToString()))
                         card.Faces.Add(thisLine[j].ToString());
                 }
-                cardRing.cards.Add(card);
+                cardSet.Cards.Add(card);
             }
 
-            totalCards = cardRing.cards.Count();
+            totalCards = cardSet.Cards.Count();
             
             //progressBar1.Minimum = 0;
             //progressBar1.Maximum = totalCards - 1;
-            return cardRing;
+            return cardSet;
         }
         private void labelCurrentSet_Click(object sender, EventArgs e)
         {
-            cardRing = LoadCardSet(GetCardFilePath());
-            labelStage.Text = cardRing.cards[0].Faces[0];
+            cardSet = LoadCardSet(GetCardFilePath());
+            labelStage.Text = cardSet.Cards[0].Faces[0];
         }
 
         private void listBoxNeedsWork_DoubleClick(object sender, EventArgs e)
