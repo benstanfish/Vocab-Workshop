@@ -19,8 +19,6 @@ namespace Vocab_Workshop
             Application.Run(new CardViewer());
         }
 
-
-
     }
 
 

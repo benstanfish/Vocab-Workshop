@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace Vocab_Workshop
 {
     [DataContract]
-    public class CardSet
+    public class CardSet 
     {
         /// <summary>
         /// The CardRing is a collection of one or more cards.
@@ -18,6 +22,7 @@ namespace Vocab_Workshop
         public string ShortTitle;
         [DataMember]
         public readonly List<Card> Cards = new List<Card>();
+        
 
         public void SetGuid(string guidCandidate)
         {
@@ -28,6 +33,7 @@ namespace Vocab_Workshop
         {
             return _id;
         }
+
     }
 
 

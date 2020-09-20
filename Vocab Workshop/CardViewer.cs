@@ -11,6 +11,8 @@ using System.Xml.Serialization;
 
 namespace Vocab_Workshop
 {
+
+
     public partial class CardViewer : Form
     {
         CardSet cardSet = new CardSet();
@@ -25,11 +27,12 @@ namespace Vocab_Workshop
         {
             InitializeComponent();
             labelStage.Text = "Please load a card ring.";
- 
-
-
 
         }
+
+
+
+
 
 
         private void WriteXml()
@@ -262,9 +265,11 @@ namespace Vocab_Workshop
             }
 
             totalCards = cardSet.Cards.Count();
-            
+
             //progressBar1.Minimum = 0;
             //progressBar1.Maximum = totalCards - 1;
+
+            cardSet.Cards.Shuffle();
             return cardSet;
         }
         private void labelCurrentSet_Click(object sender, EventArgs e)
