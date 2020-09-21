@@ -30,10 +30,11 @@ namespace Vocab_Workshop
 
         }
 
+        private void ReadXMLFile()
+        {
 
-
-
-
+            
+        }
 
         private void WriteXml()
         {
@@ -43,7 +44,6 @@ namespace Vocab_Workshop
             using (var writer = new FileStream(filePath, FileMode.Create))
             {
                 //xml.Serialize(writer, cardSet);
-                
                 xml.WriteObject(writer, cardSet);
                 
                 MessageBox.Show(filePath);
@@ -67,7 +67,7 @@ namespace Vocab_Workshop
             if (currentCard == totalCards - 1) { currentCard = 0; }
             else { currentCard++; }
 
-            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
@@ -76,26 +76,26 @@ namespace Vocab_Workshop
             if (currentCard == 0) { currentCard = totalCards - 1; }
             else { currentCard--; }
 
-            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[startFace]);
         }
 
         private void NextFace()
         {
-            if (currentFace == cardSet.Cards[currentCard].Faces.Count - 1) { currentFace = 0; }
+            if (currentFace == cardSet.Cards[currentCard].Sides.Count - 1) { currentFace = 0; }
             else { currentFace++; }
 
-            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
         }
         private void PreviousFace()
         {
-            if (currentFace == 0) { currentFace = cardSet.Cards[currentCard].Faces.Count - 1; }
+            if (currentFace == 0) { currentFace = cardSet.Cards[currentCard].Sides.Count - 1; }
             else { currentFace--; }
 
-            TestImageAndUpdateStage(cardSet.Cards[currentCard].Faces[currentFace]);
+            TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[currentFace]);
 
             //UpdateStage(cardRing.cards[currentCard].Faces[currentFace]);
         }
@@ -111,12 +111,7 @@ namespace Vocab_Workshop
         {
             if (!needsWork.Cards.Contains(needsWorkWord))
                 needsWork.Cards.Add(needsWorkWord);
-            //listBoxNeedsWork.BeginUpdate();
 
-            //listBoxNeedsWork.DataSource = needsWork.cards.ToList();
-            //listBoxNeedsWork.ClearSelected();
-
-            //listBoxNeedsWork.EndUpdate();
         }
 
         private void KeyNavigation(KeyEventArgs e)
@@ -125,7 +120,6 @@ namespace Vocab_Workshop
             {
                 case Keys.Space:
                     PreviousCard();
-                    //AddToNeedsWord(cardRing.cards[currentCard]);
                     break;
                 case Keys.Delete:
                     break;
@@ -148,7 +142,6 @@ namespace Vocab_Workshop
                     break;
             }
             
-            UpdateProgressBar();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
@@ -259,23 +252,20 @@ namespace Vocab_Workshop
                 for (int j = 0; j < thisLine.Length; j++)
                 {
                     if (!string.IsNullOrWhiteSpace(thisLine[j].ToString()))
-                        card.Faces.Add(thisLine[j].ToString());
+                        card.Sides.Add(thisLine[j].ToString());
                 }
                 cardSet.Cards.Add(card);
             }
 
             totalCards = cardSet.Cards.Count();
 
-            //progressBar1.Minimum = 0;
-            //progressBar1.Maximum = totalCards - 1;
-
-            cardSet.Cards.Shuffle();
+            // cardSet.Cards.Shuffle();
             return cardSet;
         }
         private void labelCurrentSet_Click(object sender, EventArgs e)
         {
             cardSet = LoadCardSet(GetCardFilePath());
-            labelStage.Text = cardSet.Cards[0].Faces[0];
+            labelStage.Text = cardSet.Cards[0].Sides[0];
         }
 
         private void listBoxNeedsWork_DoubleClick(object sender, EventArgs e)
@@ -345,6 +335,11 @@ namespace Vocab_Workshop
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             WriteXml();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            ReadXMLFile();
         }
     }
 }
