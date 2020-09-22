@@ -17,8 +17,8 @@ namespace Vocab_Workshop
         /// <summary>
         /// The Card an individual multi-sided card object. Each face takes a string.
         /// </summary>
-        [DataMember]
-        private Guid Id = Guid.NewGuid();
+        [DataMember(Name="Id")]
+        private Guid _id = Guid.NewGuid();
         [DataMember]
         public readonly List<string> Sides = new List<string>();
 
@@ -27,16 +27,19 @@ namespace Vocab_Workshop
             return Sides[0];
         }
         
-        public void SetGuid(string guidCandidate)
+        public void SetId(string guidCandidate)
         {
             if (Guid.TryParse(guidCandidate, out Guid tempGuid))
-                Id = tempGuid;
-            else
-                Id = Guid.NewGuid();
+                _id = tempGuid;
         }
-        public Guid GetGuid()
+        public void SetId(Guid guid)
         {
-            return Id;
+            _id = guid;
+        }
+
+        public Guid GetId()
+        {
+            return _id;
         }
 
     }

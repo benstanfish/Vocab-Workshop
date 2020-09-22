@@ -13,41 +13,43 @@ using System.Runtime.Serialization;
 
 namespace Vocab_Workshop
 {
+    
+
     public partial class CardSetEditor : Form
     {
         public CardSet cardSet = new CardSet();
+        
 
         public CardSetEditor()
         {
             InitializeComponent();
         }
 
-
-        public string ReturnPath()
+        private string GetFilePath()
         {
-            var fileContent = string.Empty;
             var filePath = string.Empty;
 
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
+                ofd.InitialDirectory = "c:\\";
+                ofd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                ofd.FilterIndex = 2;
+                ofd.RestoreDirectory = true;
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    filePath = openFileDialog.FileName;
+                    filePath = ofd.FileName;
                 }
             }
             return filePath;
         }
 
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 3)
             {
-                dataGridView1.CurrentCell.Value = ReturnPath();
+                dataGridView1.CurrentCell.Value = GetFilePath();
             }
         }
 

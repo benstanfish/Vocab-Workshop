@@ -21,9 +21,9 @@ namespace Testing_Center
             //CheckString(myString);
 
             Card card = new Card();
-            Console.WriteLine(card.GetGuid());
-            card.SetGuid(Guid.NewGuid().ToString());
-            Console.WriteLine(card.GetGuid());
+            Console.WriteLine(card.GetId());
+            card.SetId(Guid.NewGuid().ToString());
+            Console.WriteLine(card.GetId());
 
             
         }

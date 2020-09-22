@@ -8,14 +8,13 @@ using System.Runtime.Serialization;
 namespace Vocab_Workshop
 {
     [DataContract]
-    [Serializable]
     public class CardSet 
     {
         /// <summary>
         /// The CardRing is a collection of one or more cards.
         /// </summary>
-        [DataMember]
-        private Guid Id = Guid.NewGuid();
+        [DataMember(Name="Id")]
+        private Guid _id = Guid.NewGuid();
         [DataMember]
         public string Title;
         [DataMember]
@@ -23,18 +22,18 @@ namespace Vocab_Workshop
         [DataMember]
         public readonly List<Card> Cards = new List<Card>();
 
-        public void SetGuid(string guidCandidate)
+        public void SetId(string guidCandidate)
         {
             if (Guid.TryParse(guidCandidate, out Guid tempGuid))
-                Id = tempGuid;
+                _id = tempGuid;
         }
-        public void SetGuid(Guid guid)
+        public void SetId(Guid guid)
         {
-            Id = guid;
+            _id = guid;
         }
         public Guid GetGuid()
         {
-            return Id;
+            return _id;
         }
 
     }

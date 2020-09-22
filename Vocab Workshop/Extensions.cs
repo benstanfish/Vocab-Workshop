@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Vocab_Workshop
 {
@@ -42,6 +43,18 @@ namespace Vocab_Workshop
         }
 
         public static void WriteToXML(IStream stream)
+        {
+
+        }
+
+
+
+
+
+
+
+
+        public static void ProjectFolder()
         {
 
         }
