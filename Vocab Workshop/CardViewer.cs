@@ -319,7 +319,7 @@ namespace Vocab_Workshop
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            var editor = new CardSetEditor();
+            var editor = new CardSetEditor(cardSet);
             editor.Show();
         }
     }

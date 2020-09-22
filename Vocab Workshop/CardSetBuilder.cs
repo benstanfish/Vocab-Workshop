@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 
 namespace Vocab_Workshop
 {
@@ -20,10 +21,30 @@ namespace Vocab_Workshop
         public CardSet cardSet = new CardSet();
         
 
-        public CardSetEditor()
+        public CardSetEditor(CardSet aSet = null)
         {
             InitializeComponent();
+            if (aSet != null)
+            {
+                MessageBox.Show("Non-null Card Set");
+                cardSet = aSet;
+            }
+            else { MessageBox.Show("Null Card Set"); }
+
         }
+
+        private void UpdateDataGrid()
+        {
+            dataGridView1.Rows.Add(cardSet.Cards.Count-1);
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                for (int j = 0; j < cardSet.Cards[i].Sides.Count; j++)
+                {
+                    dataGridView1[j, i].Value = cardSet.Cards[i].Sides[j];
+                }
+            }
+        }
+
 
         private string GetFilePath()
         {
@@ -97,6 +118,11 @@ namespace Vocab_Workshop
         {
             UpdateCardSet();
             WriteXml();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UpdateDataGrid();
         }
     }
 }
