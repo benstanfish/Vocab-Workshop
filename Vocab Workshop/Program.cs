@@ -16,7 +16,7 @@ namespace Vocab_Workshop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CardViewer());
+            Application.Run(new CardSetEditor());
         }
 
     }

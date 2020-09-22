@@ -18,7 +18,7 @@ namespace Vocab_Workshop
         /// The Card an individual multi-sided card object. Each face takes a string.
         /// </summary>
         [DataMember]
-        private Guid Id;
+        private Guid Id = Guid.NewGuid();
         [DataMember]
         public readonly List<string> Sides = new List<string>();
 

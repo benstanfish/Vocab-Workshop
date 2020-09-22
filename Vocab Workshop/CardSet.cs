@@ -15,11 +15,11 @@ namespace Vocab_Workshop
         /// The CardRing is a collection of one or more cards.
         /// </summary>
         [DataMember]
-        private Guid Id;
+        private Guid Id = Guid.NewGuid();
         [DataMember]
         public string Title;
         [DataMember]
-        public string ShortTitle;
+        public string Description;
         [DataMember]
         public readonly List<Card> Cards = new List<Card>();
 
@@ -27,6 +27,10 @@ namespace Vocab_Workshop
         {
             if (Guid.TryParse(guidCandidate, out Guid tempGuid))
                 Id = tempGuid;
+        }
+        public void SetGuid(Guid guid)
+        {
+            Id = guid;
         }
         public Guid GetGuid()
         {
