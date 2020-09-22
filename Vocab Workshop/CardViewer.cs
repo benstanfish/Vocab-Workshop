@@ -322,5 +322,10 @@ namespace Vocab_Workshop
             var editor = new CardSetEditor(cardSet);
             editor.Show();
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
