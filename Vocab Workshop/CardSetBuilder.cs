@@ -71,6 +71,7 @@ namespace Vocab_Workshop
             if (e.ColumnIndex == 3)
             {
                 dataGridView1.CurrentCell.Value = GetFilePath();
+                dataGridView1.EndEdit();
             }
         }
 
