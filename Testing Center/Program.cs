@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata.Ecma335;
-using Vocab_Workshop;
 
 namespace Testing_Center
 {
@@ -20,13 +20,69 @@ namespace Testing_Center
             //string myString = Console.ReadLine();
             //CheckString(myString);
 
-            Card card = new Card();
-            Console.WriteLine(card.GetId());
-            card.SetId(Guid.NewGuid().ToString());
-            Console.WriteLine(card.GetId());
+            Flashcard Card = new Flashcard();
+            Card.Question = "Here is a question";
+            Card.Hint = "Here's a hint";
+            Card.Answer = "Answer";
+            Card.ImagePath = @"\\servershare\folder\";
+            List<string> list = Card.Sides();
 
+            Console.WriteLine(Card.GetId());
+            Console.WriteLine(list.Count + " elements");
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("Element {0}: is {1}", i, list[i]);
+            }
             
         }
+
+
+
+        public class Flashcard
+        {
+            private Guid _guid = Guid.NewGuid();
+            public string Question { get; set; }
+            public string Hint { get; set; }
+            public string Answer { get; set; }
+            public string ImagePath { get; set; }
+
+            public List<string> Sides()
+            {
+                var sides = new List<string>();
+                if (Question != string.Empty)
+                    sides.Add(Question);
+                if (Hint != string.Empty)
+                    sides.Add(Hint);
+                if (Answer != string.Empty)
+                    sides.Add(Answer);
+                if (ImagePath != string.Empty)
+                    sides.Add(ImagePath);
+                return sides;
+            }
+
+            public override string ToString()
+            {
+                return Question;
+            }
+
+            public void SetId(string tryGuid)
+            {
+                if (Guid.TryParse(tryGuid, out Guid tempGuid))
+                    _guid = tempGuid;
+            }
+            public void SetId(Guid guid)
+            {
+                _guid = guid;
+            }
+            public Guid GetId()
+            {
+                return _guid;
+            }
+
+        }
+
+
+
 
         public static void ReturnKanji()
         {
