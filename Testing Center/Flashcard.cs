@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.IO;
-using System.Runtime.CompilerServices;
+using System.Windows.Forms.VisualStyles;
+using System.Text.RegularExpressions;
 
 namespace Testing_Center
 {
@@ -62,6 +63,8 @@ namespace Testing_Center
         }
         public Guid GetId()
         {
+            if (_guid == default(Guid))
+                _guid = Guid.NewGuid();
             return _guid;
         }
 
@@ -77,6 +80,7 @@ namespace Testing_Center
 
         public static Flashcard ReadXml(string filePath)
         {
+
             Flashcard card = new Flashcard();
             var serializer = new DataContractSerializer(typeof(Flashcard));
             using (var reader = new FileStream(filePath, FileMode.Open))
@@ -113,6 +117,8 @@ namespace Testing_Center
         }
         public Guid GetGuid()
         {
+            if (_guid == default(Guid))
+                _guid = Guid.NewGuid();
             return _guid;
         }
 
@@ -128,16 +134,57 @@ namespace Testing_Center
         public static FlashcardSet ReadXml(string filePath)
         {
             FlashcardSet cardSet = new FlashcardSet();
+            CleanXmlID(filePath);
             var serializer = new DataContractSerializer(typeof(FlashcardSet));
-            using (var reader = new FileStream(filePath, FileMode.Open))
+            try
             {
-                cardSet = (FlashcardSet)serializer.ReadObject(reader);
+                using (var reader = new FileStream(filePath, FileMode.Open))
+                {
+                    cardSet = (FlashcardSet)serializer.ReadObject(reader);
+                }
             }
+            catch (Exception)
+            {
+                string errorMsg = "Error: Could not deserialize because one of the records has a blank ID. Either provide an ID or delete the field \"<Id></Id>\".";
+                Console.WriteLine(errorMsg);
+            }
+            
             return cardSet;
         }
 
+        private static void CleanXmlID(string filePath)
+        {
+            var temp = string.Empty;
+            using(var reader = new StreamReader(filePath))
+            {
+                temp = reader.ReadToEnd();
+                reader.Close();
+            }
+            temp = Regex.Replace(temp, "<Id></Id>", "");
+            using (var writer = new StreamWriter(filePath))
+            {
+                writer.Write(temp);
+                writer.Close();
+            }
+        }
+
+
     }
 
+    public class GuidEmptyFieldException : Exception
+    {
+        public GuidEmptyFieldException()
+        {
+        }
 
+        public GuidEmptyFieldException(string message) : base(message)
+        {
+        }
+
+        public GuidEmptyFieldException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+    }
 
 }
