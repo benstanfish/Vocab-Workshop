@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Flashcard.cs" />
+    <Compile Include="FlashcardSet.cs" />
     <Compile Include="FolderSetup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,6 +155,7 @@
       <DependentUpon>Startup.cs</DependentUpon>
     </Compile>
     <Compile Include="Toolbox.cs" />
+    <Compile Include="UserProfile.cs" />
     <EmbeddedResource Include="CardSetBuilder.resx">
       <DependentUpon>CardSetBuilder.cs</DependentUpon>
     </EmbeddedResource>

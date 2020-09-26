@@ -86,6 +86,9 @@ namespace Testing_Center
                 Console.WriteLine(dateTime.ToString());
             }
 
+            user.UpdateUsername("Benstanfish");
+            Console.WriteLine(user.UserName.ToString());
+
         }
 
 

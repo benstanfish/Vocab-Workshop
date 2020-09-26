@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.IO;
+using System.Windows.Forms.VisualStyles;
+using System.Text.RegularExpressions;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Vocab_Workshop
+namespace Testing_Center
 {
     [DataContract]
-    [Serializable]
     public class Flashcard
     {
         [DataMember(Name = "Id")]
@@ -60,8 +63,33 @@ namespace Vocab_Workshop
         }
         public Guid GetId()
         {
+            if (_guid == default(Guid))
+                _guid = Guid.NewGuid();
             return _guid;
         }
 
+        public void WriteXml(string savePath)
+        {
+            var xml = new DataContractSerializer(typeof(Flashcard));
+            using (var writer = new FileStream(savePath, FileMode.Create))
+            {
+                xml.WriteObject(writer, this);
+            }
+
+        }
+
+        public static Flashcard ReadXml(string filePath)
+        {
+
+            Flashcard card = new Flashcard();
+            var serializer = new DataContractSerializer(typeof(Flashcard));
+            using (var reader = new FileStream(filePath, FileMode.Open))
+            {
+                card = (Flashcard)serializer.ReadObject(reader);
+            }
+            return card;
+        }
+
     }
+
 }
