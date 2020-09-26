@@ -9,7 +9,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Text.RegularExpressions;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Testing_Center
+namespace Vocab_Workshop
 {
     [DataContract]
     public class Flashcard

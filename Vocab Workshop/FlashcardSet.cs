@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.IO;
+using System.Text.RegularExpressions;
+
 
 namespace Vocab_Workshop
 {
@@ -18,7 +20,7 @@ namespace Vocab_Workshop
         [DataMember]
         public string Description;
         [DataMember]
-        public readonly List<Flas`hcard> Cards = new List<Flashcard>();
+        public readonly List<Flashcard> Cards = new List<Flashcard>();
 
         public void SetId(string guidCandidate)
         {

@@ -12,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Testing_Center
 {
     [DataContract]
-    public class Flashcard
+    public class OldFlashcards
     {
         [DataMember(Name = "Id")]
         private Guid _guid = Guid.NewGuid();
@@ -25,7 +25,7 @@ namespace Testing_Center
         [DataMember]
         public string ImagePath { get; set; }
 
-        public Flashcard()
+        public OldFlashcards()
         {
             Question = string.Empty;
             Hint = string.Empty;
@@ -70,7 +70,7 @@ namespace Testing_Center
 
         public void WriteXml(string savePath)
         {
-            var xml = new DataContractSerializer(typeof(Flashcard));
+            var xml = new DataContractSerializer(typeof(OldFlashcards));
             using (var writer = new FileStream(savePath, FileMode.Create))
             {
                 xml.WriteObject(writer, this);
@@ -78,14 +78,14 @@ namespace Testing_Center
 
         }
 
-        public static Flashcard ReadXml(string filePath)
+        public static OldFlashcards ReadXml(string filePath)
         {
 
-            Flashcard card = new Flashcard();
-            var serializer = new DataContractSerializer(typeof(Flashcard));
+            OldFlashcards card = new OldFlashcards();
+            var serializer = new DataContractSerializer(typeof(OldFlashcards));
             using (var reader = new FileStream(filePath, FileMode.Open))
             {
-                card = (Flashcard)serializer.ReadObject(reader);
+                card = (OldFlashcards)serializer.ReadObject(reader);
             }
             return card;
         }
@@ -102,7 +102,7 @@ namespace Testing_Center
         [DataMember]
         public string Description;
         [DataMember]
-        public readonly List<Flashcard> Cards = new List<Flashcard>();
+        public readonly List<OldFlashcards> Cards = new List<OldFlashcards>();
 
         public void SetId(string guidCandidate)
         {

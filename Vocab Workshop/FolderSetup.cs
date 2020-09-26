@@ -13,8 +13,8 @@ namespace Vocab_Workshop
 
         public void CreateCommonFolder()
         {
-            string profiles = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Vocab Workshop\Settings\Profiles\";
-            string records = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Vocab Workshop\Settings\Records\";
+            string profiles = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Vocab Workshop\Settings\";
+            string records = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Vocab Workshop\Images\";
             string flashcards = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Vocab Workshop\Flashcards\";
             try
             {
