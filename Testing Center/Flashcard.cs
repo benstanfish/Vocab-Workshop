@@ -160,7 +160,7 @@ namespace Testing_Center
                 temp = reader.ReadToEnd();
                 reader.Close();
             }
-            temp = Regex.Replace(temp, "<Id></Id>", "");
+            temp = Regex.Replace(temp, "<Id></Id>", "<Id>"+ Guid.NewGuid() + "</Id>");
             using (var writer = new StreamWriter(filePath))
             {
                 writer.Write(temp);
