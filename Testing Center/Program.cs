@@ -66,7 +66,10 @@ namespace Testing_Center
             //UserProfile profile = new UserProfile("benstanfish");
             //profile.WriteXml(newUserPath);
 
+
+            UserProfile.RepairXml(newUserPath);
             var user = UserProfile.ReadXml(newUserPath);
+
             var fakeUser = new UserProfile("");
             user.SignIn(newUserPath);
 

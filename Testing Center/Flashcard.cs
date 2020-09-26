@@ -168,7 +168,6 @@ namespace Testing_Center
 
 
     }
-    
 
     [DataContract]
     public class UserProfile
@@ -179,7 +178,7 @@ namespace Testing_Center
         private DateTime CreatedDate { get; set; }
         [DataMember]
         public string UserName { get; set; }
-        [DataMember]
+        [DataMember(Name = "Valid")]
         private bool _valid;    // If the username has been set.
         [DataMember]
         public readonly List<DateTime> Sessions = new List<DateTime>();
@@ -224,6 +223,18 @@ namespace Testing_Center
             if (savePath != null)
                 WriteXml(savePath);
         }
+        public void UpdateUsername(string newName)
+        {
+            if (newName != string.Empty)
+            {
+                UserName = newName;
+            }
+            else
+            {
+                UserName = "Please update your Username.";
+            }
+            _valid = true;
+        }
 
         public void WriteXml(string savePath)
         {
@@ -251,6 +262,28 @@ namespace Testing_Center
             if (_valid != false) { return true; }
             else { return false; }
         }
+
+        public static void RepairXml(string filePath)
+        {
+            var temp = string.Empty;
+            using (var reader = new StreamReader(filePath))
+            {
+                temp = reader.ReadToEnd();
+                reader.Close();
+            }
+
+            temp = Regex.Replace(temp, "<Id/>", "<Id></Id>");
+            temp = Regex.Replace(temp, "<UserName/>", "<UserName>Please update your Username.</UserName>");
+            temp = Regex.Replace(temp, "<Valid/>", "<Valid>true</Valid>");
+            temp = Regex.Replace(temp, "<Id></Id>", "<Id>" + Guid.NewGuid() + "</Id>");
+            
+            using (var writer = new StreamWriter(filePath))
+            {
+                writer.Write(temp);
+                writer.Close();
+            }
+        }
+
 
 
     }
