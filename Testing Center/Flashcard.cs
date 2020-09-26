@@ -7,11 +7,11 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Windows.Forms.VisualStyles;
 using System.Text.RegularExpressions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Testing_Center
 {
     [DataContract]
-    [Serializable]
     public class Flashcard
     {
         [DataMember(Name = "Id")]
@@ -92,8 +92,6 @@ namespace Testing_Center
 
     }
 
-
-
     [DataContract]
     public class FlashcardSet
     {
@@ -170,21 +168,93 @@ namespace Testing_Center
 
 
     }
+    
 
-    public class GuidEmptyFieldException : Exception
+    [DataContract]
+    public class UserProfile
     {
-        public GuidEmptyFieldException()
+        [DataMember(Name = "Id")]
+        private Guid _guid;
+        [DataMember]
+        private DateTime CreatedDate { get; set; }
+        [DataMember]
+        public string UserName { get; set; }
+        [DataMember]
+        private bool _valid;    // If the username has been set.
+        [DataMember]
+        public readonly List<DateTime> Sessions = new List<DateTime>();
+
+        public UserProfile()
         {
+            _guid = Guid.NewGuid();
+            CreatedDate = DateTime.Now;
+        }
+        public UserProfile(string userName)
+            : this()
+        {
+            if (userName != string.Empty)
+            {
+                UserName = userName;
+                _valid = true;
+            }
         }
 
-        public GuidEmptyFieldException(string message) : base(message)
+        public void SetId(string tryGuid)
         {
+            if (Guid.TryParse(tryGuid, out Guid tempGuid))
+                _guid = tempGuid;
+        }
+        public void SetId(Guid guid)
+        {
+            _guid = guid;
+        }
+        public Guid GetId()
+        {
+            if (_guid == default(Guid))
+                _guid = Guid.NewGuid();
+            return _guid;
+        }
+        public DateTime DateCreated()
+        {
+            return CreatedDate;
+        }
+        public void SignIn(string savePath = null)
+        {
+            Sessions.Add(DateTime.Now);
+            if (savePath != null)
+                WriteXml(savePath);
         }
 
-        public GuidEmptyFieldException(string message, Exception inner) : base(message, inner)
+        public void WriteXml(string savePath)
         {
+            var xml = new DataContractSerializer(typeof(UserProfile));
+            using (var writer = new FileStream(savePath, FileMode.OpenOrCreate))
+            {
+                xml.WriteObject(writer, this);
+            }
         }
+
+        public static UserProfile ReadXml(string filePath)
+        {
+            UserProfile user = new UserProfile();
+            var serializer = new DataContractSerializer(typeof(UserProfile));
+            using (var reader = new FileStream(filePath, FileMode.Open))
+            {
+                user = (UserProfile)serializer.ReadObject(reader);
+            }
+            user._valid = true;
+            return user;
+        }
+
+        public bool UserExists()
+        {
+            if (_valid != false) { return true; }
+            else { return false; }
+        }
+
 
     }
+
+
 
 }

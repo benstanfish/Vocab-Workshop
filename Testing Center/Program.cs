@@ -35,7 +35,7 @@ namespace Testing_Center
             //var newCard = Flashcard.ReadXml(savePath);
             //Console.WriteLine(newCard);
 
-            string stackSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\text4.xml";
+            //string stackSavePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\text4.xml";
 
             //FlashcardSet set = new FlashcardSet();
             //set.Cards.Add(new Flashcard() { Question = "Question1", Hint = "Hint1", Answer = "Answer1", ImagePath = @"\\servershare\folder\1" });
@@ -45,23 +45,44 @@ namespace Testing_Center
             //set.WriteXml(stackSavePath);
 
             
-            var newSet = FlashcardSet.ReadXml(stackSavePath);
-            newSet.Title = "Text new set";
-            newSet.Description = "Here is a description";
+            //var newSet = FlashcardSet.ReadXml(stackSavePath);
+            //newSet.Title = "Text new set";
+            //newSet.Description = "Here is a description";
 
 
-            foreach (Flashcard flashcard in newSet.Cards)
+            //foreach (Flashcard flashcard in newSet.Cards)
+            //{
+            //    string printStr = string.Empty;
+            //    List<string> sides = flashcard.Sides();
+            //    for (int i = 0; i < sides.Count; i++)
+            //    {
+            //        printStr += sides[i] + ", ";
+            //    }
+            //    printStr += flashcard.GetId();
+            //    Console.WriteLine(printStr);
+            //}
+
+            string newUserPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewUser.xml";
+            //UserProfile profile = new UserProfile("benstanfish");
+            //profile.WriteXml(newUserPath);
+
+            var user = UserProfile.ReadXml(newUserPath);
+            var fakeUser = new UserProfile("");
+            user.SignIn(newUserPath);
+
+            Console.WriteLine(user.UserName + " is valid: " + user.UserExists());
+            Console.WriteLine(fakeUser.UserName + " is valid: " + fakeUser.UserExists());
+
+            Console.WriteLine();
+            Console.WriteLine("Username: " + user.UserName);
+            Console.WriteLine("GuiD: " + user.GetId().ToString());
+            Console.WriteLine("Created on " + user.DateCreated().ToString());
+            Console.WriteLine("Signed in on: ");
+            foreach (DateTime dateTime in user.Sessions)
             {
-                string printStr = string.Empty;
-                List<string> sides = flashcard.Sides();
-                for (int i = 0; i < sides.Count; i++)
-                {
-                    printStr += sides[i] + ", ";
-                }
-                printStr += flashcard.GetId();
-                Console.WriteLine(printStr);
+                Console.WriteLine(dateTime.ToString());
             }
-            
+
         }
 
 
