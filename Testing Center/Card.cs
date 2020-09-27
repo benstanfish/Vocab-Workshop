@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-namespace Vocab_Workshop
+namespace Testing_Center
 {
     [DataContract]
     public class Side

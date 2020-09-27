@@ -11,8 +11,6 @@ using System.Xml.Serialization;
 
 namespace Vocab_Workshop
 {
-
-
     public partial class CardViewer : Form
     {
         CardSet cardSet = new CardSet();

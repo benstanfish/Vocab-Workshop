@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
-using Vocab_Workshop;
 
 namespace Testing_Center
 {
@@ -95,7 +94,12 @@ namespace Testing_Center
             var card = new Card()
             {
 
-                Sides = { "test1", "test2", "test3" }
+                Sides =
+                {
+                    new Side("test1"),
+                    new Side("text2"),
+                    new Side("testC")
+                }
             };
             Console.WriteLine("Write Guid = " + card.GetId());
             card.WriteDCXml(newCardPath);
