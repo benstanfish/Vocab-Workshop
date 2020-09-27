@@ -1,49 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace Vocab_Workshop
 {
-  
-    [DataContract]
     [Serializable]
     public class Card
     {
-        /// <summary>
-        /// The Card an individual multi-sided card object. Each face takes a string.
-        /// </summary>
-        [DataMember(Name="Id")]
-        private Guid _id = Guid.NewGuid();
-        [DataMember]
-        public readonly List<string> Sides = new List<string>();
+        public Guid Id { get; set; }
+        public readonly List<string> Sides;
 
-        public override string ToString()
+        public Card()
         {
-            return Sides[0];
-        }
-        
-        public void SetId(string guidCandidate)
-        {
-            if (Guid.TryParse(guidCandidate, out Guid tempGuid))
-                _id = tempGuid;
-        }
-        public void SetId(Guid guid)
-        {
-            _id = guid;
+            Id = Guid.NewGuid();
+            Sides = new List<string>();
         }
 
-        public Guid GetId()
+        public override string ToString() { return Sides[0]; }
+        public void SetId(string tryGuid) { if (Guid.TryParse(tryGuid, out Guid tempGuid)) { Id = tempGuid; } }
+        public Guid GetId() { return Id; }
+        public void SetId(Guid guid) { Id = guid; }
+
+        public void WriteXml(string savePath)
         {
-            return _id;
+            var xml = new XmlSerializer(typeof(Card));
+            using (var writer = new FileStream(savePath, FileMode.OpenOrCreate)) { xml.Serialize(writer, this); }
+        }
+
+        public static Card ReadXml(string filePath)
+        {
+            Card card;
+            var serializer = new XmlSerializer(typeof(Card));
+            using (var reader = new FileStream(filePath, FileMode.Open)) { card = (Card)serializer.Deserialize(reader); }
+            return card;
         }
 
     }
-
-
-
 }

@@ -4,7 +4,12 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Testing_Center</RootNamespace>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vocab Workshop\Vocab Workshop.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms">

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
+using Vocab_Workshop;
 
 namespace Testing_Center
 {
@@ -62,32 +64,48 @@ namespace Testing_Center
             //    Console.WriteLine(printStr);
             //}
 
-            string newUserPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewUser.xml";
+            //string newUserPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewUser.xml";
             //UserProfile profile = new UserProfile("benstanfish");
             //profile.WriteXml(newUserPath);
 
 
-            UserProfile.RepairXml(newUserPath);
-            var user = UserProfile.ReadXml(newUserPath);
+            //UserProfile.RepairXml(newUserPath);
+            //var user = UserProfile.ReadXml(newUserPath);
 
-            var fakeUser = new UserProfile("");
-            user.SignIn(newUserPath);
+            //var fakeUser = new UserProfile("");
+            //user.SignIn(newUserPath);
 
-            Console.WriteLine(user.UserName + " is valid: " + user.UserExists());
-            Console.WriteLine(fakeUser.UserName + " is valid: " + fakeUser.UserExists());
+            //Console.WriteLine(user.UserName + " is valid: " + user.UserExists());
+            //Console.WriteLine(fakeUser.UserName + " is valid: " + fakeUser.UserExists());
 
-            Console.WriteLine();
-            Console.WriteLine("Username: " + user.UserName);
-            Console.WriteLine("GuiD: " + user.GetId().ToString());
-            Console.WriteLine("Created on " + user.DateCreated().ToString());
-            Console.WriteLine("Signed in on: ");
-            foreach (DateTime dateTime in user.Sessions)
+            //Console.WriteLine();
+            //Console.WriteLine("Username: " + user.UserName);
+            //Console.WriteLine("GuiD: " + user.GetId().ToString());
+            //Console.WriteLine("Created on " + user.DateCreated().ToString());
+            //Console.WriteLine("Signed in on: ");
+            //foreach (DateTime dateTime in user.Sessions)
+            //{
+            //    Console.WriteLine(dateTime.ToString());
+            //}
+
+            //user.UpdateUsername("Benstanfish");
+            //Console.WriteLine(user.UserName.ToString());
+
+            string newCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCard.xml";
+            //var card = new Card()
+            //{
+
+            //    Sides = { "test1", "test2", "test3" }
+            //};
+            //Console.WriteLine("Write Guid = " + card.Id);
+            //card.WriteXml(newCardPath);
+
+            var newerCard = Card.ReadXml(newCardPath);
+            for (int i = 0; i < newerCard.Sides.Count; i++)
             {
-                Console.WriteLine(dateTime.ToString());
+                Console.WriteLine("Side {0}: {1}", i, newerCard.Sides[i]);
             }
-
-            user.UpdateUsername("Benstanfish");
-            Console.WriteLine(user.UserName.ToString());
+            Console.WriteLine("Write Guid = " + newerCard.Id);
 
         }
 
