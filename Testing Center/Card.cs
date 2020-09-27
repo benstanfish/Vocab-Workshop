@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,31 +10,21 @@ using System.Xml.Serialization;
 
 namespace Testing_Center
 {
-    [DataContract]
-    public class Side
-    {
-        [DataMember]
-        public string Text { get; set; }
-
-        public Side(string text)
-        {
-            Text = text;
-        }
-    }
+    [CollectionDataContract]
+    public class CardFaces : Collection<string> { }
 
     [DataContract]
     public class Card
     {
         [DataMember (Name = "Id", Order = 0)] private Guid _id { get; set; }
-        [DataMember] public readonly List<Side> Sides;
+        [DataMember] public readonly Collection<CardFaces> Sides = new Collection<CardFaces>();
 
         public Card()
         {
             _id = Guid.NewGuid();
-            Sides = new List<Side>();
         }
 
-        public override string ToString() { return Sides[0].Text; }
+        public override string ToString() { return Sides[0].ToString(); }
         public void SetId(string tryGuid) { if (Guid.TryParse(tryGuid, out Guid tempGuid)) { _id = tempGuid; } }
         public Guid GetId() { return _id; }
         public void SetId(Guid guid) { _id = guid; }

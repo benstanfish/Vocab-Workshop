@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.ExceptionServices;
+using Microsoft.VisualBasic;
 
 namespace Testing_Center
 {
@@ -93,14 +95,10 @@ namespace Testing_Center
             string newCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCard.xml";
             var card = new Card()
             {
-
-                Sides =
-                {
-                    new Side("test1"),
-                    new Side("text2"),
-                    new Side("testC")
-                }
+                Sides = {new CardFaces {"txt", "text", "tango"}}
             };
+
+
             Console.WriteLine("Write Guid = " + card.GetId());
             card.WriteDCXml(newCardPath);
 
