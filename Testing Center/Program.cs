@@ -93,10 +93,10 @@ namespace Testing_Center
             //Console.WriteLine(user.UserName.ToString());
 
             string newCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCard.xml";
-            var card = new Card()
-            {
-                Sides = {new CardFaces {"txt", "text", "tango"}}
-            };
+            var card = new Card();
+            card.Sides.Add("txt");
+            card.Sides.Add("text");
+            card.Sides.Add("tango");
 
 
             Console.WriteLine("Write Guid = " + card.GetId());

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -17,7 +18,7 @@ namespace Testing_Center
     public class Card
     {
         [DataMember (Name = "Id", Order = 0)] private Guid _id { get; set; }
-        [DataMember] public readonly Collection<CardFaces> Sides = new Collection<CardFaces>();
+        [DataMember] public Collection<string> Sides = new Collection<string>();
 
         public Card()
         {
