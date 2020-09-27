@@ -21,6 +21,14 @@ namespace Vocab_Workshop
             Id = Guid.NewGuid().ToString();
             Cards = new List<Card>();
         }
+        public CardSet(Card card) : this()
+        {
+            Cards.Add(card);
+        }
+        public CardSet(List<Card> cards)
+        {
+            Cards = cards;
+        }
 
         public void WriteXml(string savePath)
         {
