@@ -92,20 +92,20 @@ namespace Testing_Center
             //Console.WriteLine(user.UserName.ToString());
 
             string newCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCard.xml";
-            //var card = new Card()
-            //{
+            var card = new Card()
+            {
 
-            //    Sides = { "test1", "test2", "test3" }
-            //};
-            //Console.WriteLine("Write Guid = " + card.Id);
-            //card.WriteXml(newCardPath);
+                Sides = { "test1", "test2", "test3" }
+            };
+            Console.WriteLine("Write Guid = " + card.GetId());
+            card.WriteDCXml(newCardPath);
 
-            var newerCard = Card.ReadXml(newCardPath);
+            var newerCard = Card.ReadDCXml(newCardPath);
             for (int i = 0; i < newerCard.Sides.Count; i++)
             {
                 Console.WriteLine("Side {0}: {1}", i, newerCard.Sides[i]);
             }
-            Console.WriteLine("Write Guid = " + newerCard.Id);
+            Console.WriteLine("Write Guid = " + newerCard.GetId());
 
         }
 

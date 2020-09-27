@@ -10,21 +10,22 @@ using System.Xml.Serialization;
 namespace Vocab_Workshop
 {
     [Serializable]
+    [DataContract]
     public class Card
     {
-        public Guid Id { get; set; }
-        public readonly List<string> Sides;
+        [DataMember (Name = "Id", Order = 0)] private Guid _id { get; set; }
+        [DataMember (Name = "Side", IsRequired = false, Order = 1)] public readonly List<string> Sides;
 
         public Card()
         {
-            Id = Guid.NewGuid();
+            _id = Guid.NewGuid();
             Sides = new List<string>();
         }
 
         public override string ToString() { return Sides[0]; }
-        public void SetId(string tryGuid) { if (Guid.TryParse(tryGuid, out Guid tempGuid)) { Id = tempGuid; } }
-        public Guid GetId() { return Id; }
-        public void SetId(Guid guid) { Id = guid; }
+        public void SetId(string tryGuid) { if (Guid.TryParse(tryGuid, out Guid tempGuid)) { _id = tempGuid; } }
+        public Guid GetId() { return _id; }
+        public void SetId(Guid guid) { _id = guid; }
 
         public void WriteXml(string savePath)
         {
@@ -39,6 +40,21 @@ namespace Vocab_Workshop
             using (var reader = new FileStream(filePath, FileMode.Open)) { card = (Card)serializer.Deserialize(reader); }
             return card;
         }
+
+        public void WriteDCXml(string savePath)
+        {
+            var xml = new DataContractSerializer(typeof(Card));
+            using (var writer = new FileStream(savePath, FileMode.OpenOrCreate)) { xml.WriteObject(writer, this); }
+        }
+
+        public static Card ReadDCXml(string filePath)
+        {
+            Card card;
+            var serializer = new DataContractSerializer(typeof(Card));
+            using (var reader = new FileStream(filePath, FileMode.Open)) { card = (Card)serializer.ReadObject(reader); }
+            return card;
+        }
+
 
     }
 }
