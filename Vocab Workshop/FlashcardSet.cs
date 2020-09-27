@@ -61,7 +61,7 @@ namespace Vocab_Workshop
             }
             catch (Exception)
             {
-                string errorMsg = "Error: Could not deserialize because one of the records has a blank ID. Either provide an ID or delete the field \"<Id></Id>\".";
+                string errorMsg = "Error: Could not deserialize because one of the records has a blank Id. Either provide an Id or delete the field \"<Id></Id>\".";
                 Console.WriteLine(errorMsg);
             }
 

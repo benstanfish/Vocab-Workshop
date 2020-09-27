@@ -14,7 +14,7 @@ namespace Testing_Center
     [DataContract]
     public class OldFlashcards
     {
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "ID")]
         private Guid _guid = Guid.NewGuid();
         [DataMember]
         public string Question { get; set; }
@@ -95,7 +95,7 @@ namespace Testing_Center
     [DataContract]
     public class FlashcardSet
     {
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "ID")]
         private Guid _guid = Guid.NewGuid();
         [DataMember]
         public string Title;
@@ -143,7 +143,7 @@ namespace Testing_Center
             }
             catch (Exception)
             {
-                string errorMsg = "Error: Could not deserialize because one of the records has a blank ID. Either provide an ID or delete the field \"<Id></Id>\".";
+                string errorMsg = "Error: Could not deserialize because one of the records has a blank ID. Either provide an ID or delete the field \"<ID></ID>\".";
                 Console.WriteLine(errorMsg);
             }
             
@@ -158,7 +158,7 @@ namespace Testing_Center
                 temp = reader.ReadToEnd();
                 reader.Close();
             }
-            temp = Regex.Replace(temp, "<Id></Id>", "<Id>"+ Guid.NewGuid() + "</Id>");
+            temp = Regex.Replace(temp, "<ID></ID>", "<ID>"+ Guid.NewGuid() + "</ID>");
             using (var writer = new StreamWriter(filePath))
             {
                 writer.Write(temp);
@@ -172,7 +172,7 @@ namespace Testing_Center
     [DataContract]
     public class UserProfile
     {
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "ID")]
         private Guid _guid;
         [DataMember]
         private DateTime CreatedDate { get; set; }
@@ -272,10 +272,10 @@ namespace Testing_Center
                 reader.Close();
             }
 
-            temp = Regex.Replace(temp, "<Id/>", "<Id></Id>");
+            temp = Regex.Replace(temp, "<ID/>", "<ID></ID>");
             temp = Regex.Replace(temp, "<UserName/>", "<UserName>Please update your Username.</UserName>");
             temp = Regex.Replace(temp, "<Valid/>", "<Valid>true</Valid>");
-            temp = Regex.Replace(temp, "<Id></Id>", "<Id>" + Guid.NewGuid() + "</Id>");
+            temp = Regex.Replace(temp, "<ID></ID>", "<ID>" + Guid.NewGuid() + "</ID>");
             
             using (var writer = new StreamWriter(filePath))
             {

@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Vocab_Workshop
 {
-    [DataContract]
+    [Serializable]
     public class CardSet 
     {
-        /// <summary>
-        /// The CardRing is a collection of one or more cards.
-        /// </summary>
-        [DataMember(Name="Id")]
-        private Guid _id = Guid.NewGuid();
-        [DataMember]
-        public string Title;
-        [DataMember]
-        public string Description;
-        [DataMember]
-        public readonly List<Card> Cards = new List<Card>();
+        [XmlElement] public string Id { get; set; }
+        [XmlElement] public string Title { get; set; }
+        [XmlElement] public string Description { get; set; }
+        [XmlElement] public readonly List<Card> Cards;
 
-        public void SetId(string guidCandidate)
+        public CardSet()
         {
-            if (Guid.TryParse(guidCandidate, out Guid tempGuid))
-                _id = tempGuid;
+            Id = Guid.NewGuid().ToString();
+            Cards = new List<Card>();
         }
-        public void SetId(Guid guid)
+
+        public void WriteXml(string savePath)
         {
-            _id = guid;
+            var xml = new XmlSerializer(typeof(CardSet));
+            using (var writer = new FileStream(savePath, FileMode.OpenOrCreate)) { xml.Serialize(writer, this); }
         }
-        public Guid GetGuid()
+
+        public static CardSet ReadXml(string filePath)
         {
-            return _id;
+            var cardSet = new CardSet();
+            var serializer = new XmlSerializer(typeof(CardSet));
+            using (var reader = new FileStream(filePath, FileMode.OpenOrCreate)) { cardSet = (CardSet)serializer.Deserialize(reader); }
+            return cardSet;
         }
 
     }

@@ -4,39 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 namespace Vocab_Workshop
 {
-    [DataContract]
-    public class Side
-    {
-        [DataMember]
-        public string Text { get; set; }
 
-        public Side(string text)
-        {
-            Text = text;
-        }
-    }
-
-    [DataContract]
+    [Serializable]
     public class Card
     {
-        [DataMember (Name = "Id", Order = 0)] private Guid _id { get; set; }
-        [DataMember] public readonly List<Side> Sides;
+        [XmlElement] public string Id { get; set; }
+        [XmlElement] public readonly List<string> Sides;
 
         public Card()
         {
-            _id = Guid.NewGuid();
-            Sides = new List<Side>();
+            Id = Guid.NewGuid().ToString();
+            Sides = new List<string>();
         }
 
-        public override string ToString() { return Sides[0].Text; }
-        public void SetId(string tryGuid) { if (Guid.TryParse(tryGuid, out Guid tempGuid)) { _id = tempGuid; } }
-        public Guid GetId() { return _id; }
-        public void SetId(Guid guid) { _id = guid; }
+        public Card(List<string> sides) : this()
+        {
+            Sides = sides;
+        }
+
+        public override string ToString() { return Sides[0].ToString(); }
 
         public void WriteXml(string savePath)
         {
@@ -46,26 +36,13 @@ namespace Vocab_Workshop
 
         public static Card ReadXml(string filePath)
         {
-            Card card;
+            Card card = new Card();
             var serializer = new XmlSerializer(typeof(Card));
-            using (var reader = new FileStream(filePath, FileMode.Open)) { card = (Card)serializer.Deserialize(reader); }
+            using (var reader = new FileStream(filePath, FileMode.OpenOrCreate)) { card = (Card)serializer.Deserialize(reader); }
             return card;
         }
-
-        public void WriteDCXml(string savePath)
-        {
-            var xml = new DataContractSerializer(typeof(Card));
-            using (var writer = new FileStream(savePath, FileMode.OpenOrCreate)) { xml.WriteObject(writer, this); }
-        }
-
-        public static Card ReadDCXml(string filePath)
-        {
-            Card card;
-            var serializer = new DataContractSerializer(typeof(Card));
-            using (var reader = new FileStream(filePath, FileMode.Open)) { card = (Card)serializer.ReadObject(reader); }
-            return card;
-        }
-
 
     }
+
+
 }

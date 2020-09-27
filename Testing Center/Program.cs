@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.ExceptionServices;
 using Microsoft.VisualBasic;
+using Vocab_Workshop;
+
 
 namespace Testing_Center
 {
@@ -21,7 +23,7 @@ namespace Testing_Center
             //string myString = Console.ReadLine();
             //CheckString(myString);
 
-            
+
 
             //Flashcard card = new Flashcard() { Question = "Question", Hint = "Hint", Answer = "Answer", ImagePath = @"\\servershare\folder\" };
             //List<string> list = card.Sides();
@@ -47,7 +49,7 @@ namespace Testing_Center
 
             //set.WriteXml(stackSavePath);
 
-            
+
             //var newSet = FlashcardSet.ReadXml(stackSavePath);
             //newSet.Title = "Text new set";
             //newSet.Description = "Here is a description";
@@ -92,22 +94,46 @@ namespace Testing_Center
             //user.UpdateUsername("Benstanfish");
             //Console.WriteLine(user.UserName.ToString());
 
-            string newCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCard.xml";
-            var card = new Card();
-            card.Sides.Add("txt");
-            card.Sides.Add("text");
-            card.Sides.Add("tango");
+            //string newCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCard.xml";
+            //var newCard = new Card()
+            //{
+            //    Sides = {"list", "two", "more", "merry"}
+            //};
+
+            //newCard.WriteXml(newCardPath);
+
+            //Console.WriteLine("Write Guid = " + newCard.ID);
 
 
-            Console.WriteLine("Write Guid = " + card.GetId());
-            card.WriteDCXml(newCardPath);
+            //var newerCard = Card.ReadXml(newCardPath);
+            //for (int i = 0; i < newerCard.Sides.Count; i++)
+            //{
+            //    Console.WriteLine("Side {0}: {1}", i, newerCard.Sides[i]);
+            //}
+            //Console.WriteLine("Write Guid = " + newerCard.ID);
 
-            var newerCard = Card.ReadDCXml(newCardPath);
-            for (int i = 0; i < newerCard.Sides.Count; i++)
+            string NewCardsPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCards.xml";
+            //var cardSet = new CardSet()
+            //{
+            //    Title = "This is the Title",
+            //    Description = "There's no description right now",
+            //    Id = Guid.NewGuid().ToString(),
+            //    Cards =
+            //    {
+            //        new Card(new List<string>(){ "here1", "there1", "everywhere1" }),
+            //        new Card(new List<string>(){ "here2", "there2", "everywhere2" }),
+            //        new Card(new List<string>(){ "here3", "there3", "everywhere3" })
+            //    }
+            //};
+
+            //cardSet.WriteXml(NewCardsPath);
+            var newSet = CardSet.ReadXml(NewCardsPath);
+            foreach (Card card in newSet.Cards)
             {
-                Console.WriteLine("Side {0}: {1}", i, newerCard.Sides[i]);
+                Console.WriteLine(card.Sides[0]);
             }
-            Console.WriteLine("Write Guid = " + newerCard.GetId());
+
+
 
         }
 
