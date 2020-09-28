@@ -133,11 +133,11 @@ namespace Testing_Center
             //    Console.WriteLine(card.Sides[0]);
             //}
 
-            FolderSetup.CreateCommonFolder(new List<string>()
+            ProjectFolders.CreateCommonFolder(new List<string>()
             {
-                FolderSetup.ConfigFolder(), 
-                FolderSetup.ImagesFolder(), 
-                FolderSetup.CardSetsFolder()
+                ProjectFolders.ConfigFolder(), 
+                ProjectFolders.ImagesFolder(), 
+                ProjectFolders.CardSetsFolder()
             });
             
         }

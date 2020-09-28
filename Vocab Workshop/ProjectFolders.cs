@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Vocab_Workshop
 {
-    public class FolderSetup
+    public static class ProjectFolders
     {
         public static string Desktop()
         {
