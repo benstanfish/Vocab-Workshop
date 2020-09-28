@@ -112,7 +112,7 @@ namespace Testing_Center
             //}
             //Console.WriteLine("Write Guid = " + newerCard.ID);
 
-            string NewCardsPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCards.xml";
+            //string NewCardsPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\NewCards.xml";
             //var cardSet = new CardSet()
             //{
             //    Title = "This is the Title",
@@ -127,14 +127,19 @@ namespace Testing_Center
             //};
 
             //cardSet.WriteXml(NewCardsPath);
-            var newSet = CardSet.ReadXml(NewCardsPath);
-            foreach (Card card in newSet.Cards)
+            //var newSet = CardSet.ReadXml(NewCardsPath);
+            //foreach (Card card in newSet.Cards)
+            //{
+            //    Console.WriteLine(card.Sides[0]);
+            //}
+
+            FolderSetup.CreateCommonFolder(new List<string>()
             {
-                Console.WriteLine(card.Sides[0]);
-            }
-
-
-
+                FolderSetup.ConfigFolder(), 
+                FolderSetup.ImagesFolder(), 
+                FolderSetup.CardSetsFolder()
+            });
+            
         }
 
 
