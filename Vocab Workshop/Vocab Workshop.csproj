@@ -193,6 +193,9 @@
   <ItemGroup>
     <Content Include="buntorii.ico" />
     <Content Include="Bun_Torii.ico" />
+    <None Include="Resources\baseline_play_arrow_black_18dp.png" />
+    <None Include="Resources\baseline_rotate_right_black_18dp.png" />
+    <None Include="Resources\baseline_dynamic_feed_black_18dp.png" />
     <None Include="Resources\baseline_military_tech_black_18dp.png" />
     <None Include="Resources\baseline_arrow_upward_black_18dp.png" />
     <None Include="Resources\baseline_arrow_downward_black_18dp.png" />

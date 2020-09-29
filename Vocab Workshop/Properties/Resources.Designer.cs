@@ -83,6 +83,16 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_dynamic_feed_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_dynamic_feed_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_exit_to_app_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_exit_to_app_black_18dp", resourceCulture);
@@ -146,6 +156,26 @@ namespace Vocab_Workshop.Properties {
         internal static System.Drawing.Bitmap baseline_open_in_browser_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_open_in_browser_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_play_arrow_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_play_arrow_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_rotate_right_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_rotate_right_black_18dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
