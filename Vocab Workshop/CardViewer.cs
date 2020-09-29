@@ -13,47 +13,34 @@ namespace Vocab_Workshop
 {
     public partial class CardViewer : Form
     {
-        CardSet cardSet = new CardSet();
-        CardSet needsWork = new CardSet();
         
+        CardSet cardSet = new CardSet();
 
         int currentCard = 0;
         int totalCards = 0;
         int startFace = 0;
         int currentFace = 0;
+        int totalFaces = 0;
+        int wrong = 0;
+        int skipped = 0;
+        int correct = 0;
+        private float defaultFontSize = 24;
         
+
         public CardViewer()
         {
             InitializeComponent();
+            FontDefault();
+            RefreshLabels();
             labelStage.Text = "Please load a card set.";
         }
-
-        private void WriteXml()
-        {
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\text.xml";
-            var xml = new DataContractSerializer(typeof(CardSet));
-            using (var writer = new FileStream(filePath, FileMode.Create))
-            {
-                xml.WriteObject(writer, cardSet);
-                MessageBox.Show(filePath + " done!");
-            }
-
-        }
-
-        private void ReadXml(string filePath)
-        {
-            var serializer = new DataContractSerializer(typeof(CardSet));
-            using (var reader = new FileStream(filePath, FileMode.Open))
-            {
-                cardSet = (CardSet)serializer.ReadObject(reader);
-            }
-        }
-
 
         private void UpdateStage(string performer)
         {
             if(!String.IsNullOrEmpty(performer))
                 labelStage.Text = performer;
+            totalFaces = cardSet.Cards[currentCard].Sides.Count;
+            RefreshLabels();
         }
 
         private void NextCard()
@@ -61,6 +48,7 @@ namespace Vocab_Workshop
             if (currentCard == totalCards - 1) { currentCard = 0; }
             else { currentCard++; }
 
+            totalFaces = cardSet.Cards[currentCard].Sides.Count;
             TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
         }
         private void PreviousCard()
@@ -68,6 +56,7 @@ namespace Vocab_Workshop
             if (currentCard == 0) { currentCard = totalCards -1; }
             else { currentCard--; }
 
+            
             TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
         }
 
@@ -90,10 +79,13 @@ namespace Vocab_Workshop
         {
             switch (e.KeyCode)
             {
-                case Keys.Space:
+                case Keys.Back:
+                case Keys.Delete:
                     PreviousCard();
                     break;
-                case Keys.Delete:
+                case Keys.Space:
+                    skipped++;
+                    NextCard();
                     break;
                 case Keys.Up:
                     NextFace();
@@ -102,10 +94,12 @@ namespace Vocab_Workshop
                     PreviousFace();
                     break;
                 case Keys.Right:
+                    wrong++;
                     FlashIncorrect();
                     NextCard();
                     break;
                 case Keys.Left:
+                    correct++;
                     FlashCorrect();
                     NextCard();
                     break;
@@ -113,7 +107,19 @@ namespace Vocab_Workshop
                     this.Close();
                     break;
             }
+            RefreshLabels();
             
+        }
+
+        private void RefreshLabels()
+        {
+            
+            labelForgot.Text = wrong.ToString();
+            labelCleared.Text = correct.ToString();
+            labelSkipped.Text = skipped.ToString();
+            labelTotal.Text = totalCards.ToString();
+            labelCard.Text = currentCard.ToString();
+            labelSide.Text = currentFace.ToString() + " / " + totalFaces.ToString();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
@@ -155,40 +161,26 @@ namespace Vocab_Workshop
             }
         }
 
-        //private string TestWebImage(string possibleUrl)
-        //{
-        //    string tempPath = "";
-        //    if (possibleUrl.Contains("http"))
-        //    {
-                
-        //        string tempFolder = Path.GetTempPath();
-        //        tempPath = tempFolder + @"\tempImage.jpeg";
-                
-        //        using (WebClient webClient = new WebClient())
-        //        {
-        //            byte[] data = webClient.DownloadData(possibleUrl);
+        private void FontDefault()
+        {
+           labelStage.Font = new Font(labelStage.Font.Name, defaultFontSize,
+                labelStage.Font.Style, labelStage.Font.Unit);
+        }
+        private void FontIncrease()
+        {
+            var currentSize = labelStage.Font.Size;
+            currentSize += 2.0F;
+            labelStage.Font = new Font(labelStage.Font.Name, currentSize,
+                labelStage.Font.Style, labelStage.Font.Unit);
+        }
 
-        //            using (MemoryStream mem = new MemoryStream(data))
-        //            {
-        //                using (Image yourImage = Image.FromStream(mem))
-        //                {
-        //                    // If you want it as Png
-        //                    //yourImage.Save(tempPath, ImageFormat.Png);
-
-        //                    // If you want it as Jpeg
-        //                    yourImage.Save(tempPath, ImageFormat.Jpeg);
-        //                }
-        //            }
-
-        //        }
-        //        return tempPath;
-        //    }
-        //    else
-        //    {
-        //        return possibleUrl;
-        //    }
-            
-        //}
+        private void FontDecrease()
+        {
+            var currentSize = labelStage.Font.Size;
+            currentSize -= 2.0F;
+            labelStage.Font = new Font(labelStage.Font.Name, currentSize,
+                labelStage.Font.Style, labelStage.Font.Unit);
+        }
 
 
         private string GetCardFilePath()
@@ -240,11 +232,6 @@ namespace Vocab_Workshop
             labelStage.Text = cardSet.Cards[0].Sides[0];
         }
 
-        private void listBoxNeedsWork_DoubleClick(object sender, EventArgs e)
-        {
-            //MessageBox.Show(listBoxNeedsWork.SelectedIndex.ToString());
-        }
-
 
         private void ColorLabel(Control control, Color color)
         {
@@ -255,38 +242,6 @@ namespace Vocab_Workshop
             timer.Elapsed += ResetLabelColor;
             timer.AutoReset = false;
             timer.Enabled = true;
-        }
-
-        private void DrawAGreenRect()
-        {
-            //SolidBrush myBrush = new SolidBrush(Color.Red);
-            Graphics formGraphics;
-            var myRect = new Rectangle(0, 0, 25, 600);
-            LinearGradientBrush linGreenBrush = new LinearGradientBrush(
-               myRect,
-               Color.FromArgb(255, 60, 179, 113),   // Medium Sea Green
-               Color.FromArgb(0, 60, 179, 113),      
-               0f);  
-            formGraphics = this.CreateGraphics();
-            formGraphics.FillRectangle(linGreenBrush, myRect);
-            linGreenBrush.Dispose();
-            formGraphics.Dispose();
-           
-        }
-        private void DrawARedRect()
-        {
-            //SolidBrush myBrush = new SolidBrush(Color.Red);
-            Graphics formGraphics;
-            var myRect = new Rectangle(560, 0, 30, 600);
-            LinearGradientBrush linGreenBrush = new LinearGradientBrush(
-               myRect,
-               Color.FromArgb(0, 255, 99, 71),   // Tomato
-               Color.FromArgb(255, 255, 99, 71),      
-               0f);  
-            formGraphics = this.CreateGraphics();
-            formGraphics.FillRectangle(linGreenBrush, myRect);
-            linGreenBrush.Dispose();
-            formGraphics.Dispose();
         }
 
         public void ResetLabelColor(Object source, System.Timers.ElapsedEventArgs e)
@@ -304,7 +259,12 @@ namespace Vocab_Workshop
             ColorLabel(labelCorrect, Color.MediumAquamarine);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Home_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Todo: Go to Main menu.");
+        }
+
+        private void LoadSet_Click(object sender, EventArgs e)
         {
             var path = GetCardFilePath();
             if (path != null)
@@ -315,5 +275,29 @@ namespace Vocab_Workshop
             TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
         }
 
+        private void Shuffle_Click(object sender, EventArgs e)
+        {
+            cardSet.Cards.Shuffle();
+        }
+
+        private void Reverse_Click(object sender, EventArgs e)
+        { 
+            cardSet.Cards.Reverse();
+        }
+
+        private void FontIncrease_Click(object sender, EventArgs e)
+        {
+            FontIncrease();
+        }
+
+        private void FontDecrease_Click(object sender, EventArgs e)
+        {
+            FontDecrease();
+        }
+
+        private void FontDefault_Click(object sender, EventArgs e)
+        {
+            FontDefault();
+        }
     }
 }

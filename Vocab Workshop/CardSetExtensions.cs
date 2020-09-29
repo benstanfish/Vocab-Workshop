@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Vocab_Workshop
 {
-    public static class Extensions
+    public static class CardSetExtensions
     {
         private static System.Random rng = new System.Random();
 
@@ -40,23 +40,6 @@ namespace Vocab_Workshop
                 list[k] = list[n];
                 list[n] = value;
             }
-        }
-
-        public static void WriteToXML(IStream stream)
-        {
-
-        }
-
-
-
-
-
-
-
-
-        public static void ProjectFolder()
-        {
-
         }
 
 
