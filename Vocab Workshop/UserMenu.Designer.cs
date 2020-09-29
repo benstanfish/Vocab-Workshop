@@ -50,6 +50,10 @@
             this.star2 = new System.Windows.Forms.PictureBox();
             this.star1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.labelLifetimeCards = new System.Windows.Forms.Label();
+            this.listBoxUsageHistory = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.otherAward)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.otherRating)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -156,11 +160,12 @@
             // hScrollBar1
             // 
             this.hScrollBar1.LargeChange = 1;
-            this.hScrollBar1.Location = new System.Drawing.Point(384, 199);
+            this.hScrollBar1.Location = new System.Drawing.Point(80, 247);
             this.hScrollBar1.Maximum = 12;
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(395, 22);
+            this.hScrollBar1.Size = new System.Drawing.Size(277, 22);
             this.hScrollBar1.TabIndex = 18;
+            this.hScrollBar1.Visible = false;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // otherAward
@@ -260,11 +265,52 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "Special";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(591, 219);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 17);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Lifetime Cards";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(381, 219);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 17);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Usage History";
+            // 
+            // labelLifetimeCards
+            // 
+            this.labelLifetimeCards.AutoSize = true;
+            this.labelLifetimeCards.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLifetimeCards.Location = new System.Drawing.Point(589, 240);
+            this.labelLifetimeCards.Name = "labelLifetimeCards";
+            this.labelLifetimeCards.Size = new System.Drawing.Size(168, 29);
+            this.labelLifetimeCards.TabIndex = 24;
+            this.labelLifetimeCards.Text = "Lifetime Cards";
+            // 
+            // listBoxUsageHistory
+            // 
+            this.listBoxUsageHistory.FormattingEnabled = true;
+            this.listBoxUsageHistory.ItemHeight = 16;
+            this.listBoxUsageHistory.Location = new System.Drawing.Point(384, 240);
+            this.listBoxUsageHistory.Name = "listBoxUsageHistory";
+            this.listBoxUsageHistory.Size = new System.Drawing.Size(188, 180);
+            this.listBoxUsageHistory.TabIndex = 25;
+            // 
             // UserMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 434);
+            this.ClientSize = new System.Drawing.Size(800, 435);
+            this.Controls.Add(this.listBoxUsageHistory);
+            this.Controls.Add(this.labelLifetimeCards);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.otherAward);
             this.Controls.Add(this.otherRating);
@@ -328,5 +374,9 @@
         private System.Windows.Forms.PictureBox otherRating;
         private System.Windows.Forms.PictureBox otherAward;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelLifetimeCards;
+        private System.Windows.Forms.ListBox listBoxUsageHistory;
     }
 }

@@ -13,17 +13,19 @@ namespace Vocab_Workshop.Properties
     public partial class UserMenu : Form
     {
         private int starCount = 0;
+        private int lifetimeCards = 1000;
         Image emptyStar = Resources.baseline_star_border_black_18dp;
         Image halfStar = Resources.baseline_star_half_black_18dp;
         Image solidStar = Resources.baseline_star_black_18dp;
         Image prettyStar = Resources.baseline_stars_black_18dp;
         Image medal = Resources.baseline_military_tech_black_18dp;
-
+        
 
         public UserMenu()
         {
             InitializeComponent();
             UpdateStars(starCount);
+            labelLifetimeCards.Text = lifetimeCards.ToString();
         }
 
 
