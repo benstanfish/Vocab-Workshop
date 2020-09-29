@@ -24,12 +24,29 @@ namespace Vocab_Workshop
         public CardSetEditor(CardSet aSet = null)
         {
             InitializeComponent();
+
             if (aSet != null)
             {
                 MessageBox.Show("Non-null Card Set");
                 cardSet = aSet;
             }
-            else { MessageBox.Show("Null Card Set"); }
+            else
+            {
+                var xmlSet = CardSet.ReadXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
+
+                
+
+                //foreach (Card card in xmlSet.Cards)
+                //{
+                //    bs.Add(card.Sides.ToList());
+                //}
+
+                var bindingList = new BindingList<Card>(xmlSet.Cards);
+                
+                dataGridView1.AutoGenerateColumns = true;
+                dataGridView1.AutoSize = true;
+                dataGridView1.DataSource = new BindingSource(bindingList,null);
+            }
 
         }
 

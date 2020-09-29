@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardSetEditor));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Side1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Side2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Side3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Side4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxNewSetTitle = new System.Windows.Forms.TextBox();
             this.labelSetTitle = new System.Windows.Forms.Label();
             this.labelCardList = new System.Windows.Forms.Label();
@@ -41,6 +37,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.col0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,10 +53,10 @@
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Side1,
-            this.Side2,
-            this.Side3,
-            this.Side4});
+            this.col0,
+            this.col1,
+            this.col2,
+            this.col3});
             this.dataGridView1.Location = new System.Drawing.Point(12, 224);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -64,30 +64,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(945, 516);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Side1
-            // 
-            this.Side1.HeaderText = "Entry";
-            this.Side1.MinimumWidth = 6;
-            this.Side1.Name = "Side1";
-            // 
-            // Side2
-            // 
-            this.Side2.HeaderText = "Reading";
-            this.Side2.MinimumWidth = 6;
-            this.Side2.Name = "Side2";
-            // 
-            // Side3
-            // 
-            this.Side3.HeaderText = "Meaning";
-            this.Side3.MinimumWidth = 6;
-            this.Side3.Name = "Side3";
-            // 
-            // Side4
-            // 
-            this.Side4.HeaderText = "Image Path (Optional)";
-            this.Side4.MinimumWidth = 6;
-            this.Side4.Name = "Side4";
             // 
             // textBoxNewSetTitle
             // 
@@ -155,6 +131,30 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // col0
+            // 
+            this.col0.HeaderText = "Entry";
+            this.col0.MinimumWidth = 6;
+            this.col0.Name = "col0";
+            // 
+            // col1
+            // 
+            this.col1.HeaderText = "Reading";
+            this.col1.MinimumWidth = 6;
+            this.col1.Name = "col1";
+            // 
+            // col2
+            // 
+            this.col2.HeaderText = "Meaning";
+            this.col2.MinimumWidth = 6;
+            this.col2.Name = "col2";
+            // 
+            // col3
+            // 
+            this.col3.HeaderText = "Image Path (Optional)";
+            this.col3.MinimumWidth = 6;
+            this.col3.Name = "col3";
+            // 
             // CardSetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -187,11 +187,11 @@
         private System.Windows.Forms.Label labelCardList;
         private System.Windows.Forms.TextBox textBoxCardSetDescription;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Side1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Side2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Side3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Side4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col0;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col3;
     }
 }

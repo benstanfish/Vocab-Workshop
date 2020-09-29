@@ -193,8 +193,21 @@
   <ItemGroup>
     <Content Include="buntorii.ico" />
     <Content Include="Bun_Torii.ico" />
-    <None Include="Resources\ic_arrow_upward_black_48dp.png" />
-    <None Include="Resources\ic_casino_black_48dp.png" />
+    <None Include="Resources\baseline_military_tech_black_18dp.png" />
+    <None Include="Resources\baseline_arrow_upward_black_18dp.png" />
+    <None Include="Resources\baseline_arrow_downward_black_18dp.png" />
+    <None Include="Resources\baseline_functions_black_18dp.png" />
+    <None Include="Resources\baseline_view_carousel_black_18dp.png" />
+    <None Include="Resources\baseline_exit_to_app_black_18dp.png" />
+    <None Include="Resources\baseline_trending_up_black_18dp.png" />
+    <None Include="Resources\baseline_trending_flat_black_18dp.png" />
+    <None Include="Resources\baseline_trending_down_black_18dp.png" />
+    <None Include="Resources\baseline_thumb_up_black_18dp.png" />
+    <None Include="Resources\baseline_thumb_down_black_18dp.png" />
+    <None Include="Resources\baseline_open_in_browser_black_18dp.png" />
+    <None Include="Resources\baseline_loop_black_18dp.png" />
+    <None Include="Resources\baseline_home_black_18dp.png" />
+    <None Include="Resources\baseline_format_size_black_18dp.png" />
     <None Include="Resources\buntorii.png" />
   </ItemGroup>
   <ItemGroup>

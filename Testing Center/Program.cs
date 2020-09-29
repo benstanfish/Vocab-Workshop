@@ -133,13 +133,21 @@ namespace Testing_Center
             //    Console.WriteLine(card.Sides[0]);
             //}
 
-            ProjectFolders.CreateCommonFolder(new List<string>()
-            {
-                ProjectFolders.ConfigFolder(), 
-                ProjectFolders.ImagesFolder(), 
-                ProjectFolders.CardSetsFolder()
-            });
+            //ProjectFolders.CreateCommonFolder(new List<string>()
+            //{
+            //    ProjectFolders.ConfigFolder(), 
+            //    ProjectFolders.ImagesFolder(), 
+            //    ProjectFolders.CardSetsFolder()
+            //});
             
+            //var newSet = CardSet.ReadTsv(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.txt");
+
+            //newSet.WriteXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
+
+            var readSet =
+                CardSet.ReadXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
+
+
         }
 
 

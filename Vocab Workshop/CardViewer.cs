@@ -15,6 +15,7 @@ namespace Vocab_Workshop
     {
         CardSet cardSet = new CardSet();
         CardSet needsWork = new CardSet();
+        
 
         int currentCard = 0;
         int totalCards = 0;
@@ -24,7 +25,7 @@ namespace Vocab_Workshop
         public CardViewer()
         {
             InitializeComponent();
-            labelStage.Text = "Please load a card ring.";
+            labelStage.Text = "Please load a card set.";
         }
 
         private void WriteXml()
@@ -195,9 +196,9 @@ namespace Vocab_Workshop
             string myPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.InitialDirectory = myPath;
-                ofd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                ofd.FilterIndex = 13;
+                ofd.InitialDirectory = ProjectFolders.CardSetsFolder();
+                ofd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.FilterIndex = 0;
                 ofd.RestoreDirectory = false;
 
                 if (ofd.ShowDialog() == DialogResult.OK)
@@ -290,8 +291,8 @@ namespace Vocab_Workshop
 
         public void ResetLabelColor(Object source, System.Timers.ElapsedEventArgs e)
         {
-            labelIncorrect.BackColor = Control.DefaultBackColor;
-            labelCorrect.BackColor = Control.DefaultBackColor;
+            labelIncorrect.BackColor = Color.White;
+            labelCorrect.BackColor = Color.White;
         }
 
         private void FlashIncorrect()
@@ -300,30 +301,19 @@ namespace Vocab_Workshop
         }
         private void FlashCorrect()
         {
-            ColorLabel(labelCorrect, Color.DodgerBlue);
+            ColorLabel(labelCorrect, Color.MediumAquamarine);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            WriteXml();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            ReadXml(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\text2.xml");
+            var path = GetCardFilePath();
+            if (path != null)
+            {
+                cardSet = CardSet.ReadXml(path);
+            }
             totalCards = cardSet.Cards.Count - 1;
             TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            var editor = new CardSetEditor(cardSet);
-            editor.Show();
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

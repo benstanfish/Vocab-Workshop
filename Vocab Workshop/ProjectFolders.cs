@@ -9,8 +9,10 @@ using System.Windows.Forms;
 
 namespace Vocab_Workshop
 {
+
     public static class ProjectFolders
     {
+
         public static string Desktop()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
@@ -39,7 +41,7 @@ namespace Vocab_Workshop
                 DirectoryInfo imagesDirectory = Directory.CreateDirectory(ImagesFolder());
                 DirectoryInfo cardSetDirectory = Directory.CreateDirectory(CardSetsFolder());
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
 
@@ -53,7 +55,7 @@ namespace Vocab_Workshop
                     DirectoryInfo di = Directory.CreateDirectory(path);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
 
@@ -68,12 +70,11 @@ namespace Vocab_Workshop
                         DirectoryInfo di = Directory.CreateDirectory(path);
                     }
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
             
         }
-
 
     }
 }

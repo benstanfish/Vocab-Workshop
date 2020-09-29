@@ -38,7 +38,7 @@ namespace Vocab_Workshop
         {
             Card card = new Card();
             var serializer = new XmlSerializer(typeof(Card));
-            using (var reader = new FileStream(filePath, FileMode.OpenOrCreate)) { card = (Card)serializer.Deserialize(reader); }
+            using (var reader = new FileStream(filePath, FileMode.Open)) { card = (Card)serializer.Deserialize(reader); }
             return card;
         }
 
