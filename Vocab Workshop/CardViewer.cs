@@ -4,9 +4,10 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Timers;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-
+using Timer = System.Timers.Timer;
 
 
 namespace Vocab_Workshop
@@ -24,16 +25,23 @@ namespace Vocab_Workshop
         int wrong = 0;
         int skipped = 0;
         int correct = 0;
-        private float defaultFontSize = 24;
-        
+        float defaultFontSize = 24;
+        bool franticOn = false;
+        int franticTime;
+        int franticMax = 12;
+
+        readonly System.Timers.Timer franticTimer = new System.Timers.Timer(1000);
 
         public CardViewer()
         {
             InitializeComponent();
             FontDefault();
             RefreshLabels();
+            labelFrantic.Text = franticMax.ToString();
             labelStage.Text = "Please load a card set.";
         }
+
+
 
         private void UpdateStage(string performer)
         {
@@ -298,6 +306,47 @@ namespace Vocab_Workshop
         private void FontDefault_Click(object sender, EventArgs e)
         {
             FontDefault();
+        }
+
+        private void FranticMode_Click(object sender, EventArgs e)
+        {
+            franticOn = !franticOn;
+            if (franticOn)
+            {
+                pictureBoxFrantic.BackColor = Color.Aquamarine;
+                franticTime = franticMax;
+                timerFrantic.Enabled = true;
+            }
+            else
+            {
+                
+                timerFrantic.Enabled = false;
+                franticTime = franticMax;
+                pictureBoxFrantic.BackColor = Color.White;
+                labelFrantic.Text = franticTime.ToString();
+                labelFrantic.ForeColor = Color.Black;
+                labelStage.BackColor = Color.White;
+            }
+        }
+
+        private void timerFrantic_Tick_1(object sender, EventArgs e)
+        {
+            if (franticTime >= 0)
+            {
+                if (franticTime < 11)
+                {
+                    labelFrantic.ForeColor = Color.Tomato;
+                    labelStage.BackColor = Color.LightPink;
+                }
+                labelFrantic.Text = (franticTime--).ToString();
+            }
+            else
+            {
+                labelFrantic.ForeColor = Color.Black;
+                labelStage.BackColor = Color.White;
+                franticTime = franticMax;
+            }
+
         }
     }
 }

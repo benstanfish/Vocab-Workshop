@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vocab_Workshop.Properties;
 
 namespace Vocab_Workshop
 {
@@ -16,7 +17,7 @@ namespace Vocab_Workshop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CardViewer());
+            Application.Run(new UserMenu());
         }
 
     }

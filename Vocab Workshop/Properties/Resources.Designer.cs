@@ -63,6 +63,26 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_alarm_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_alarm_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_alarm_on_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_alarm_on_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_arrow_downward_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_arrow_downward_black_18dp", resourceCulture);
@@ -96,6 +116,16 @@ namespace Vocab_Workshop.Properties {
         internal static System.Drawing.Bitmap baseline_exit_to_app_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_exit_to_app_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_flag_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_flag_black_18dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,6 +203,16 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_outlined_flag_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_outlined_flag_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_play_arrow_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_play_arrow_black_18dp", resourceCulture);
@@ -183,9 +223,59 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_psychology_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_psychology_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_rotate_right_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_rotate_right_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_star_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_star_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_star_border_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_star_border_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_star_half_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_star_half_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_stars_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_stars_black_18dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

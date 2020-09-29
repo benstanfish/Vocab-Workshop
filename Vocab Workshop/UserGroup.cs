@@ -12,7 +12,5 @@ namespace Vocab_Workshop
         [DataMember(Name = "Id")]
         private Guid _id = Guid.NewGuid();
         public readonly  List<UserProfile> users = new List<UserProfile>();
-
-        
     }
 }

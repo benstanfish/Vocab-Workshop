@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardViewer));
             this.labelStage = new System.Windows.Forms.Label();
             this.labelCurrentSet = new System.Windows.Forms.Label();
@@ -65,6 +66,10 @@
             this.labelSide = new System.Windows.Forms.Label();
             this.labelCard = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pictureBoxFrantic = new System.Windows.Forms.PictureBox();
+            this.labelFrantic = new System.Windows.Forms.Label();
+            this.timerFrantic = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -79,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFrantic)).BeginInit();
             this.SuspendLayout();
             // 
             // labelStage
@@ -159,7 +165,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(562, 14);
+            this.label6.Location = new System.Drawing.Point(517, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 17);
             this.label6.TabIndex = 18;
@@ -171,7 +177,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(254, 14);
+            this.label7.Location = new System.Drawing.Point(260, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 17);
             this.label7.TabIndex = 22;
@@ -183,7 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(475, 14);
+            this.label10.Location = new System.Drawing.Point(445, 14);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 17);
             this.label10.TabIndex = 28;
@@ -195,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(399, 14);
+            this.label11.Location = new System.Drawing.Point(369, 14);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 17);
             this.label11.TabIndex = 30;
@@ -205,7 +211,7 @@
             // 
             this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox12.Image = global::Vocab_Workshop.Properties.Resources.baseline_play_arrow_black_18dp;
-            this.pictureBox12.Location = new System.Drawing.Point(410, 35);
+            this.pictureBox12.Location = new System.Drawing.Point(380, 35);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(36, 36);
@@ -217,7 +223,7 @@
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox11.Image = global::Vocab_Workshop.Properties.Resources.baseline_rotate_right_black_18dp;
-            this.pictureBox11.Location = new System.Drawing.Point(487, 35);
+            this.pictureBox11.Location = new System.Drawing.Point(457, 35);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(36, 36);
@@ -230,7 +236,7 @@
             // 
             this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox8.Image = global::Vocab_Workshop.Properties.Resources.baseline_arrow_downward_black_18dp;
-            this.pictureBox8.Location = new System.Drawing.Point(210, 35);
+            this.pictureBox8.Location = new System.Drawing.Point(216, 35);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(36, 36);
@@ -243,7 +249,7 @@
             // 
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox7.Image = global::Vocab_Workshop.Properties.Resources.baseline_format_size_black_18dp;
-            this.pictureBox7.Location = new System.Drawing.Point(254, 35);
+            this.pictureBox7.Location = new System.Drawing.Point(260, 35);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(36, 36);
@@ -256,7 +262,7 @@
             // 
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox6.Image = global::Vocab_Workshop.Properties.Resources.baseline_arrow_upward_black_18dp;
-            this.pictureBox6.Location = new System.Drawing.Point(298, 35);
+            this.pictureBox6.Location = new System.Drawing.Point(304, 35);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(36, 36);
@@ -269,7 +275,7 @@
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox5.Image = global::Vocab_Workshop.Properties.Resources.baseline_loop_black_18dp;
-            this.pictureBox5.Location = new System.Drawing.Point(570, 35);
+            this.pictureBox5.Location = new System.Drawing.Point(525, 35);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(36, 36);
@@ -502,12 +508,55 @@
             this.labelTotal.TabIndex = 86;
             this.labelTotal.Text = "X";
             // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(604, 14);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(51, 17);
+            this.label13.TabIndex = 88;
+            this.label13.Text = "Frantic";
+            // 
+            // pictureBoxFrantic
+            // 
+            this.pictureBoxFrantic.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxFrantic.Image = global::Vocab_Workshop.Properties.Resources.baseline_alarm_black_18dp;
+            this.pictureBoxFrantic.Location = new System.Drawing.Point(612, 35);
+            this.pictureBoxFrantic.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxFrantic.Name = "pictureBoxFrantic";
+            this.pictureBoxFrantic.Size = new System.Drawing.Size(36, 36);
+            this.pictureBoxFrantic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxFrantic.TabIndex = 87;
+            this.pictureBoxFrantic.TabStop = false;
+            this.pictureBoxFrantic.Click += new System.EventHandler(this.FranticMode_Click);
+            // 
+            // labelFrantic
+            // 
+            this.labelFrantic.AutoSize = true;
+            this.labelFrantic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFrantic.Location = new System.Drawing.Point(655, 41);
+            this.labelFrantic.Name = "labelFrantic";
+            this.labelFrantic.Size = new System.Drawing.Size(102, 25);
+            this.labelFrantic.TabIndex = 89;
+            this.labelFrantic.Text = "franticMax";
+            // 
+            // timerFrantic
+            // 
+            this.timerFrantic.Interval = 1000;
+            this.timerFrantic.Tick += new System.EventHandler(this.timerFrantic_Tick_1);
+            // 
             // CardViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(905, 698);
+            this.Controls.Add(this.labelFrantic);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.pictureBoxFrantic);
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.labelCard);
             this.Controls.Add(this.labelSide);
@@ -565,6 +614,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFrantic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,6 +658,10 @@
         private System.Windows.Forms.Label labelSide;
         private System.Windows.Forms.Label labelCard;
         private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureBoxFrantic;
+        private System.Windows.Forms.Label labelFrantic;
+        private System.Windows.Forms.Timer timerFrantic;
     }
 }
 

@@ -114,8 +114,15 @@ namespace Vocab_Workshop
             }
         }
 
-        public void Promote(int points) { Rating += points; }
-        public void Demote(int points) { Rating -= points; }
+        public void Promote(int points)
+        {
+            Rating += points;
+        }
+
+        public void Demote(int points)
+        {
+            Rating -= points;
+        }
 
     }
 }
