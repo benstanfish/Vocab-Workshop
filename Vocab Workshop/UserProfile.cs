@@ -6,27 +6,31 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace Vocab_Workshop
 {
-    [DataContract]
+    public enum JLPTLevel { None, N1, N2, N3, N4, N5 }
+    public enum KankenLevel { None, L1, L2, L3, L4, L5, L6, L7, L8, L9, L10 }
+
+    [Serializable]
     public class UserProfile
     {
-        [DataMember(Name = "Id")]
-        private Guid _guid;
-        [DataMember(Name = "CreateDate")]
-        private DateTime _createDate { get; set; }
-        [DataMember]
-        public string UserName { get; set; }
-        [DataMember(Name = "Valid")]
-        private bool _valid;    // If the username has been set.
-        [DataMember]
-        public readonly List<DateTime> SignIns = new List<DateTime>();
+        [XmlElement] public string Id { get; set; }
+        [XmlElement] public DateTime CreateDate { get; set; }
+        [XmlElement] public string UserName { get; set; }
+        [XmlElement] public readonly List<DateTime> SignIns = new List<DateTime>();
+        [XmlElement] public int Rating { get; set; }
+        [XmlElement] public int LifetimeCards { get; set; }
+        [XmlElement] public JLPTLevel JLPT { get; set; }
+        [XmlElement] public KankenLevel Kanken { get; set; }
 
         public UserProfile()
         {
-            _guid = Guid.NewGuid();
-            _createDate = DateTime.Now;
+            Id = Guid.NewGuid().ToString();
+            CreateDate = DateTime.Now;
+            JLPT = JLPTLevel.None;
+            Kanken = KankenLevel.None;
         }
         public UserProfile(string userName)
             : this()
@@ -34,28 +38,21 @@ namespace Vocab_Workshop
             if (userName != string.Empty)
             {
                 UserName = userName;
-                _valid = true;
             }
         }
 
         public void SetId(string tryGuid)
         {
             if (Guid.TryParse(tryGuid, out Guid tempGuid))
-                _guid = tempGuid;
+                Id = tempGuid.ToString();
         }
         public void SetId(Guid guid)
         {
-            _guid = guid;
-        }
-        public Guid GetId()
-        {
-            if (_guid == default(Guid))
-                _guid = Guid.NewGuid();
-            return _guid;
+            Id = guid.ToString();
         }
         public DateTime DateCreated()
         {
-            return _createDate;
+            return CreateDate;
         }
         public void SignIn(string savePath = null)
         {
@@ -73,7 +70,6 @@ namespace Vocab_Workshop
             {
                 UserName = "Please update your Username.";
             }
-            _valid = true;
         }
 
         public void WriteXml(string savePath)
@@ -93,18 +89,12 @@ namespace Vocab_Workshop
             {
                 user = (UserProfile)serializer.ReadObject(reader);
             }
-            user._valid = true;
             return user;
         }
 
-        public bool UserExists()
+        private static void RepairXml(string filePath)
         {
-            if (_valid != false) { return true; }
-            else { return false; }
-        }
-
-        public static void RepairXml(string filePath)
-        {
+            // This is for DataContract deserialization... no longer necessary with public properties
             var temp = string.Empty;
             using (var reader = new StreamReader(filePath))
             {
@@ -124,7 +114,8 @@ namespace Vocab_Workshop
             }
         }
 
-
+        public void Promote(int points) { Rating += points; }
+        public void Demote(int points) { Rating -= points; }
 
     }
 }
