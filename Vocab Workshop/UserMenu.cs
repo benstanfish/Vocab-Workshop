@@ -19,16 +19,40 @@ namespace Vocab_Workshop.Properties
         Image solidStar = Resources.baseline_star_black_18dp;
         Image prettyStar = Resources.baseline_stars_black_18dp;
         Image medal = Resources.baseline_military_tech_black_18dp;
-        
+        private string userPath = ProjectFolders.ConfigFolder("Users.xml");
+        public UserGroup CurrentUsers;
+
 
         public UserMenu()
         {
             InitializeComponent();
+            
+            LoadUsers();
             UpdateStars(starCount);
             labelLifetimeCards.Text = lifetimeCards.ToString();
         }
 
+        public void LoadUsers()
+        {
+            try
+            {
+                CurrentUsers = UserGroup.ReadXml(ProjectFolders.ConfigFolder("users.xml"));
+                if (CurrentUsers != null && CurrentUsers.Users.Count != 0)
+                {
+                    foreach (UserProfile user in CurrentUsers.Users)
+                    {
+                        listBoxUserProfiles.Items.Add(user);
+                    }
+                }
+               
+            }
+            catch (Exception e)
+            {
+                listBoxUserProfiles.Items.Add("Error reading file. Check XML syntax.");
+                listBoxUserProfiles.Enabled = false;
+            }
 
+        }
         public void UpdateStars(int stars)
         {
             switch (stars)
@@ -154,6 +178,13 @@ namespace Vocab_Workshop.Properties
             }
         }
 
-
+        private void listBoxUserProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selected = listBoxUserProfiles.SelectedIndex;
+            textBoxUserName.Text = CurrentUsers.Users[selected].UserName;
+            textBoxUserId.Text = CurrentUsers.Users[selected].Id;
+            listBoxUsageHistory.DataSource = CurrentUsers.Users[selected].SignIns;
+            labelLifetimeCards.Text = CurrentUsers.Users[selected].LifetimeCards.ToString();
+        }
     }
 }

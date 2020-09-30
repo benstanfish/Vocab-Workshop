@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.ExceptionServices;
 using Microsoft.VisualBasic;
 using Vocab_Workshop;
@@ -144,12 +145,12 @@ namespace Testing_Center
 
             //newSet.WriteXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
 
-            var userFile = ProjectFolders.ConfigFolder("users.xml");
+            var userFile = ProjectFolders.ConfigFolder("Users.xml");
 
             //var newUser = new UserProfile("benstanfish");
             //var newUserGroup = new UserGroup()
             //{
-            //    users =
+            //    Users =
             //    {
             //        new UserProfile("Ben"),
             //        new UserProfile("Junko"),
@@ -159,14 +160,23 @@ namespace Testing_Center
             //    }
             //};
 
-            //newUserGroup.users.Add(newUser);
+            //newUserGroup.Users.Add(newUser);
             //newUserGroup.WriteXml(userFile);
 
             var userGroup = UserGroup.ReadXml(userFile);
-            foreach (UserProfile user in userGroup.users)
+            var users = userGroup.Users;
+
+            // Users.RemoveAll(user => user.UserName == "benstanfish");
+
+            var luckyUser = users.SingleOrDefault(user => user.UserName =="Ben");
+            luckyUser.Promote(1000);
+
+            foreach (UserProfile user in users)
             {
-                Console.WriteLine(user.UserName);
+                Console.WriteLine(user.UserName + ", points: " + user.Rating);
             }
+            userGroup.WriteXml(userFile);
+            
         }
 
 

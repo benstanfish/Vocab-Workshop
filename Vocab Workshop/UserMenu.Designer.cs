@@ -32,8 +32,8 @@
             this.labelUserMenuTitle = new System.Windows.Forms.Label();
             this.listBoxUserProfiles = new System.Windows.Forms.ListBox();
             this.labelUserName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxUserName = new System.Windows.Forms.TextBox();
+            this.textBoxUserId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -75,13 +75,14 @@
             // 
             // listBoxUserProfiles
             // 
-            this.listBoxUserProfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxUserProfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxUserProfiles.FormattingEnabled = true;
-            this.listBoxUserProfiles.ItemHeight = 16;
+            this.listBoxUserProfiles.ItemHeight = 18;
             this.listBoxUserProfiles.Location = new System.Drawing.Point(12, 32);
             this.listBoxUserProfiles.Name = "listBoxUserProfiles";
-            this.listBoxUserProfiles.Size = new System.Drawing.Size(294, 388);
+            this.listBoxUserProfiles.Size = new System.Drawing.Size(294, 382);
             this.listBoxUserProfiles.TabIndex = 2;
+            this.listBoxUserProfiles.SelectedIndexChanged += new System.EventHandler(this.listBoxUserProfiles_SelectedIndexChanged);
             // 
             // labelUserName
             // 
@@ -92,24 +93,24 @@
             this.labelUserName.TabIndex = 3;
             this.labelUserName.Text = "Username";
             // 
-            // textBox1
+            // textBoxUserName
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(384, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(404, 22);
-            this.textBox1.TabIndex = 4;
+            this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUserName.Location = new System.Drawing.Point(384, 51);
+            this.textBoxUserName.Name = "textBoxUserName";
+            this.textBoxUserName.Size = new System.Drawing.Size(404, 22);
+            this.textBoxUserName.TabIndex = 4;
             // 
-            // textBox2
+            // textBoxUserId
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(384, 106);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(404, 22);
-            this.textBox2.TabIndex = 6;
+            this.textBoxUserId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxUserId.Enabled = false;
+            this.textBoxUserId.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUserId.Location = new System.Drawing.Point(384, 106);
+            this.textBoxUserId.Name = "textBoxUserId";
+            this.textBoxUserId.Size = new System.Drawing.Size(404, 22);
+            this.textBoxUserId.TabIndex = 6;
             // 
             // label1
             // 
@@ -313,9 +314,9 @@
             this.Controls.Add(this.star2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.star1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxUserId);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxUserName);
             this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.listBoxUserProfiles);
             this.Controls.Add(this.labelUserMenuTitle);
@@ -343,8 +344,8 @@
         private System.Windows.Forms.Label labelUserMenuTitle;
         private System.Windows.Forms.ListBox listBoxUserProfiles;
         private System.Windows.Forms.Label labelUserName;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxUserName;
+        private System.Windows.Forms.TextBox textBoxUserId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox star1;
         private System.Windows.Forms.Label label2;

@@ -11,7 +11,7 @@ namespace Vocab_Workshop
     public class UserGroup
     {
         [XmlElement] public string Id;
-        [XmlElement] public readonly  List<UserProfile> users = new List<UserProfile>();
+        [XmlElement] public readonly List<UserProfile> Users = new List<UserProfile>();
 
         public UserGroup()
         {
