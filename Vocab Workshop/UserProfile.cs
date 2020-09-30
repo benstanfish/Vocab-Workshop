@@ -61,9 +61,8 @@ namespace Vocab_Workshop
         public void SignIn(string savePath = null)
         {
             SignIns.Add(DateTime.Now);
-            if (savePath != null)
-                WriteXml(savePath);
         }
+
         public void UpdateUsername(string newName)
         {
             if (newName != string.Empty)

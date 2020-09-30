@@ -140,7 +140,7 @@ namespace Testing_Center
             //    ProjectFolders.ImagesFolder(), 
             //    ProjectFolders.CardSetsFolder()
             //});
-            
+
             //var newSet = CardSet.ReadTsv(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.txt");
 
             //newSet.WriteXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
@@ -170,11 +170,12 @@ namespace Testing_Center
 
             var luckyUser = users.SingleOrDefault(user => user.UserName =="Ben");
             luckyUser.Promote(1000);
+            luckyUser.SignIn(userFile);
 
-            foreach (UserProfile user in users)
-            {
-                Console.WriteLine(user.UserName + ", points: " + user.Rating);
-            }
+            //foreach (UserProfile user in users)
+            //{
+            //    Console.WriteLine(user.UserName + ", points: " + user.Rating);
+            //}
             userGroup.WriteXml(userFile);
             
         }
