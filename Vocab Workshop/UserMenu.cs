@@ -206,5 +206,30 @@ namespace Vocab_Workshop.Properties
             }
 
         }
+
+        private void OpenProfiles_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Home_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

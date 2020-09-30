@@ -133,6 +133,16 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_folder_open_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_folder_open_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_format_size_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_format_size_black_18dp", resourceCulture);
@@ -183,6 +193,16 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_meeting_room_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_meeting_room_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_military_tech_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_military_tech_black_18dp", resourceCulture);
@@ -213,6 +233,26 @@ namespace Vocab_Workshop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_person_add_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_person_add_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_person_remove_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_person_remove_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_play_arrow_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_play_arrow_black_18dp", resourceCulture);
@@ -236,6 +276,26 @@ namespace Vocab_Workshop.Properties {
         internal static System.Drawing.Bitmap baseline_rotate_right_black_18dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_rotate_right_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_save_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_save_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_settings_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_settings_black_18dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -327,6 +387,16 @@ namespace Vocab_Workshop.Properties {
             get {
                 object obj = ResourceManager.GetObject("buntorii", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon buntorii1 {
+            get {
+                object obj = ResourceManager.GetObject("buntorii1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }
