@@ -170,7 +170,7 @@ namespace Testing_Center
 
             var luckyUser = users.SingleOrDefault(user => user.UserName =="Ben");
             luckyUser.Promote(1000);
-            luckyUser.SignIn(userFile);
+            luckyUser.SignIn();
 
             //foreach (UserProfile user in users)
             //{

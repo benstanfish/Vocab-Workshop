@@ -58,7 +58,7 @@ namespace Vocab_Workshop
         {
             return CreateDate;
         }
-        public void SignIn(string savePath = null)
+        public void SignIn()
         {
             SignIns.Add(DateTime.Now);
         }

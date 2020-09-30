@@ -48,7 +48,6 @@
             this.star3 = new System.Windows.Forms.PictureBox();
             this.star2 = new System.Windows.Forms.PictureBox();
             this.star1 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.labelLifetimeCards = new System.Windows.Forms.Label();
@@ -75,12 +74,12 @@
             // 
             // listBoxUserProfiles
             // 
-            this.listBoxUserProfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxUserProfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxUserProfiles.FormattingEnabled = true;
-            this.listBoxUserProfiles.ItemHeight = 18;
+            this.listBoxUserProfiles.ItemHeight = 16;
             this.listBoxUserProfiles.Location = new System.Drawing.Point(12, 32);
             this.listBoxUserProfiles.Name = "listBoxUserProfiles";
-            this.listBoxUserProfiles.Size = new System.Drawing.Size(294, 382);
+            this.listBoxUserProfiles.Size = new System.Drawing.Size(294, 388);
             this.listBoxUserProfiles.TabIndex = 2;
             this.listBoxUserProfiles.SelectedIndexChanged += new System.EventHandler(this.listBoxUserProfiles_SelectedIndexChanged);
             // 
@@ -101,6 +100,7 @@
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(404, 22);
             this.textBoxUserName.TabIndex = 4;
+            this.textBoxUserName.TextChanged += new System.EventHandler(this.textBoxUserName_TextChanged);
             // 
             // textBoxUserId
             // 
@@ -245,19 +245,10 @@
             this.star1.TabIndex = 7;
             this.star1.TabStop = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(703, 140);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 17);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Special";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(591, 219);
+            this.label7.Location = new System.Drawing.Point(591, 204);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(98, 17);
             this.label7.TabIndex = 22;
@@ -266,7 +257,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(381, 219);
+            this.label8.Location = new System.Drawing.Point(381, 204);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 17);
             this.label8.TabIndex = 23;
@@ -276,7 +267,7 @@
             // 
             this.labelLifetimeCards.AutoSize = true;
             this.labelLifetimeCards.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLifetimeCards.Location = new System.Drawing.Point(589, 240);
+            this.labelLifetimeCards.Location = new System.Drawing.Point(589, 224);
             this.labelLifetimeCards.Name = "labelLifetimeCards";
             this.labelLifetimeCards.Size = new System.Drawing.Size(168, 29);
             this.labelLifetimeCards.TabIndex = 24;
@@ -286,9 +277,9 @@
             // 
             this.listBoxUsageHistory.FormattingEnabled = true;
             this.listBoxUsageHistory.ItemHeight = 16;
-            this.listBoxUsageHistory.Location = new System.Drawing.Point(384, 240);
+            this.listBoxUsageHistory.Location = new System.Drawing.Point(384, 224);
             this.listBoxUsageHistory.Name = "listBoxUsageHistory";
-            this.listBoxUsageHistory.Size = new System.Drawing.Size(188, 180);
+            this.listBoxUsageHistory.Size = new System.Drawing.Size(188, 196);
             this.listBoxUsageHistory.TabIndex = 25;
             // 
             // UserMenu
@@ -300,7 +291,6 @@
             this.Controls.Add(this.labelLifetimeCards);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.otherAward);
             this.Controls.Add(this.otherRating);
             this.Controls.Add(this.label5);
@@ -360,7 +350,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox otherRating;
         private System.Windows.Forms.PictureBox otherAward;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelLifetimeCards;

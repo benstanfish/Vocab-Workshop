@@ -39,10 +39,11 @@ namespace Vocab_Workshop.Properties
                 CurrentUsers = UserGroup.ReadXml(ProjectFolders.ConfigFolder("users.xml"));
                 if (CurrentUsers != null && CurrentUsers.Users.Count != 0)
                 {
-                    foreach (UserProfile user in CurrentUsers.Users)
-                    {
-                        listBoxUserProfiles.Items.Add(user);
-                    }
+                    listBoxUserProfiles.DataSource = CurrentUsers.Users;
+                    //foreach (UserProfile user in CurrentUsers.Users)
+                    //{
+                    //    listBoxUserProfiles.Items.Add(user);
+                    //}
                 }
                
             }
@@ -185,6 +186,17 @@ namespace Vocab_Workshop.Properties
             textBoxUserId.Text = CurrentUsers.Users[selected].Id;
             listBoxUsageHistory.DataSource = CurrentUsers.Users[selected].SignIns;
             labelLifetimeCards.Text = CurrentUsers.Users[selected].LifetimeCards.ToString();
+        }
+
+        private void textBoxUserName_TextChanged(object sender, EventArgs e)
+        {
+            int selected = listBoxUserProfiles.SelectedIndex;
+            if (selected != null)
+            {
+                CurrentUsers.Users[selected].UserName = textBoxUserName.Text;
+                listBoxUserProfiles.Refresh(); // Not working
+            }
+
         }
     }
 }
