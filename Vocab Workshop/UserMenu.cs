@@ -21,7 +21,7 @@ namespace Vocab_Workshop.Properties
         Image medal = Resources.baseline_military_tech_black_18dp;
         private string userPath = ProjectFolders.ConfigFolder("Users.xml");
         public UserGroup CurrentUsers;
-
+        BindingSource binding = new BindingSource();
 
         public UserMenu()
         {
@@ -39,7 +39,11 @@ namespace Vocab_Workshop.Properties
                 CurrentUsers = UserGroup.ReadXml(ProjectFolders.ConfigFolder("users.xml"));
                 if (CurrentUsers != null && CurrentUsers.Users.Count != 0)
                 {
-                    listBoxUserProfiles.DataSource = CurrentUsers.Users;
+                    binding.DataSource = CurrentUsers.Users;
+                    listBoxUserProfiles.DataSource = binding;
+
+
+                    //listBoxUserProfiles.DataSource = CurrentUsers.Users;
                     //foreach (UserProfile user in CurrentUsers.Users)
                     //{
                     //    listBoxUserProfiles.Items.Add(user);
@@ -182,19 +186,23 @@ namespace Vocab_Workshop.Properties
         private void listBoxUserProfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selected = listBoxUserProfiles.SelectedIndex;
-            textBoxUserName.Text = CurrentUsers.Users[selected].UserName;
-            textBoxUserId.Text = CurrentUsers.Users[selected].Id;
-            listBoxUsageHistory.DataSource = CurrentUsers.Users[selected].SignIns;
-            labelLifetimeCards.Text = CurrentUsers.Users[selected].LifetimeCards.ToString();
+            if (selected != null || selected > -1)
+            {
+                textBoxUserName.Text = CurrentUsers.Users[selected].UserName;
+                textBoxUserId.Text = CurrentUsers.Users[selected].Id;
+                listBoxUsageHistory.DataSource = CurrentUsers.Users[selected].SignIns;
+                labelLifetimeCards.Text = CurrentUsers.Users[selected].LifetimeCards.ToString();
+            }
+            
         }
 
         private void textBoxUserName_TextChanged(object sender, EventArgs e)
         {
             int selected = listBoxUserProfiles.SelectedIndex;
-            if (selected != null)
+            if (selected != null || selected > -1)
             {
                 CurrentUsers.Users[selected].UserName = textBoxUserName.Text;
-                listBoxUserProfiles.Refresh(); // Not working
+                binding.ResetBindings(false);
             }
 
         }
