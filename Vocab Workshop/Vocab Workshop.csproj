@@ -119,6 +119,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewUser.Designer.cs">
+      <DependentUpon>AddNewUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="CardSet.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardSetBuilder.cs">
@@ -165,6 +171,9 @@
     <Compile Include="Toolbox.cs" />
     <Compile Include="UserGroup.cs" />
     <Compile Include="UserProfile.cs" />
+    <EmbeddedResource Include="AddNewUser.resx">
+      <DependentUpon>AddNewUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CardSetBuilder.resx">
       <DependentUpon>CardSetBuilder.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +211,8 @@
   <ItemGroup>
     <Content Include="buntorii.ico" />
     <Content Include="Bun_Torii.ico" />
+    <None Include="Resources\baseline_close_black_18dp.png" />
+    <None Include="Resources\baseline_cancel_black_18dp.png" />
     <None Include="Resources\baseline_person_remove_black_18dp.png" />
     <None Include="Resources\buntorii.ico" />
     <None Include="Resources\baseline_settings_black_18dp.png" />
