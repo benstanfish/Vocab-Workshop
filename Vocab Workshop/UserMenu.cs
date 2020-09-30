@@ -22,6 +22,7 @@ namespace Vocab_Workshop.Properties
         private string userPath = ProjectFolders.ConfigFolder("Users.xml");
         public UserGroup CurrentUsers;
         BindingSource binding = new BindingSource();
+        private UserProfile tempNewUser;
 
         public UserMenu()
         {
@@ -214,7 +215,9 @@ namespace Vocab_Workshop.Properties
 
         private void AddUser_Click(object sender, EventArgs e)
         {
-
+            var newUserDialog = new AddNewUser(tempNewUser);
+            newUserDialog.Show();
+            CurrentUsers.Users.Add(tempNewUser);
         }
 
         private void RemoveUser_Click(object sender, EventArgs e)
