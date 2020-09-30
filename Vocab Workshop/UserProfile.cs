@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
@@ -41,6 +40,11 @@ namespace Vocab_Workshop
             }
         }
 
+        public override string ToString()
+        {
+            return UserName;
+        }
+
         public void SetId(string tryGuid)
         {
             if (Guid.TryParse(tryGuid, out Guid tempGuid))
@@ -74,20 +78,20 @@ namespace Vocab_Workshop
 
         public void WriteXml(string savePath)
         {
-            var xml = new DataContractSerializer(typeof(UserProfile));
+            var xml = new XmlSerializer(typeof(UserProfile));
             using (var writer = new FileStream(savePath, FileMode.OpenOrCreate))
             {
-                xml.WriteObject(writer, this);
+                xml.Serialize(writer, this);
             }
         }
 
         public static UserProfile ReadXml(string filePath)
         {
             UserProfile user = new UserProfile();
-            var serializer = new DataContractSerializer(typeof(UserProfile));
+            var serializer = new XmlSerializer(typeof(UserProfile));
             using (var reader = new FileStream(filePath, FileMode.Open))
             {
-                user = (UserProfile)serializer.ReadObject(reader);
+                user = (UserProfile)serializer.Deserialize(reader);
             }
             return user;
         }

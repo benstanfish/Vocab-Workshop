@@ -144,10 +144,29 @@ namespace Testing_Center
 
             //newSet.WriteXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
 
-            var readSet =
-                CardSet.ReadXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
+            var userFile = ProjectFolders.ConfigFolder("users.xml");
 
+            //var newUser = new UserProfile("benstanfish");
+            //var newUserGroup = new UserGroup()
+            //{
+            //    users =
+            //    {
+            //        new UserProfile("Ben"),
+            //        new UserProfile("Junko"),
+            //        new UserProfile("Honeybear"),
+            //        new UserProfile("Ayu"),
+            //        new UserProfile("Shinya")
+            //    }
+            //};
 
+            //newUserGroup.users.Add(newUser);
+            //newUserGroup.WriteXml(userFile);
+
+            var userGroup = UserGroup.ReadXml(userFile);
+            foreach (UserProfile user in userGroup.users)
+            {
+                Console.WriteLine(user.UserName);
+            }
         }
 
 

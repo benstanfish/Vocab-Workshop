@@ -154,9 +154,6 @@ namespace Vocab_Workshop.Properties
             }
         }
 
-        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-            UpdateStars(hScrollBar1.Value);
-        }
+
     }
 }

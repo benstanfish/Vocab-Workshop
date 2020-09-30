@@ -39,7 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.otherAward = new System.Windows.Forms.PictureBox();
             this.otherRating = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -156,17 +155,6 @@
             this.label5.Size = new System.Drawing.Size(54, 17);
             this.label5.TabIndex = 17;
             this.label5.Text = "Update";
-            // 
-            // hScrollBar1
-            // 
-            this.hScrollBar1.LargeChange = 1;
-            this.hScrollBar1.Location = new System.Drawing.Point(80, 247);
-            this.hScrollBar1.Maximum = 12;
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(277, 22);
-            this.hScrollBar1.TabIndex = 18;
-            this.hScrollBar1.Visible = false;
-            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // otherAward
             // 
@@ -314,7 +302,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.otherAward);
             this.Controls.Add(this.otherRating);
-            this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label4);
@@ -370,7 +357,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.PictureBox otherRating;
         private System.Windows.Forms.PictureBox otherAward;
         private System.Windows.Forms.Label label6;

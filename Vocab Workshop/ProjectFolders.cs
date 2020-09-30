@@ -18,9 +18,15 @@ namespace Vocab_Workshop
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
         }
 
-        public static string ConfigFolder()
+        public static string ConfigFolder(string subfolders = null)
         {
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Vocab Workshop\Program Config\";
+            string thisPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                              @"\Vocab Workshop\Program Config\";
+            if (subfolders != null)
+            {
+                thisPath += subfolders;
+            }
+            return thisPath;
         }
 
         public static string ImagesFolder()
