@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardViewer));
             this.labelStage = new System.Windows.Forms.Label();
-            this.labelCurrentSet = new System.Windows.Forms.Label();
             this.labelIncorrect = new System.Windows.Forms.Label();
             this.labelCorrect = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -89,49 +88,32 @@
             // 
             // labelStage
             // 
-            this.labelStage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.labelStage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelStage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelStage.Font = new System.Drawing.Font("Meiryo UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStage.Location = new System.Drawing.Point(60, 87);
             this.labelStage.Name = "labelStage";
-            this.labelStage.Size = new System.Drawing.Size(785, 500);
+            this.labelStage.Size = new System.Drawing.Size(785, 400);
             this.labelStage.TabIndex = 0;
             this.labelStage.Text = "Stage";
             this.labelStage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelCurrentSet
-            // 
-            this.labelCurrentSet.AutoSize = true;
-            this.labelCurrentSet.Location = new System.Drawing.Point(12, 9);
-            this.labelCurrentSet.Name = "labelCurrentSet";
-            this.labelCurrentSet.Size = new System.Drawing.Size(135, 17);
-            this.labelCurrentSet.TabIndex = 3;
-            this.labelCurrentSet.Text = "Current Set: \"Name\"";
-            this.labelCurrentSet.Click += new System.EventHandler(this.labelCurrentSet_Click);
-            // 
             // labelIncorrect
             // 
-            this.labelIncorrect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelIncorrect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelIncorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelIncorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.labelIncorrect.Location = new System.Drawing.Point(851, 87);
             this.labelIncorrect.Name = "labelIncorrect";
-            this.labelIncorrect.Size = new System.Drawing.Size(39, 500);
+            this.labelIncorrect.Size = new System.Drawing.Size(39, 400);
             this.labelIncorrect.TabIndex = 5;
             this.labelIncorrect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelCorrect
             // 
-            this.labelCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelCorrect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.labelCorrect.Location = new System.Drawing.Point(15, 87);
             this.labelCorrect.Name = "labelCorrect";
-            this.labelCorrect.Size = new System.Drawing.Size(39, 500);
+            this.labelCorrect.Size = new System.Drawing.Size(39, 400);
             this.labelCorrect.TabIndex = 6;
             this.labelCorrect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -141,7 +123,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(767, 14);
+            this.label4.Location = new System.Drawing.Point(16, 14);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 15;
@@ -177,7 +159,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(260, 14);
+            this.label7.Location = new System.Drawing.Point(212, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 17);
             this.label7.TabIndex = 22;
@@ -209,7 +191,6 @@
             // 
             // pictureBox12
             // 
-            this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox12.Image = global::Vocab_Workshop.Properties.Resources.baseline_play_arrow_black_18dp;
             this.pictureBox12.Location = new System.Drawing.Point(380, 35);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(4);
@@ -221,7 +202,6 @@
             // 
             // pictureBox11
             // 
-            this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox11.Image = global::Vocab_Workshop.Properties.Resources.baseline_rotate_right_black_18dp;
             this.pictureBox11.Location = new System.Drawing.Point(457, 35);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
@@ -234,9 +214,8 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox8.Image = global::Vocab_Workshop.Properties.Resources.baseline_arrow_downward_black_18dp;
-            this.pictureBox8.Location = new System.Drawing.Point(216, 35);
+            this.pictureBox8.Location = new System.Drawing.Point(168, 35);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(36, 36);
@@ -247,9 +226,8 @@
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox7.Image = global::Vocab_Workshop.Properties.Resources.baseline_format_size_black_18dp;
-            this.pictureBox7.Location = new System.Drawing.Point(260, 35);
+            this.pictureBox7.Location = new System.Drawing.Point(212, 35);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(36, 36);
@@ -260,9 +238,8 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox6.Image = global::Vocab_Workshop.Properties.Resources.baseline_arrow_upward_black_18dp;
-            this.pictureBox6.Location = new System.Drawing.Point(304, 35);
+            this.pictureBox6.Location = new System.Drawing.Point(256, 35);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(36, 36);
@@ -273,7 +250,6 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox5.Image = global::Vocab_Workshop.Properties.Resources.baseline_loop_black_18dp;
             this.pictureBox5.Location = new System.Drawing.Point(525, 35);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
@@ -286,9 +262,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Image = global::Vocab_Workshop.Properties.Resources.baseline_open_in_browser_black_18dp;
-            this.pictureBox2.Location = new System.Drawing.Point(769, 35);
+            this.pictureBox2.Location = new System.Drawing.Point(18, 35);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(36, 36);
@@ -299,7 +274,6 @@
             // 
             // labelGoHome
             // 
-            this.labelGoHome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelGoHome.Image = global::Vocab_Workshop.Properties.Resources.baseline_home_black_18dp;
             this.labelGoHome.Location = new System.Drawing.Point(851, 35);
             this.labelGoHome.Margin = new System.Windows.Forms.Padding(4);
@@ -312,9 +286,8 @@
             // 
             // label12
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(730, 614);
+            this.label12.Location = new System.Drawing.Point(738, 503);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(40, 17);
             this.label12.TabIndex = 80;
@@ -322,9 +295,8 @@
             // 
             // pictureBox13
             // 
-            this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox13.Image = global::Vocab_Workshop.Properties.Resources.baseline_functions_black_18dp;
-            this.pictureBox13.Location = new System.Drawing.Point(732, 635);
+            this.pictureBox13.Location = new System.Drawing.Point(740, 524);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(36, 36);
@@ -334,9 +306,8 @@
             // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(611, 614);
+            this.label9.Location = new System.Drawing.Point(619, 503);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 17);
             this.label9.TabIndex = 78;
@@ -344,9 +315,8 @@
             // 
             // pictureBox10
             // 
-            this.pictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox10.Image = global::Vocab_Workshop.Properties.Resources.baseline_dynamic_feed_black_18dp;
-            this.pictureBox10.Location = new System.Drawing.Point(612, 635);
+            this.pictureBox10.Location = new System.Drawing.Point(620, 524);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(36, 36);
@@ -356,9 +326,8 @@
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(451, 614);
+            this.label8.Location = new System.Drawing.Point(459, 503);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 17);
             this.label8.TabIndex = 76;
@@ -366,9 +335,8 @@
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox9.Image = global::Vocab_Workshop.Properties.Resources.baseline_view_carousel_black_18dp;
-            this.pictureBox9.Location = new System.Drawing.Point(451, 635);
+            this.pictureBox9.Location = new System.Drawing.Point(459, 524);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(36, 36);
@@ -378,9 +346,8 @@
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 614);
+            this.label3.Location = new System.Drawing.Point(89, 503);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 17);
             this.label3.TabIndex = 74;
@@ -388,9 +355,8 @@
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(200, 614);
+            this.label2.Location = new System.Drawing.Point(208, 503);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 17);
             this.label2.TabIndex = 73;
@@ -398,9 +364,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(321, 614);
+            this.label1.Location = new System.Drawing.Point(329, 503);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 17);
             this.label1.TabIndex = 72;
@@ -408,9 +373,8 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox4.Image = global::Vocab_Workshop.Properties.Resources.baseline_trending_up_black_18dp;
-            this.pictureBox4.Location = new System.Drawing.Point(91, 635);
+            this.pictureBox4.Location = new System.Drawing.Point(99, 524);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(36, 36);
@@ -420,9 +384,8 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.Image = global::Vocab_Workshop.Properties.Resources.baseline_trending_flat_black_18dp;
-            this.pictureBox3.Location = new System.Drawing.Point(211, 635);
+            this.pictureBox3.Location = new System.Drawing.Point(219, 524);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(36, 36);
@@ -432,9 +395,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::Vocab_Workshop.Properties.Resources.baseline_trending_down_black_18dp;
-            this.pictureBox1.Location = new System.Drawing.Point(327, 635);
+            this.pictureBox1.Location = new System.Drawing.Point(335, 524);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 36);
@@ -444,10 +406,9 @@
             // 
             // labelForgot
             // 
-            this.labelForgot.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelForgot.AutoSize = true;
             this.labelForgot.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelForgot.Location = new System.Drawing.Point(370, 639);
+            this.labelForgot.Location = new System.Drawing.Point(378, 528);
             this.labelForgot.Name = "labelForgot";
             this.labelForgot.Size = new System.Drawing.Size(30, 29);
             this.labelForgot.TabIndex = 81;
@@ -455,10 +416,9 @@
             // 
             // labelSkipped
             // 
-            this.labelSkipped.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelSkipped.AutoSize = true;
             this.labelSkipped.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSkipped.Location = new System.Drawing.Point(254, 639);
+            this.labelSkipped.Location = new System.Drawing.Point(262, 528);
             this.labelSkipped.Name = "labelSkipped";
             this.labelSkipped.Size = new System.Drawing.Size(30, 29);
             this.labelSkipped.TabIndex = 82;
@@ -466,10 +426,9 @@
             // 
             // labelCleared
             // 
-            this.labelCleared.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCleared.AutoSize = true;
             this.labelCleared.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCleared.Location = new System.Drawing.Point(134, 639);
+            this.labelCleared.Location = new System.Drawing.Point(142, 528);
             this.labelCleared.Name = "labelCleared";
             this.labelCleared.Size = new System.Drawing.Size(30, 29);
             this.labelCleared.TabIndex = 83;
@@ -477,10 +436,9 @@
             // 
             // labelSide
             // 
-            this.labelSide.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelSide.AutoSize = true;
             this.labelSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSide.Location = new System.Drawing.Point(493, 639);
+            this.labelSide.Location = new System.Drawing.Point(501, 528);
             this.labelSide.Name = "labelSide";
             this.labelSide.Size = new System.Drawing.Size(30, 29);
             this.labelSide.TabIndex = 84;
@@ -488,10 +446,9 @@
             // 
             // labelCard
             // 
-            this.labelCard.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCard.AutoSize = true;
             this.labelCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCard.Location = new System.Drawing.Point(655, 639);
+            this.labelCard.Location = new System.Drawing.Point(663, 528);
             this.labelCard.Name = "labelCard";
             this.labelCard.Size = new System.Drawing.Size(30, 29);
             this.labelCard.TabIndex = 85;
@@ -499,10 +456,9 @@
             // 
             // labelTotal
             // 
-            this.labelTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelTotal.AutoSize = true;
             this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.Location = new System.Drawing.Point(775, 639);
+            this.labelTotal.Location = new System.Drawing.Point(783, 528);
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(30, 29);
             this.labelTotal.TabIndex = 86;
@@ -522,7 +478,6 @@
             // 
             // pictureBoxFrantic
             // 
-            this.pictureBoxFrantic.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxFrantic.Image = global::Vocab_Workshop.Properties.Resources.baseline_alarm_black_18dp;
             this.pictureBoxFrantic.Location = new System.Drawing.Point(612, 35);
             this.pictureBoxFrantic.Margin = new System.Windows.Forms.Padding(4);
@@ -553,7 +508,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(905, 698);
+            this.ClientSize = new System.Drawing.Size(905, 582);
             this.Controls.Add(this.labelFrantic);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.pictureBoxFrantic);
@@ -589,7 +544,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.labelGoHome);
-            this.Controls.Add(this.labelCurrentSet);
             this.Controls.Add(this.labelCorrect);
             this.Controls.Add(this.labelIncorrect);
             this.Controls.Add(this.labelStage);
@@ -598,6 +552,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CardViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CardViewer";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CardViewer_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
@@ -623,7 +578,6 @@
         #endregion
 
         private System.Windows.Forms.Label labelStage;
-        private System.Windows.Forms.Label labelCurrentSet;
         private System.Windows.Forms.Label labelIncorrect;
         private System.Windows.Forms.Label labelCorrect;
         private System.Windows.Forms.PictureBox labelGoHome;

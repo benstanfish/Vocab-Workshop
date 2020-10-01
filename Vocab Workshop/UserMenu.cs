@@ -64,7 +64,7 @@ namespace Vocab_Workshop.Properties
                 }
                
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 listBoxUserProfiles.Items.Add("Error reading file. Check XML syntax.");
                 listBoxUserProfiles.Enabled = false;
@@ -248,7 +248,6 @@ namespace Vocab_Workshop.Properties
                 _userPath = temp;
             }
             LoadUsers();
-            MessageBox.Show(_userPath);
         }
 
         private void AddUser_Click(object sender, EventArgs e)
@@ -309,7 +308,6 @@ namespace Vocab_Workshop.Properties
         {
             ResetUserPath();
             LoadUsers();
-            MessageBox.Show(_userPath);
         }
     }
 }
