@@ -14,7 +14,7 @@ namespace Vocab_Workshop
     public partial class AddNewUser : Form
     {
         public UserProfile newUser = new UserProfile();
-        private bool valid;
+        private bool _valid;
 
         public AddNewUser()
         {
@@ -31,19 +31,6 @@ namespace Vocab_Workshop
             return newUser;
         }
 
-        private void Home_Click(object sender, EventArgs e)
-        {
-            if (!valid)
-            {
-                newUser.UserName = textBoxUsername.Text;
-                this.Close();
-            }
-            else
-            {
-                this.Close();
-            }
-        }
-
 
         private void Cancel_Click(object sender, EventArgs e)
         {
@@ -55,7 +42,7 @@ namespace Vocab_Workshop
         {
             if (textBoxUsername.Text != string.Empty)
             {
-                valid = true;
+                _valid = true;
             }
         }
 

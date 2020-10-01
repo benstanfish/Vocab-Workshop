@@ -35,18 +35,11 @@ namespace Vocab_Workshop.Properties
         {
             try
             {
-                CurrentUsers = UserGroup.ReadXml(ProjectFolders.ConfigFolder("users.xml"));
+                CurrentUsers = UserGroup.ReadXml(userPath);
                 if (CurrentUsers != null && CurrentUsers.Users.Count != 0)
                 {
                     binding.DataSource = CurrentUsers.Users;
                     listBoxUserProfiles.DataSource = binding;
-
-
-                    //listBoxUserProfiles.DataSource = CurrentUsers.Users;
-                    //foreach (UserProfile user in CurrentUsers.Users)
-                    //{
-                    //    listBoxUserProfiles.Items.Add(user);
-                    //}
                 }
                
             }
@@ -57,6 +50,7 @@ namespace Vocab_Workshop.Properties
             }
 
         }
+
         public void UpdateStars(int stars)
         {
             switch (stars)
@@ -218,8 +212,9 @@ namespace Vocab_Workshop.Properties
             if (newUserForm.newUser != null && newUserForm.newUser.UserName != string.Empty)
             {
                 CurrentUsers.Users.Add(newUserForm.newUser);
+                listBoxUserProfiles.SelectedIndex = 1;
             };
-            listBoxUserProfiles.SelectedIndex = 1;
+            
 
         }
 
@@ -234,12 +229,13 @@ namespace Vocab_Workshop.Properties
 
         private void Save_Click(object sender, EventArgs e)
         {
-
+            CurrentUsers.WriteXml(userPath);
+            this.Close();
         }
 
         private void Home_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

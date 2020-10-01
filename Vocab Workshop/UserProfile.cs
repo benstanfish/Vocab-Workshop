@@ -60,7 +60,7 @@ namespace Vocab_Workshop
         public void WriteXml(string savePath)
         {
             var xml = new XmlSerializer(typeof(UserProfile));
-            using (var writer = new FileStream(savePath, FileMode.OpenOrCreate))
+            using (var writer = new FileStream(savePath, FileMode.Create))
             {
                 xml.Serialize(writer, this);
             }
