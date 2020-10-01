@@ -41,6 +41,10 @@ namespace Vocab_Workshop
             labelStage.Text = "Please load a card set.";
         }
 
+        private void ResetTimer()
+        {
+
+        }
 
 
         private void UpdateStage(string performer)
