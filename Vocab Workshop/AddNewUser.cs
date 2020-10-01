@@ -35,7 +35,8 @@ namespace Vocab_Workshop
         {
             if (!valid)
             {
-                
+                newUser.UserName = textBoxUsername.Text;
+                this.Close();
             }
             else
             {
@@ -43,14 +44,11 @@ namespace Vocab_Workshop
             }
         }
 
-        private void AddUser_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-
+            newUser = null;
+            this.Close();
         }
 
         private void textBoxUsername_TextChanged(object sender, EventArgs e)
@@ -58,6 +56,15 @@ namespace Vocab_Workshop
             if (textBoxUsername.Text != string.Empty)
             {
                 valid = true;
+            }
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            if (textBoxUsername.Text != string.Empty)
+            {
+                newUser.UserName = textBoxUsername.Text;
+                this.Close();
             }
         }
     }
