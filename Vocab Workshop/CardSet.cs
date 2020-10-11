@@ -71,6 +71,48 @@ namespace Vocab_Workshop
             return cardSet;
         }
 
+        public static bool IsXmlFile(string filePath)
+        {
+            string text = "";
+            if (File.Exists(filePath))
+            {
+                text = File.ReadAllText(filePath).Trim();
+                
+            }
+            return text.StartsWith("<") && text.EndsWith(">");
+        }
+
+        public static bool IsJsonFile(string filePath)
+        {
+            string text = "";
+            if (File.Exists(filePath))
+            {
+                text = File.ReadAllText(filePath).Trim();
+            }
+            return text.StartsWith("{") && text.EndsWith("}");
+        }
+        public static CardSet Read(string filePath)
+        {
+            CardSet cardSet = new CardSet();
+            if (IsXmlFile(filePath) == true)
+            {
+                cardSet = CardSet.ReadXml(filePath);
+            }
+            else if (IsJsonFile(filePath) == true)
+            {
+                cardSet = CardSet.ReadJson(filePath);
+            }
+            else
+            {
+                cardSet = null;
+            }
+
+            return cardSet;
+        }
+
+
+
+
         public static CardSet ReadTsv(string filePath)
         {
             var cardSet = new CardSet();

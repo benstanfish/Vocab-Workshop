@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+
+
 
 namespace Vocab_Workshop
 {
@@ -92,5 +95,23 @@ namespace Vocab_Workshop
             
         }
 
+
+
+
+        public static void Reveal()
+        {
+            // get all public static properties of MyClass type
+            PropertyInfo[] propertyInfos;
+            propertyInfos = typeof(Card).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            // sort properties by name
+            Array.Sort(propertyInfos, delegate (PropertyInfo propertyInfo1, PropertyInfo propertyInfo2){ return propertyInfo1.Name.CompareTo(propertyInfo2.Name); });
+
+            // write property names
+            foreach (PropertyInfo propertyInfo in propertyInfos)
+            {
+                Console.WriteLine(propertyInfo.Name);
+            }
+        }
+        
     }
 }

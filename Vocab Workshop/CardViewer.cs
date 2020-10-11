@@ -8,6 +8,7 @@ using System.Timers;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Timer = System.Timers.Timer;
+using System.Reflection;
 
 
 namespace Vocab_Workshop
@@ -40,12 +41,6 @@ namespace Vocab_Workshop
             labelFrantic.Text = franticMax.ToString();
             labelStage.Text = "Please load a card set.";
         }
-
-        private void ResetTimer()
-        {
-
-        }
-
 
         private void UpdateStage(string performer)
         {
@@ -123,6 +118,28 @@ namespace Vocab_Workshop
             
         }
 
+
+        private string SideType(int side)
+        {
+            switch (side)
+            {
+                case 0:
+                    return "Front";
+                    break;
+                case 1:
+                    return "Hint";
+                    break;
+                case 2:
+                    return "Back";
+                    break;
+                case 3:
+                    return "Image";
+                    break;
+                default:
+                    return string.Empty;
+            }
+        }
+
         private void RefreshLabels()
         {
             
@@ -131,7 +148,7 @@ namespace Vocab_Workshop
             labelSkipped.Text = skipped.ToString();
             labelTotal.Text = totalCards.ToString();
             labelCard.Text = currentCard.ToString();
-            labelSide.Text = currentFace.ToString() + @" / " + totalFaces.ToString();
+            labelSide.Text = SideType(currentFace);   //currentFace.ToString() + @" / " + totalFaces.ToString();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
@@ -207,7 +224,7 @@ namespace Vocab_Workshop
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.InitialDirectory = Utilities.CardSetsFolder();
-                ofd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+                //ofd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
                 ofd.FilterIndex = 0;
                 ofd.RestoreDirectory = false;
 
@@ -222,28 +239,30 @@ namespace Vocab_Workshop
 
         private CardSet LoadCardSet(string myPath)
         {
-            string myContents = File.ReadAllText(myPath);
-            myContents = myContents.Replace('\n', '\r');
-            string[] lines = myContents.Split(new char[] { '\r' },
-                StringSplitOptions.RemoveEmptyEntries);
+            //string myContents = File.ReadAllText(myPath);
+            //myContents = myContents.Replace('\n', '\r');
+            //string[] lines = myContents.Split(new char[] { '\r' },
+            //    StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 0; i < lines.Length; i++)
-            {
-                string[] thisLine = lines[i].Split('\t');
-                Card card = new Card();
-                for (int j = 0; j < thisLine.Length; j++)
-                {
-                    if (!string.IsNullOrWhiteSpace(thisLine[j].ToString()))
-                        card.Sides.Add(thisLine[j].ToString());
-                }
-                cardSet.Cards.Add(card);
-            }
+            //for (int i = 0; i < lines.Length; i++)
+            //{
+            //    string[] thisLine = lines[i].Split('\t');
+            //    Card card = new Card();
+            //    for (int j = 0; j < thisLine.Length; j++)
+            //    {
+            //        if (!string.IsNullOrWhiteSpace(thisLine[j].ToString()))
+            //            card.Sides.Add(thisLine[j].ToString());
+            //    }
+            //    cardSet.Cards.Add(card);
+            //}
+
+            var cardSet = CardSet.Read(myPath);
 
             totalCards = cardSet.Cards.Count();
-
-            // cardSet.Cards.Shuffle();
             return cardSet;
         }
+
+
         private void labelCurrentSet_Click(object sender, EventArgs e)
         {
             cardSet = LoadCardSet(GetCardFilePath());
@@ -287,10 +306,15 @@ namespace Vocab_Workshop
             var path = GetCardFilePath();
             if (path != null)
             {
-                cardSet = CardSet.ReadXml(path);
+                cardSet = CardSet.Read(path);
+                
             }
-            totalCards = cardSet.Cards.Count - 1;
-            TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
+            if (cardSet != null && cardSet.Cards.Count > 0)
+            {
+                totalCards = cardSet.Cards.Count - 1;
+                TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
+            }
+            
         }
 
         private void Shuffle_Click(object sender, EventArgs e)
