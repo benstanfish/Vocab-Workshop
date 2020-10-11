@@ -236,17 +236,17 @@ namespace Testing_Center
             //    Console.WriteLine(writeMe);
             //}
 
-            var startPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.txt";
-            var newSet = CardSet.ReadTsv(startPath);
+            //var startPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.txt";
+            //var newSet = CardSet.ReadTsv(startPath);
 
-            var saveXmlPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.xml";
-            newSet.WriteXml(saveXmlPath);
+            //var saveXmlPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.xml";
+            //newSet.WriteXml(saveXmlPath);
 
-            var newerSet = CardSet.ReadXml(saveXmlPath);
-            var saveJsonPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.json";
+            //var newerSet = CardSet.ReadXml(saveXmlPath);
+            //var saveJsonPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.json";
 
-            newerSet.WriteJson(saveJsonPath);
-            var newestSet = CardSet.ReadJson(saveJsonPath);
+            //newerSet.WriteJson(saveJsonPath);
+            //var newestSet = CardSet.ReadJson(saveJsonPath);
         }
 
 

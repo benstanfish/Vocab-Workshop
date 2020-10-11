@@ -131,7 +131,7 @@ namespace Vocab_Workshop
             labelSkipped.Text = skipped.ToString();
             labelTotal.Text = totalCards.ToString();
             labelCard.Text = currentCard.ToString();
-            labelSide.Text = currentFace.ToString() + " / " + totalFaces.ToString();
+            labelSide.Text = currentFace.ToString() + @" / " + totalFaces.ToString();
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
@@ -161,10 +161,16 @@ namespace Vocab_Workshop
         {
             if (File.Exists(possiblePath))
             {
-                Image img = Image.FromFile(possiblePath);   
-                Image newImg = ScaleImage(img, labelStage.Width, labelStage.Height);
-                labelStage.Text = "";
-                labelStage.Image = newImg;
+                try
+                {
+                    Image img = Image.FromFile(possiblePath);
+                    Image newImg = ScaleImage(img, labelStage.Width, labelStage.Height);
+                    labelStage.Text = "";
+                    labelStage.Image = newImg;
+                }
+                catch (Exception)
+                {
+                } 
             }
             else
             {
