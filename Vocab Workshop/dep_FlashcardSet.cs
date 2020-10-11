@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 namespace Vocab_Workshop
 {
     [DataContract]
-    public class FlashcardSet
+    public class dep_FlashcardSet
     {
         [DataMember(Name = "Id")]
         private Guid _guid = Guid.NewGuid();
@@ -20,7 +20,7 @@ namespace Vocab_Workshop
         [DataMember]
         public string Description;
         [DataMember]
-        public readonly List<Flashcard> Cards = new List<Flashcard>();
+        public readonly List<dep_Flashcard> Cards = new List<dep_Flashcard>();
 
         public void SetId(string guidCandidate)
         {
@@ -40,23 +40,23 @@ namespace Vocab_Workshop
 
         public void WriteXml(string savePath)
         {
-            var xml = new DataContractSerializer(typeof(FlashcardSet));
+            var xml = new DataContractSerializer(typeof(dep_FlashcardSet));
             using (var writer = new FileStream(savePath, FileMode.Create))
             {
                 xml.WriteObject(writer, this);
             }
         }
 
-        public static FlashcardSet ReadXml(string filePath)
+        public static dep_FlashcardSet ReadXml(string filePath)
         {
-            FlashcardSet cardSet = new FlashcardSet();
+            dep_FlashcardSet cardSet = new dep_FlashcardSet();
             CleanXmlID(filePath);
-            var serializer = new DataContractSerializer(typeof(FlashcardSet));
+            var serializer = new DataContractSerializer(typeof(dep_FlashcardSet));
             try
             {
                 using (var reader = new FileStream(filePath, FileMode.Open))
                 {
-                    cardSet = (FlashcardSet)serializer.ReadObject(reader);
+                    cardSet = (dep_FlashcardSet)serializer.ReadObject(reader);
                 }
             }
             catch (Exception)

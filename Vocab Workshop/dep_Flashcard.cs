@@ -12,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Vocab_Workshop
 {
     [DataContract]
-    public class Flashcard
+    public class dep_Flashcard
     {
         [DataMember(Name = "Id")]
         private Guid _guid = Guid.NewGuid();
@@ -25,7 +25,7 @@ namespace Vocab_Workshop
         [DataMember]
         public string ImagePath { get; set; }
 
-        public Flashcard()
+        public dep_Flashcard()
         {
             Question = string.Empty;
             Hint = string.Empty;
@@ -70,7 +70,7 @@ namespace Vocab_Workshop
 
         public void WriteXml(string savePath)
         {
-            var xml = new DataContractSerializer(typeof(Flashcard));
+            var xml = new DataContractSerializer(typeof(dep_Flashcard));
             using (var writer = new FileStream(savePath, FileMode.Create))
             {
                 xml.WriteObject(writer, this);
@@ -78,14 +78,14 @@ namespace Vocab_Workshop
 
         }
 
-        public static Flashcard ReadXml(string filePath)
+        public static dep_Flashcard ReadXml(string filePath)
         {
 
-            Flashcard card = new Flashcard();
-            var serializer = new DataContractSerializer(typeof(Flashcard));
+            dep_Flashcard card = new dep_Flashcard();
+            var serializer = new DataContractSerializer(typeof(dep_Flashcard));
             using (var reader = new FileStream(filePath, FileMode.Open))
             {
-                card = (Flashcard)serializer.ReadObject(reader);
+                card = (dep_Flashcard)serializer.ReadObject(reader);
             }
             return card;
         }

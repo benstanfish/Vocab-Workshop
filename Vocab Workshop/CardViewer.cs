@@ -200,7 +200,7 @@ namespace Vocab_Workshop
             string myPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.InitialDirectory = ProjectFolders.CardSetsFolder();
+                ofd.InitialDirectory = Utilities.CardSetsFolder();
                 ofd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
                 ofd.FilterIndex = 0;
                 ofd.RestoreDirectory = false;
@@ -323,7 +323,6 @@ namespace Vocab_Workshop
             }
             else
             {
-                
                 timerFrantic.Enabled = false;
                 franticTime = franticMax;
                 pictureBoxFrantic.BackColor = Color.White;

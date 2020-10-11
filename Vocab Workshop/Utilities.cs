@@ -10,9 +10,8 @@ using System.Windows.Forms;
 namespace Vocab_Workshop
 {
 
-    public static class ProjectFolders
+    public static class Utilities
     {
-
         public static string Desktop()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
@@ -27,6 +26,17 @@ namespace Vocab_Workshop
                 thisPath += subfolders;
             }
             return thisPath;
+        }
+
+        public static string ErrorLogFolder()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                              @"\Vocab Workshop\Program Config\ErrorLogs\";
+        }
+
+        public static string NowString()
+        {
+            return DateTime.Now.ToString("yyyyMMdd_hhmmss");
         }
 
         public static string ImagesFolder()

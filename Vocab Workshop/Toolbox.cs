@@ -157,9 +157,7 @@ namespace Vocab_Workshop
     ////Console.WriteLine(z.guid + ", " + z.word + ", " + z.hiragana);
 
     #endregion
-
-
-
+    
     static class Toolbox
     {
         

@@ -21,7 +21,7 @@ namespace Vocab_Workshop.Properties
         Image prettyStar = Resources.baseline_stars_black_18dp;
         Image medal = Resources.baseline_military_tech_black_18dp;
         private string _userPath;
-        private string _defaultUserPath = ProjectFolders.ConfigFolder("Users.xml");
+        private string _defaultUserPath = Utilities.ConfigFolder("Users.xml");
         public UserGroup CurrentUsers = new UserGroup();
         BindingSource binding = new BindingSource();
         private bool updatesSaved;

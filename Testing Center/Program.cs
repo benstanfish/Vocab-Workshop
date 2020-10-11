@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text.Encodings.Web;
 using Microsoft.VisualBasic;
 using Vocab_Workshop;
 
@@ -145,7 +147,7 @@ namespace Testing_Center
 
             //newSet.WriteXml(@"C:\Users\benst\Documents\Vocab Workshop\Card Sets\N1 Vocabulary List 2020 v1.xml");
 
-            var userFile = ProjectFolders.ConfigFolder("Users.xml");
+            //var userFile = ProjectFolders.ConfigFolder("Users.xml");
 
             //var newUser = new UserProfile("benstanfish");
             //var newUserGroup = new UserGroup()
@@ -163,26 +165,93 @@ namespace Testing_Center
             //newUserGroup.Users.Add(newUser);
             //newUserGroup.WriteXml(userFile);
 
-            var userGroup = UserGroup.ReadXml(userFile);
-            var users = userGroup.Users;
+            //var userGroup = UserGroup.ReadXml(userFile);
+            //var users = userGroup.Users;
 
             // Users.RemoveAll(user => user.UserName == "benstanfish");
 
-            var luckyUser = users.SingleOrDefault(user => user.UserName =="Ben");
-            luckyUser.Promote(1000);
-            luckyUser.SignIn();
+            //var luckyUser = users.SingleOrDefault(user => user.UserName =="Ben");
+            //luckyUser.Promote(1000);
+            //luckyUser.SignIn();
 
             //foreach (UserProfile user in users)
             //{
             //    Console.WriteLine(user.UserName + ", points: " + user.Rating);
             //}
-            userGroup.WriteXml(userFile);
-            
+            //userGroup.WriteXml(userFile);
+
+            //Card card = new Card()
+            //{
+            //    Front = "This is the front",
+            //    Back = "This is the back",
+            //    Hint = "This is the hint",
+            //    Id = Guid.NewGuid().ToString(),
+            //    ImagePath = "No image path"
+            //};
+
+            //string saveTsvPath = Utilities.CardSetsFolder() + "CardSet.tsv";
+            //card.WriteTsv(saveTsvPath);
+
+
+
+
+
+            //string savePath = Utilities.CardSetsFolder() + "JsonTest.json";
+            //card.WriteJson(savePath);
+
+            //var newCard = Card.ReadJson(savePath);
+            //Console.WriteLine("Front: " + newCard.Front);
+            //Console.WriteLine("Hint: " + newCard.Hint);
+            //Console.WriteLine("Back: " + newCard.Back);
+            //Console.WriteLine("ImagePath: " + newCard.ImagePath);
+            //Console.WriteLine("Guid: " + newCard.Id);
+
+            //for (int i = 0; i < newCard.Sides.Count; i++)
+            //{
+            //    Console.WriteLine(newCard.Sides[i]);
+            //}
+
+
+            //string xmlSavePath = ProjectFolders.CardSetsFolder() + "XMLTest.xml";
+            //newCard.WriteXml(xmlSavePath);
+
+            //var newXMLCard = Card.ReadXml(xmlSavePath);
+            //Console.WriteLine("Front: " + newXMLCard.Front);
+            //Console.WriteLine("Hint: " + newXMLCard.Hint);
+            //Console.WriteLine("Back: " + newXMLCard.Back);
+            //Console.WriteLine("ImagePath: " + newXMLCard.ImagePath);
+            //Console.WriteLine("Guid: " + newXMLCard.Id);
+
+            //Console.WriteLine(Utilities.NowString());
+
+
+
+
+            //string testPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.txt";
+            //var newSet = CardSet.ReadTsv(testPath);
+            //foreach (var card in newSet.Cards)
+            //{
+            //    var writeMe = "Front: " + card.Front + ", Hint: " + card.Hint + ", Back: " + card.Back +
+            //                  ", ImagePath: " + card.ImagePath + ", ID: " + card.Id;
+            //    Console.WriteLine(writeMe);
+            //}
+
+            var startPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.txt";
+            var newSet = CardSet.ReadTsv(startPath);
+
+            var saveXmlPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.xml";
+            newSet.WriteXml(saveXmlPath);
+
+            var newerSet = CardSet.ReadXml(saveXmlPath);
+            var saveJsonPath = Utilities.CardSetsFolder() + "N1 Vocabulary List 2020 v1.json";
+
+            newerSet.WriteJson(saveJsonPath);
+            var newestSet = CardSet.ReadJson(saveJsonPath);
         }
 
 
 
-        
+
 
 
 
