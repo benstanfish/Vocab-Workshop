@@ -62,7 +62,6 @@ namespace Vocab_Workshop
         {
             if (currentCard == 0) { currentCard = totalCards -1; }
             else { currentCard--; }
-
             
             TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
         }
@@ -142,13 +141,12 @@ namespace Vocab_Workshop
 
         private void RefreshLabels()
         {
-            
             labelForgot.Text = wrong.ToString();
             labelCleared.Text = correct.ToString();
             labelSkipped.Text = skipped.ToString();
             labelTotal.Text = totalCards.ToString();
             labelCard.Text = currentCard.ToString();
-            labelSide.Text = SideType(currentFace);   //currentFace.ToString() + @" / " + totalFaces.ToString();
+            labelSide.Text = SideType(currentFace); 
         }
 
         private void CardViewer_KeyUp(object sender, KeyEventArgs e)
