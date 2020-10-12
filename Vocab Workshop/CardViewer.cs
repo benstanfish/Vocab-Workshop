@@ -17,7 +17,7 @@ namespace Vocab_Workshop
     {
         
         CardSet cardSet = new CardSet();
-
+        
         int currentCard = 0;
         int totalCards = 0;
         int startFace = 0;
@@ -154,23 +154,7 @@ namespace Vocab_Workshop
             KeyNavigation(e);
         }
 
-        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
-        {
-            var ratioX = (double)maxWidth / image.Width;
-            var ratioY = (double)maxHeight / image.Height;
-            Double ratio = Math.Min(ratioX, ratioY);
-            ratio = ratio * 0.9;
-
-            var newWidth = (int)(image.Width * ratio);
-            var newHeight = (int)(image.Height * ratio);
-
-            var newImage = new Bitmap(newWidth, newHeight);
-
-            using (var graphics = Graphics.FromImage(newImage))
-                graphics.DrawImage(image, 0, 0, newWidth, newHeight);
-
-            return newImage;
-        }
+        
 
         private void TestImageAndUpdateStage(string possiblePath)
         {
@@ -179,7 +163,7 @@ namespace Vocab_Workshop
                 try
                 {
                     Image img = Image.FromFile(possiblePath);
-                    Image newImg = ScaleImage(img, labelStage.Width, labelStage.Height);
+                    Image newImg = Utilities.ScaleImage(img, labelStage.Width, labelStage.Height);
                     labelStage.Text = "";
                     labelStage.Image = newImg;
                 }
@@ -194,86 +178,93 @@ namespace Vocab_Workshop
             }
         }
 
+        #region CLEANED
         private void FontDefault()
         {
-           labelStage.Font = new Font(labelStage.Font.Name, defaultFontSize,
+            labelStage.Font = new Font(labelStage.Font.Name, defaultFontSize,
                 labelStage.Font.Style, labelStage.Font.Unit);
         }
         private void FontIncrease()
         {
             var currentSize = labelStage.Font.Size;
             currentSize += 2.0F;
+            if (currentSize > 60F)
+                currentSize = 60F;
             labelStage.Font = new Font(labelStage.Font.Name, currentSize,
                 labelStage.Font.Style, labelStage.Font.Unit);
         }
-
         private void FontDecrease()
         {
             var currentSize = labelStage.Font.Size;
             currentSize -= 2.0F;
+            if (currentSize < 12F)
+                currentSize = 12F;
             labelStage.Font = new Font(labelStage.Font.Name, currentSize,
                 labelStage.Font.Style, labelStage.Font.Unit);
         }
 
 
-        private string GetCardFilePath()
+        #endregion
+
+
+        
+
+        private void Home_Click(object sender, EventArgs e)
         {
-            string myPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            MessageBox.Show("Todo: Go to Main menu.");
+            Close();
+        }
+
+
+
+        #region BUTTONCLICKMETHODS
+
+        private void LoadSet_Click(object sender, EventArgs e)
+        {
+            var path = Utilities.LoadCardSetFile();
+            if (path != null)
             {
-                ofd.InitialDirectory = Utilities.CardSetsFolder();
-                //ofd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
-                ofd.FilterIndex = 0;
-                ofd.RestoreDirectory = false;
+                cardSet = CardSet.Read(path);
 
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    myPath = ofd.FileName;
-                }
             }
-            return myPath;
+            if (cardSet != null && cardSet.Cards.Count > 0)
+            {
+                totalCards = cardSet.Cards.Count - 1;
+                TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
+            }
+
         }
 
-
-        private CardSet LoadCardSet(string myPath)
+        private void Shuffle_Click(object sender, EventArgs e)
         {
-            //string myContents = File.ReadAllText(myPath);
-            //myContents = myContents.Replace('\n', '\r');
-            //string[] lines = myContents.Split(new char[] { '\r' },
-            //    StringSplitOptions.RemoveEmptyEntries);
-
-            //for (int i = 0; i < lines.Length; i++)
-            //{
-            //    string[] thisLine = lines[i].Split('\t');
-            //    Card card = new Card();
-            //    for (int j = 0; j < thisLine.Length; j++)
-            //    {
-            //        if (!string.IsNullOrWhiteSpace(thisLine[j].ToString()))
-            //            card.Sides.Add(thisLine[j].ToString());
-            //    }
-            //    cardSet.Cards.Add(card);
-            //}
-
-            var cardSet = CardSet.Read(myPath);
-
-            totalCards = cardSet.Cards.Count();
-            return cardSet;
+            cardSet.Cards.Shuffle();
         }
 
-
-        private void labelCurrentSet_Click(object sender, EventArgs e)
+        private void Reverse_Click(object sender, EventArgs e)
         {
-            cardSet = LoadCardSet(GetCardFilePath());
-            labelStage.Text = cardSet.Cards[0].Sides[0];
+            cardSet.Cards.Reverse();
         }
 
+        private void FontIncrease_Click(object sender, EventArgs e)
+        {
+            FontIncrease();
+        }
+
+        private void FontDecrease_Click(object sender, EventArgs e)
+        {
+            FontDecrease();
+        }
+
+        private void FontDefault_Click(object sender, EventArgs e)
+        {
+            FontDefault();
+        }
 
         private void ColorLabel(Control control, Color color)
         {
             control.BackColor = color;
-
             var timer = new System.Timers.Timer();
-            timer.Interval = 250;
+            timer.Interval = 250;   // length of time the label is colored
             timer.Elapsed += ResetLabelColor;
             timer.AutoReset = false;
             timer.Enabled = true;
@@ -294,51 +285,6 @@ namespace Vocab_Workshop
             ColorLabel(labelCorrect, Color.MediumAquamarine);
         }
 
-        private void Home_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Todo: Go to Main menu.");
-        }
-
-        private void LoadSet_Click(object sender, EventArgs e)
-        {
-            var path = GetCardFilePath();
-            if (path != null)
-            {
-                cardSet = CardSet.Read(path);
-                
-            }
-            if (cardSet != null && cardSet.Cards.Count > 0)
-            {
-                totalCards = cardSet.Cards.Count - 1;
-                TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
-            }
-            
-        }
-
-        private void Shuffle_Click(object sender, EventArgs e)
-        {
-            cardSet.Cards.Shuffle();
-        }
-
-        private void Reverse_Click(object sender, EventArgs e)
-        { 
-            cardSet.Cards.Reverse();
-        }
-
-        private void FontIncrease_Click(object sender, EventArgs e)
-        {
-            FontIncrease();
-        }
-
-        private void FontDecrease_Click(object sender, EventArgs e)
-        {
-            FontDecrease();
-        }
-
-        private void FontDefault_Click(object sender, EventArgs e)
-        {
-            FontDefault();
-        }
 
         private void FranticMode_Click(object sender, EventArgs e)
         {
@@ -360,7 +306,7 @@ namespace Vocab_Workshop
             }
         }
 
-        private void timerFrantic_Tick_1(object sender, EventArgs e)
+        private void timerFrantic_Tick(object sender, EventArgs e)
         {
             if (franticTime >= 0)
             {
@@ -379,5 +325,10 @@ namespace Vocab_Workshop
             }
 
         }
+
+
+        #endregion
+
+
     }
 }

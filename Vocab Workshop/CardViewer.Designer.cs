@@ -501,7 +501,7 @@
             // timerFrantic
             // 
             this.timerFrantic.Interval = 1000;
-            this.timerFrantic.Tick += new System.EventHandler(this.timerFrantic_Tick_1);
+            this.timerFrantic.Tick += new System.EventHandler(this.timerFrantic_Tick);
             // 
             // CardViewer
             // 
