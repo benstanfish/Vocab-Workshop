@@ -29,9 +29,9 @@ namespace Vocab_Workshop
         float defaultFontSize = 24;
         bool franticOn = false;
         int franticTime;
-        int franticMax = 12;
-
-        readonly System.Timers.Timer franticTimer = new System.Timers.Timer(1000);
+        int franticMax = 10;
+        int franticAlert = 5;
+        //readonly System.Timers.Timer franticTimer = new System.Timers.Timer(1000);
 
         public CardViewer()
         {
@@ -55,6 +55,8 @@ namespace Vocab_Workshop
             if (currentCard == totalCards - 1) { currentCard = 0; }
             else { currentCard++; }
 
+            franticTime = franticMax;
+            ResetFranticTime();
             totalFaces = cardSet.Cards[currentCard].Sides.Count;
             TestImageAndUpdateStage(cardSet.Cards[currentCard].Sides[startFace]);
         }
@@ -117,23 +119,18 @@ namespace Vocab_Workshop
             
         }
 
-
         private string SideType(int side)
         {
             switch (side)
             {
                 case 0:
                     return "Front";
-                    break;
                 case 1:
                     return "Hint";
-                    break;
                 case 2:
                     return "Back";
-                    break;
                 case 3:
                     return "Image";
-                    break;
                 default:
                     return string.Empty;
             }
@@ -154,7 +151,6 @@ namespace Vocab_Workshop
             KeyNavigation(e);
         }
 
-        
 
         private void TestImageAndUpdateStage(string possiblePath)
         {
@@ -178,7 +174,6 @@ namespace Vocab_Workshop
             }
         }
 
-        #region CLEANED
         private void FontDefault()
         {
             labelStage.Font = new Font(labelStage.Font.Name, defaultFontSize,
@@ -203,21 +198,12 @@ namespace Vocab_Workshop
                 labelStage.Font.Style, labelStage.Font.Unit);
         }
 
-
-        #endregion
-
-
-        
-
         private void Home_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Todo: Go to Main menu.");
             Close();
         }
 
 
-
-        #region BUTTONCLICKMETHODS
 
         private void LoadSet_Click(object sender, EventArgs e)
         {
@@ -285,6 +271,14 @@ namespace Vocab_Workshop
             ColorLabel(labelCorrect, Color.MediumAquamarine);
         }
 
+        private void ResetFranticTime()
+        {
+            timerFrantic.Stop();
+            labelFrantic.ForeColor = Color.Black;
+            labelStage.BackColor = Color.White;
+            franticTime = franticMax;
+            timerFrantic.Start();
+        }
 
         private void FranticMode_Click(object sender, EventArgs e)
         {
@@ -310,7 +304,7 @@ namespace Vocab_Workshop
         {
             if (franticTime >= 0)
             {
-                if (franticTime < 11)
+                if (franticTime < franticAlert)
                 {
                     labelFrantic.ForeColor = Color.Tomato;
                     labelStage.BackColor = Color.LightPink;
@@ -325,9 +319,6 @@ namespace Vocab_Workshop
             }
 
         }
-
-
-        #endregion
 
 
     }
