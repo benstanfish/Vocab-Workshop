@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
+using System.Text.Json;
 
 namespace Vocab_Workshop
 {
@@ -56,27 +57,6 @@ namespace Vocab_Workshop
         {
             SignIns.Add(DateTime.Now);
         }
-
-        public void WriteXml(string savePath)
-        {
-            var xml = new XmlSerializer(typeof(UserProfile));
-            using (var writer = new FileStream(savePath, FileMode.Create))
-            {
-                xml.Serialize(writer, this);
-            }
-        }
-
-        public static UserProfile ReadXml(string filePath)
-        {
-            UserProfile user = new UserProfile();
-            var serializer = new XmlSerializer(typeof(UserProfile));
-            using (var reader = new FileStream(filePath, FileMode.Open))
-            {
-                user = (UserProfile)serializer.Deserialize(reader);
-            }
-            return user;
-        }
-
         public void Promote(int points)
         {
             Rating += points;
@@ -89,6 +69,51 @@ namespace Vocab_Workshop
             else
                 Rating -= points;
         }
+
+
+        public void WriteXml(string savePath)
+        {
+            var xml = new XmlSerializer(typeof(UserProfile));
+            using (var writer = new FileStream(savePath, FileMode.Create))
+            {
+                xml.Serialize(writer, this);
+            }
+        }
+
+        
+        public static UserProfile ReadXml(string filePath)
+        {
+            UserProfile user = new UserProfile();
+            var serializer = new XmlSerializer(typeof(UserProfile));
+            using (var reader = new FileStream(filePath, FileMode.Open))
+            {
+                user = (UserProfile)serializer.Deserialize(reader);
+            }
+            return user;
+        }
+
+
+        public void WriteJson(string savePath)
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+            string jsonString = JsonSerializer.Serialize(this, this.GetType(), options);
+            File.WriteAllText(savePath, jsonString);
+        }
+
+        public static UserProfile ReadJson(string filePath)
+        {
+            UserProfile profile = new UserProfile();
+            if (File.Exists(filePath))
+            {
+                string jsonString = File.ReadAllText(filePath);
+                profile = JsonSerializer.Deserialize<UserProfile>(jsonString);
+            }
+            return profile;
+        }
+
 
     }
 }

@@ -94,7 +94,6 @@ namespace Vocab_Workshop
             }
             
         }
-
         public static string LoadCardSetFile()
         {
             string myPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
